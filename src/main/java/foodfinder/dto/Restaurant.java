@@ -1,4 +1,4 @@
-package dto;
+package foodfinder.dto;
 
 public class Restaurant {
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+<changeSet id="01" author="jbacic7">
+
+    <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="user_seq" />
+
+    <createTable tableName="users"
+                 remarks="A table to contain all users">
+        <column name="user_id" type="int">
+        <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_users" />
+    </column>
+
+        <column name="name" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="surname" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="mail" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="password" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+
+    </createTable>
+    <createTable tableName="restaurants"
+                 remarks="A table to contain all restaurants">
+        <column name="restaurant_id" type="int">
+            <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_restaurant" />
+        </column>
+
+        <column name="restaurant_name" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="restaurant_mail" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="restaurant_type" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="restaurant_geo_h" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="restaurant_geo_l" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    <createTable tableName="history"
+                 remarks="A table to contain all history">
+        <column name="history_id" type="int">
+            <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_history" />
+        </column>
+
+        <column name="user_id" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="restaurants_id" type="varchar(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="date" type="varchar(255)">
+            <constraints nullable="false"/>
+    </column>
+    </createTable>
+</changeSet>
+</databaseChangeLog>

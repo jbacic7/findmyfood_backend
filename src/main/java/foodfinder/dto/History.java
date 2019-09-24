@@ -1,4 +1,4 @@
-package dto;
+package foodfinder.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GeoIp {
+public class History {
 
-    private String ipAddress;
-    private String city;
-    private String latitude;
-    private String longitude;
-
+    private Integer idHistory;
+    private Integer idUser;
+    private Integer idRestaurant;
+    
 }
