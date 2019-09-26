@@ -35,7 +35,7 @@
     <createTable tableName="restaurants"
                  remarks="A table to contain all restaurants">
         <column name="restaurant_id" type="int" defaultValueSequenceNext="seq_restaurants">
-            <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_restaurants" />
+            <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_restaurants"  />
         </column>
 
         <column name="name" type="varchar(255)">
@@ -62,7 +62,6 @@
         <column name="history_id" type="int" defaultValueSequenceNext="seq_history">
             <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_history" />
         </column>
-
         <column name="user_id" type="varchar(255)">
             <constraints nullable="false"/>
         </column>
