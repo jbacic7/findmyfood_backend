@@ -1,4 +1,4 @@
-package dto;
+package foodfinder.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+
 
     private String name;
     private String surname;
