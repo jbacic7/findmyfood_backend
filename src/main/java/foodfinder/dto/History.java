@@ -14,13 +14,15 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NotNull
 @Data
-@Table
+@Table(name = "history")
 public class History {
 
     @Id
-    @Column
+    @Column(name = "history_id")
     private Integer historyId;
+    @Column(name = "user_id")
     private Integer userId;
+    @Column(name = "restaurants_id")
     private Integer restaurantId;
     private Timestamp date;
 
