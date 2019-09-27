@@ -7,12 +7,12 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 
-<changeSet author="jbacic7" id="change user_id type">
-    <modifyDataType columnName="user_id"
-                    newDataType="int4"
-                    schemaName="public"
-                    tableName="history"/>
-</changeSet>
+    <changeSet author="jbacic7" id="change user_id type">
+        <modifyDataType columnName="user_id"
+                        newDataType="int4"
+                        schemaName="public"
+                        tableName="history"/>
+    </changeSet>
 
     <changeSet author="jbacic7" id="change restaurant_id type">
         <modifyDataType columnName="restaurants_id"
@@ -54,4 +54,4 @@
     </changeSet>
 
 
-        </databaseChangeLog>
+</databaseChangeLog>

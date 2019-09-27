@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -7,8 +6,19 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="changelog/create-tables.xml" relativeToChangelogFile="true"/>
-    <include file="changelog/create-update-for-table.xml" relativeToChangelogFile="true"/>
-    <include file="changelog/name-change-in-table.xml" relativeToChangelogFile="true"/>
+
+    <changeSet author="jbacic7" id="change name in restaurants table">
+        <renameColumn
+                newColumnName="longitude"
+                oldColumnName="geo_l"
+                tableName="restaurants"/>
+
+
+        <renameColumn
+                newColumnName="latitude"
+                oldColumnName="geo_h"
+                tableName="restaurants"/>
+
+    </changeSet>
 
 </databaseChangeLog>
