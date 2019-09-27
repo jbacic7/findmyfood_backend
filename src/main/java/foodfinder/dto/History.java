@@ -5,14 +5,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
+
+@Entity
 @Builder
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NotNull
+@Data
+@Table
 public class History {
 
-    private Integer idHistory;
-    private Integer idUser;
-    private Integer idRestaurant;
-    
+    @Id
+    @Column
+    private Integer historyId;
+    private Integer userId;
+    private Integer restaurantId;
+    private Timestamp date;
+
 }

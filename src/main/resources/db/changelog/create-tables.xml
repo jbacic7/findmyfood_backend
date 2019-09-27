@@ -5,72 +5,72 @@
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-<changeSet id="01" author="jbacic7">
+    <changeSet id="01" author="jbacic7">
 
-    <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_user"/>
+        <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_user"/>
 
-    <createTable tableName="users"
-                 remarks="A table to contain all users">
-        <column name="user_id" type="int" defaultValueSequenceNext="seq_user">
-        <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_users" />
-    </column>
+        <createTable tableName="users"
+                     remarks="A table to contain all users">
+            <column name="user_id" type="int" defaultValueSequenceNext="seq_user">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_users"/>
+            </column>
 
-        <column name="name" type="varchar(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="surname" type="varchar(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="mail" type="varchar(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="password" type="varchar(255)">
-            <constraints nullable="false"/>
-        </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mail" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
 
-    </createTable>
+        </createTable>
 
-    <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_restaurants"/>
+        <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_restaurants"/>
 
-    <createTable tableName="restaurants"
-                 remarks="A table to contain all restaurants">
-        <column name="restaurant_id" type="int" defaultValueSequenceNext="seq_restaurants">
-            <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_restaurants"  />
-        </column>
+        <createTable tableName="restaurants"
+                     remarks="A table to contain all restaurants">
+            <column name="restaurant_id" type="int" defaultValueSequenceNext="seq_restaurants">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_restaurants"/>
+            </column>
 
-        <column name="name" type="varchar(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="address" type="varchar(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="type" type="varchar(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="geo_h" type="real">
-            <constraints nullable="false"/>
-        </column>
-        <column name="geo_l" type="real">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="geo_h" type="real">
+                <constraints nullable="false"/>
+            </column>
+            <column name="geo_l" type="real">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
 
-    <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_history"/>
+        <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_history"/>
 
-    <createTable tableName="history"
-                 remarks="A table to contain all history">
-        <column name="history_id" type="int" defaultValueSequenceNext="seq_history">
-            <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_history" />
-        </column>
-        <column name="user_id" type="varchar(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="restaurants_id" type="varchar(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="date" type="varchar(255)">
-            <constraints nullable="false"/>
-    </column>
-    </createTable>
-</changeSet>
+        <createTable tableName="history"
+                     remarks="A table to contain all history">
+            <column name="history_id" type="int" defaultValueSequenceNext="seq_history">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_history"/>
+            </column>
+            <column name="user_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restaurants_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
