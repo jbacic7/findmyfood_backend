@@ -22,9 +22,13 @@ public class User {
     @Id
     @Column(name = "user_id")
     private Integer userId;
+
     private String name;
+
     private String surname;
+
     private String mail;
+
     private String password;
 
 }
