@@ -13,7 +13,6 @@
                 oldColumnName="geo_l"
                 tableName="restaurants"/>
 
-
         <renameColumn
                 newColumnName="latitude"
                 oldColumnName="geo_h"
