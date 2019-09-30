@@ -10,5 +10,5 @@
     <include file="changelog/create-tables.xml" relativeToChangelogFile="true"/>
     <include file="changelog/create-update-for-table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/name-change-in-table.xml" relativeToChangelogFile="true"/>
-
+    <include file="changelog/fill-tables-restaurants.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
