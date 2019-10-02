@@ -24,7 +24,6 @@ public class History {
     private Integer userId;
     @Column(name = "restaurants_id")
     private Integer restaurantId;
-
     private Timestamp date;
 
 }
