@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface HistoryRepository extends JpaRepository<History, String> {
 
-    List<History> findHistoriesByHistoryId(Integer historyId);
-    List<History> findHistoriesByUserId(Integer userId);
-    List<History> findHistoriesByRestaurantId(Integer restaurantsId );
-    List<History> findHistoriesByDate(Timestamp date);
+    History findHistoriesByHistoryId(Integer historyId);
+    History findHistoriesByUserId(Integer userId);
+    History findHistoriesByRestaurantId(Integer restaurantsId );
+    History findHistoriesByDate(Timestamp date);
 
 }
