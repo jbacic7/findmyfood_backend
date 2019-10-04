@@ -29,5 +29,4 @@ public class Restaurant {
     private String type;
     private Float latitude;
     private Float longitude;
-
 }
