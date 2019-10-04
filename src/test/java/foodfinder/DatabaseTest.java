@@ -39,33 +39,32 @@ public class DatabaseTest {
     }
 
     @Test
-    public  void checkingIsHistoryFilled(){
+    public void checkingIsHistoryFilled() {
 
         List<History> history = historyRepository.findAll();
 
-        Assert.assertNotNull(history);
+        Assert.assertEquals(true, history.isEmpty());
 
     }
+
     @Test
-    public void checkingIsUserFilled(){
+    public void checkingIsUserFilled() {
 
         List<User> user = userRepository.findAll();
 
-        Assert.assertNotNull(user);
+        Assert.assertEquals(true, user.isEmpty());
 
     }
 
     @Test
-    public void checkRestaurantName(){
+    public void checkRestaurantName() {
 
+        String targetName = "Sofra";
 
-        Restaurant restaurantName = restaurantRepository.findRestaurantByName("Sofra");
+       List<Restaurant> restaurantName = restaurantRepository.findRestaurantsByName("Sofra");
 
-        String nameExpected = "Sofra";
-
-        Assert.assertEquals( nameExpected, restaurantName.getName());
-
+        for (Restaurant restaurant: restaurantName) {
+            Assert.assertEquals(restaurant.getName(), targetName);
+        }
     }
-
-
 }

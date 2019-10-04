@@ -9,9 +9,9 @@ import java.util.List;
 public interface RestaurantRepository extends JpaRepository<Restaurant, String> {
 
     Restaurant findRestaurantByRestaurantId(Integer restaurant_id);
-    Restaurant findRestaurantByName (String name);
-    Restaurant findRestaurantByAddress(String address);
-    Restaurant findRestaurantByType(String type);
+    List <Restaurant> findRestaurantsByName (String name);
+    List<Restaurant> findRestaurantsByAddress(String address);
+    List<Restaurant> findRestaurantsByType(String type);
     Restaurant findRestaurantByLatitude(Float latitude);
     Restaurant findRestaurantByLongitude(Float longitude);
 
