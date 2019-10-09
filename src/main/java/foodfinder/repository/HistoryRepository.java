@@ -2,7 +2,7 @@ package foodfinder.repository;
 
 import foodfinder.dto.History;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
 
 
 import java.sql.Timestamp;
