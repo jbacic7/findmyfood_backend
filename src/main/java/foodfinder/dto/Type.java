@@ -27,6 +27,7 @@ public class Type {
     @Column(name = "type_Id")
     private Integer typeId;
     private String name;
+
     @Nullable
     private String description;
 
