@@ -16,4 +16,5 @@ public interface HistoryRepository extends JpaRepository<History, Integer> {
    List <History> findHistoriesByRestaurantId(Integer restaurantsId );
    List <History> findHistoriesByDate(Timestamp date);
 
+
 }
