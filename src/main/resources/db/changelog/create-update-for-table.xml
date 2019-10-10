@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
-    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 
     <changeSet author="jbacic7" id="change user_id type">
@@ -31,27 +31,17 @@
     <changeSet author="jbacic7" id="addForeignKeyConstraint-into-history">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="history"
-                                 constraintName=" fk_history"
-                                 deferrable="true"
-                                 initiallyDeferred="true"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
+                                 constraintName="fk_history"
                                  referencedColumnNames="user_id"
                                  referencedTableName="users"/>
     </changeSet>
 
-
     <changeSet author="jbacic7" id="addForeignKeyConstraint-into-restaurant">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="history"
-                                 constraintName=" fk_restaurants"
-                                 deferrable="true"
-                                 initiallyDeferred="true"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
+                                 constraintName="fk_restaurants"
                                  referencedColumnNames="restaurant_id"
                                  referencedTableName="restaurants"/>
     </changeSet>
-
 
 </databaseChangeLog>

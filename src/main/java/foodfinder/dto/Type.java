@@ -19,15 +19,15 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@NotNull
 @Table(name = "type")
 public class Type {
 
     @Id
+    @NotNull
     @Column(name = "type_Id")
     private Integer typeId;
+    @NotNull
     private String name;
-
     @Nullable
     private String description;
 
