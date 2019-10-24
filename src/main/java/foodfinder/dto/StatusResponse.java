@@ -10,10 +10,10 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class StatusResponse extends Exception {
+public class StatusResponse {
 
     private int statusCode;
-    private HttpStatus status;
+    private HttpStatus  status;
     private String msg;
 
 }

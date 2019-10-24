@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
 
     Restaurant findRestaurantByRestaurantId(Integer restaurant_id);
@@ -14,6 +15,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     List<Restaurant> findRestaurantsByType(String type);
     Restaurant findRestaurantByLatitude(Float latitude);
     Restaurant findRestaurantByLongitude(Float longitude);
-
+    List<Restaurant> findRestaurantsByTypeIn(List<String> typeList);
 
 }

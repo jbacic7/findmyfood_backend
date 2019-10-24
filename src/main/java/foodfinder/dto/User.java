@@ -27,5 +27,5 @@ public class User {
     private String surname;
     private String mail;
     private String password;
-
 }
+
