@@ -7,6 +7,7 @@ import foodfinder.repository.HistoryRepository;
 import foodfinder.repository.RestaurantRepository;
 import foodfinder.repository.UserRepository;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DatabaseTest {
@@ -64,6 +64,7 @@ public class DatabaseTest {
        List<Restaurant> restaurantName = restaurantRepository.findRestaurantsByName("Sofra");
 
         for (Restaurant restaurant: restaurantName) {
+
             Assert.assertEquals(restaurant.getName(), targetName);
         }
     }
