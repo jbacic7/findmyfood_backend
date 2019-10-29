@@ -16,7 +16,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 
     @Override
-    public List<Restaurant> fetchAllRestaurantValues(String restaurantName, List<String> restaurantTypeList) {
+    public List<Restaurant> fetchRestaurantValues(String restaurantName, List<String> restaurantTypeList) {
 
         if (restaurantTypeList == null && (restaurantName == null || restaurantName.isEmpty())) {
 
@@ -37,7 +37,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
 
-    public Restaurant FetchRestaurantId(Integer restaurantId) {
+    public Restaurant fetchRestaurantId(Integer restaurantId) {
 
         if (restaurantId != 0) {
 
