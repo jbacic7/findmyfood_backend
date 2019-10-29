@@ -8,8 +8,7 @@ import java.util.List;
 
 @Service
 public interface RestaurantService {
+    List<Restaurant> fetchRestaurantValues(final String restaurantName , final List<String> restaurantTypeList);
 
-    List<Restaurant> fetchAllRestaurantValues (final String restaurantName , final List<String> restaurantTypeList);
-
-    Restaurant FetchRestaurantId (Integer restaurantId);
+    Restaurant fetchRestaurantId(Integer restaurantId);
 }

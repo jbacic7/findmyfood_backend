@@ -22,20 +22,20 @@ public class RestaurantServiceTest {
     RestaurantService restaurantService;
 
     @Test
-    public void checkIfListOfRestaurantsIsBiggerThenOne() {
+    public void fetchAllRestaurantValuesTest() {
 
-        List<Restaurant> restaurantNameGetter = restaurantService.fetchAllRestaurantValues(null, null);
+        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantValues(null, null);
 
         Assert.assertTrue(restaurantNameGetter.size() > 1);
 
     }
 
     @Test
-    public void checkIsRestaurantNameIsEmpty() {
+    public void fetchRestaurantValuesByNameTest() {
 
         String restaurantName = "Sofra";
 
-        List<Restaurant> restaurantNameGetter = restaurantService.fetchAllRestaurantValues(restaurantName, null);
+        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantValues(restaurantName, null);
 
         for (Restaurant restaurant : restaurantNameGetter) {
 
@@ -45,24 +45,23 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void checkIfRestaurantTypeListIsTwo() {
+    public void fetchRestaurantValuesByTwoTypeTest() {
 
         List<String> typeList = new ArrayList<>();
         typeList.add("grill");
         typeList.add("market");
-
-        List<Restaurant> restaurantList = restaurantService.fetchAllRestaurantValues(null, typeList);
+        List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeList);
 
         Assert.assertTrue(restaurantList.size() == 2);
     }
 
     @Test
-    public void checkIfRestaurantTypeListIsOne() {
+    public void fetchRestaurantValuesByOneTypeTest() {
 
         List<String> typeList = new ArrayList<>();
         typeList.add("grill");
 
-        List<Restaurant> restaurantList = restaurantService.fetchAllRestaurantValues(null, typeList);
+      List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeList);
 
         for (Restaurant restaurant : restaurantList) {
 
@@ -72,18 +71,19 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void checkRestaurantId() {
+    public void fetchRestaurantId_ById() {
 
-        Restaurant restaurant = restaurantService.FetchRestaurantId(1);
+        Restaurant restaurant = restaurantService.fetchRestaurantId(1);
 
         Assert.assertEquals(1, restaurant.getRestaurantId().intValue());
 
     }
 
     @Test
-    public void checkIsRestaurantIdNull() {
+    public void fetchRestaurantId_NullValueTest() {
 
-        Restaurant restaurantNull = restaurantService.FetchRestaurantId(0);
+        Restaurant restaurantNull = restaurantService.fetchRestaurantId(0);
+
 
         Assert.assertEquals(null, restaurantNull);
 

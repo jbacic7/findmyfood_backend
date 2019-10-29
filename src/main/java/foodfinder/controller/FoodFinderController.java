@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @Validated
-public class RestaurantController {
+public class FoodFinderController {
 
     @Autowired
     RestaurantRepository restaurantRepository;
@@ -23,19 +23,19 @@ public class RestaurantController {
 
 
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public List<Restaurant> restaurants(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
+    public List<Restaurant> getRestaurants(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
 
-        return restaurantService.fetchAllRestaurantValues(restaurantName, restaurantTypeList);
+        return restaurantService.fetchRestaurantValues(restaurantName, restaurantTypeList);
 
     }
 
     @CrossOrigin
     @RequestMapping(value = "/restaurants/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 
-    public Restaurant restaurantsSpecificType(
+    public Restaurant getRestaurantsId(
             @PathVariable(value = "id") final Integer restaurantId) {
 
-        return restaurantService.FetchRestaurantId(restaurantId);
+        return restaurantService.fetchRestaurantId(restaurantId);
 
     }
 }
