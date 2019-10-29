@@ -39,7 +39,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     public Restaurant FetchRestaurantId(Integer restaurantId) {
 
-        if (restaurantId != 0 || restaurantId == 0) {
+        if (restaurantId != 0) {
 
             return fetchAllRestaurantId(restaurantId);
 
