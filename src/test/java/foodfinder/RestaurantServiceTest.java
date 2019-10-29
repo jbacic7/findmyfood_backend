@@ -50,7 +50,6 @@ public class RestaurantServiceTest {
         List<String> typeList = new ArrayList<>();
         typeList.add("grill");
         typeList.add("market");
-
         List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeList);
 
         Assert.assertTrue(restaurantList.size() == 2);
@@ -62,7 +61,7 @@ public class RestaurantServiceTest {
         List<String> typeList = new ArrayList<>();
         typeList.add("grill");
 
-        List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeList);
+      List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeLi
 
         for (Restaurant restaurant : restaurantList) {
 
@@ -84,6 +83,7 @@ public class RestaurantServiceTest {
     public void fetchRestaurantId_NullValueTest() {
 
         Restaurant restaurantNull = restaurantService.fetchRestaurantId(0);
+
 
         Assert.assertEquals(null, restaurantNull);
 
