@@ -61,7 +61,7 @@ public class RestaurantServiceTest {
         List<String> typeList = new ArrayList<>();
         typeList.add("grill");
 
-      List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeLi
+      List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeList);
 
         for (Restaurant restaurant : restaurantList) {
 
