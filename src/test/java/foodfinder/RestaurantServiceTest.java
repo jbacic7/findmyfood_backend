@@ -2,8 +2,10 @@ package foodfinder;
 
 
 import foodfinder.dto.Restaurant;
+import foodfinder.dto.User;
 import foodfinder.services.interfaces.RestaurantService;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,12 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Ignore
 public class RestaurantServiceTest {
 
     @Autowired
     RestaurantService restaurantService;
+
 
     @Test
     public void fetchAllRestaurantValuesTest() {
@@ -88,7 +92,6 @@ public class RestaurantServiceTest {
         Assert.assertEquals(null, restaurantNull);
 
     }
-
 }
 
 

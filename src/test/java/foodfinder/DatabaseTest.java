@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-@Ignore
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DatabaseTest {
@@ -61,11 +61,57 @@ public class DatabaseTest {
 
         String targetName = "Sofra";
 
-       List<Restaurant> restaurantName = restaurantRepository.findRestaurantsByName("Sofra");
+        List<Restaurant> restaurantName = restaurantRepository.findRestaurantsByName("Sofra");
 
-        for (Restaurant restaurant: restaurantName) {
+        for (Restaurant restaurant : restaurantName) {
 
             Assert.assertEquals(restaurant.getName(), targetName);
         }
+    }
+
+    @Test
+    public void fetchAllUsersTest() {
+
+        List allUsers = userRepository.findAll();
+
+        Assert.assertNotNull(allUsers);
+    }
+
+    @Test
+    public void fetchUserByNameTest() {
+
+        String targetNameOfUser = "Kristijan";
+
+        List<User> userTargetName = userRepository.findUsersByName(targetNameOfUser);
+
+        for (User user : userTargetName) {
+
+            Assert.assertEquals(user.getName(), targetNameOfUser);
+
+        }
+    }
+
+    @Test
+    public void checkUserByIdTest() {
+
+        Integer targetId = 3;
+
+        User filterUserById = userRepository.findUserByUserId(targetId);
+
+        Assert.assertNotNull(filterUserById);
+
+    }
+
+    @Test
+    public void getUserNameById() {
+
+        String name = "Jurica";
+
+        Integer userId = 1;
+
+        User filterUserNameById = userRepository.findUserByUserId(userId);
+
+        Assert.assertEquals(name, filterUserNameById.getName());
+
     }
 }
