@@ -72,7 +72,7 @@ public class DatabaseTest {
     @Test
     public void fetchAllUsersTest() {
 
-        List allUsers = userRepository.findAll();
+        List<User> allUsers = userRepository.findAll();
 
         Assert.assertNotNull(allUsers);
     }
@@ -103,7 +103,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void getUserNameById() {
+    public void checkSpecificUserById() {
 
         String name = "Jurica";
 
