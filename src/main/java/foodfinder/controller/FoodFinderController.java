@@ -51,9 +51,15 @@ public class FoodFinderController {
         return userService.fetchUserInfo(userName,userSurname);
 
     }
-    
+    @CrossOrigin
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 
+    public User getUserById(
+            @PathVariable(value = "id") final Integer userId) {
 
+        return userService.fetchUserId(userId);
+
+    }
 }
 
 
