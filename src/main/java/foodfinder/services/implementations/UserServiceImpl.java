@@ -5,7 +5,6 @@ import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -13,7 +12,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
-
 
     @Override
     public List<User> fetchUserInfo(String userName, String userSurname) {
@@ -46,6 +44,11 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    public  User user(User user ){
+
+        return saveUserInDb(user);
+    }
+
    private List<User> fetchUserNameAndSurname() {
 
         return userRepository.findAll();
@@ -63,5 +66,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserByUserId(userId);
 
     }
+    private User saveUserInDb(User user){
+
+        return userRepository.save(user);
+    }
+
+
 
 }

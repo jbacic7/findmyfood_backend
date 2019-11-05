@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,9 +17,11 @@ import javax.validation.constraints.NotNull;
 @Table(name = "users")
 public class User {
 
-    @Id
+
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "seq_user", initialValue = 1, allocationSize = 1)
     @Column(name = "user_id")
-    private Integer userId;
+    @Id  private Integer userId;
     private String name;
     private String surname;
     private String mail;

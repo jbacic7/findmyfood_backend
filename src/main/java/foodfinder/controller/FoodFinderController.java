@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @RestController
@@ -60,6 +61,16 @@ public class FoodFinderController {
         return userService.fetchUserId(userId);
 
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
+    public @ResponseBody User creatingUser(@RequestBody User user) {
+
+        return userService.user(user);
+    }
+
+
+
 }
 
 
