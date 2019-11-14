@@ -64,14 +64,32 @@ public class FoodFinderController {
 
     @CrossOrigin
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
-    public @ResponseBody User creatingUser(@RequestBody User user) {
+    public @ResponseBody User creatingUser(@RequestBody User userCreate) {
 
-        return userService.user(user);
+        return userService.userHandlerCreate(userCreate);
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
+    public @ResponseBody void deletingUser(@PathVariable (value = "id") Integer userId) {
 
+         userService.userDelete(userId);
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/users/{id}/password/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
+    public @ResponseBody void updateUserPassword(@PathVariable (value = "id") Integer userId, @RequestBody User user) {
 
-}
+        userService.updatePasswordHandler(user.getPassword(),userId );
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/users/{id}/mail/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
+    public @ResponseBody void updateUserMail (@PathVariable (value = "id") Integer userId, @RequestBody User user) {
+
+        userService.updateUserEmail(user.getMail(),userId );
+    }
+
+    }
 
 
 

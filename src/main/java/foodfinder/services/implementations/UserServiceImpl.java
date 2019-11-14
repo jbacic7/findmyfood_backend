@@ -5,6 +5,7 @@ import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -20,13 +21,13 @@ public class UserServiceImpl implements UserService {
 
             return fetchUserNameAndSurname();
         }
-        if (userName != null && !userName.isEmpty()){
+        if (userName != null && !userName.isEmpty()) {
 
 
             return fetchUserByName(userName);
         }
 
-        if (userSurname != null && !userSurname.isEmpty()){
+        if (userSurname != null && !userSurname.isEmpty()) {
 
 
             return fetchUserBySurname(userSurname);
@@ -35,42 +36,76 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    public User fetchUserId(Integer userId){
+    public User fetchUserId(Integer userId) {
 
-        if (userId != 0){
+        if (userId != 0) {
 
             return fetchUserById(userId);
         }
         return null;
     }
 
-    public  User user(User user ){
+    public void userDelete(Integer userId) {
+
+        deleteUserInDb(userId);
+    }
+
+    public User userHandlerCreate(User user) {
 
         return saveUserInDb(user);
     }
 
-   private List<User> fetchUserNameAndSurname() {
+    public void updatePasswordHandler(String password, Integer userId){
+
+         updatePassword(password, userId);
+    }
+    public void updateUserEmail(String mail, Integer userId){
+
+        updateUserMail(mail, userId);
+    }
+
+
+    private List<User> fetchUserNameAndSurname() {
 
         return userRepository.findAll();
     }
-   private List<User> fetchUserByName(String userName){
+
+    private List<User> fetchUserByName(String userName) {
 
         return userRepository.findUsersByName(userName);
     }
-    private List<User> fetchUserBySurname(String userSurname){
+
+    private List<User> fetchUserBySurname(String userSurname) {
 
         return userRepository.findUsersBySurname(userSurname);
     }
-    private User fetchUserById(Integer userId){
+
+    private User fetchUserById(Integer userId) {
 
         return userRepository.findUserByUserId(userId);
 
     }
-    private User saveUserInDb(User user){
 
-        return userRepository.save(user);
+    private User saveUserInDb(User userCreate) {
+
+        return userRepository.save(userCreate);
     }
 
+    private void deleteUserInDb(Integer userId) {
+
+        userRepository.deleteById(userId);
+    }
+
+    private void updatePassword(String password, Integer userId){
+
+        userRepository.updateUserPassword( userId, password);
+    }
+
+    private void updateUserMail(String mail, Integer userId){
+
+        userRepository.updateUserMail(userId,mail);
+
+    }
 
 
 }
