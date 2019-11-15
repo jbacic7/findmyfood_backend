@@ -46,6 +46,7 @@ public class FoodFinderController {
         return restaurantService.fetchRestaurantId(restaurantId);
 
     }
+    @CrossOrigin // I miss this in last commit
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<User> getUsers(@RequestParam(required = false, name = "userName") String userName, @RequestParam(required = false, name = "userSurname") String userSurname) {
 
@@ -61,7 +62,7 @@ public class FoodFinderController {
         return userService.fetchUserId(userId);
 
     }
-
+    
     @CrossOrigin
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
     public @ResponseBody User creatingUser(@RequestBody User userCreate) {
@@ -87,6 +88,18 @@ public class FoodFinderController {
     public @ResponseBody void updateUserMail (@PathVariable (value = "id") Integer userId, @RequestBody User user) {
 
         userService.updateUserEmail(user.getMail(),userId );
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/users/{id}/name/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
+    public @ResponseBody void updateUserName (@PathVariable (value = "id") Integer userId, @RequestBody User user) {
+
+        userService.updateUserName(user.getName(),userId );
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/users/{id}/surname/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
+    public @ResponseBody void updateUserSurname (@PathVariable (value = "id") Integer userId, @RequestBody User user) {
+
+        userService.updateUserSurname( user.getSurname(),userId);
     }
 
     }

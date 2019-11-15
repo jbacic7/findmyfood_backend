@@ -19,6 +19,8 @@ public interface UserService {
 
     void updateUserEmail(final String mail, Integer userId);
 
+    void updateUserName(final String name, final Integer userId);
 
+    void updateUserSurname( final String surname,final Integer userId );
 
 }

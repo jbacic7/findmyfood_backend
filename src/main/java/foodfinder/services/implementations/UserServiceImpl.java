@@ -4,6 +4,7 @@ import foodfinder.dto.User;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,6 +64,22 @@ public class UserServiceImpl implements UserService {
 
         updateUserMail(mail, userId);
     }
+    public void updateUserName( String name,Integer userId ){
+
+        if (!name.isEmpty() && userId != null ){
+
+            updateUserByName(userId, name);
+        }
+    }
+    public  void  updateUserSurname(String surname,Integer userId){
+
+        if (!surname.isEmpty() && userId != null){
+
+            updateUserBySurname(userId, surname);
+        }
+
+
+    }
 
 
     private List<User> fetchUserNameAndSurname() {
@@ -107,5 +124,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    private void updateUserByName( Integer userId, String name){
+
+        userRepository.updateUserName(userId , name);
+    }
+    private void updateUserBySurname(Integer UserId, String surname ){
+
+        userRepository.updateUserSurname(UserId,surname);
+    }
 
 }
