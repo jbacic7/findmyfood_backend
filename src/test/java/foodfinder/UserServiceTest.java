@@ -1,8 +1,8 @@
 package foodfinder;
 
-import foodfinder.dto.Restaurant;
+
 import foodfinder.dto.User;
-import foodfinder.services.interfaces.RestaurantService;
+import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -17,15 +17,16 @@ import java.util.NoSuchElementException;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@Ignore
-public class UserValueTest {
+public class UserServiceTest {
 
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserRepository userRepository;
 
     @Test
-    public void fetchUserNameAndSurnameValues() {
+    public void fetchAllUserValues() {
 
         List<User> fetchUserNameAndSurnameValues = userService.fetchUserInfo(null, null);
 
@@ -34,7 +35,7 @@ public class UserValueTest {
     }
 
     @Test
-    public void fetchUserId() {
+    public void fetchUserById() {
 
         Integer userId = 1;
 
@@ -97,7 +98,7 @@ public class UserValueTest {
 
         String userDbPassword = userService.fetchUserId(3).getPassword();
 
-         userService.updatePasswordHandler(expectedPassword, 3 );
+         userService.updateUserPassword(expectedPassword, 3 );
 
          Assert.assertEquals(expectedPassword, userDbPassword);
 
@@ -118,4 +119,33 @@ public class UserValueTest {
 
     }
 
+    @Test
+    public void userNameUpdateTest(){
+
+        String newUserName = "SeloGori";
+
+        User userDb  = userRepository.findUserByUserId(2);
+
+        userDb.setName(newUserName);
+
+        userRepository.save(userDb);
+
+        Assert.assertSame(userDb.getName(),"SeloGori");
+
+    }
+
+    @Test
+    public void userSurnameUpdateTest(){
+
+        String newSurname = "BabaSeCeslja";
+
+        User userDb  = userRepository.findUserByUserId(2);
+
+        userDb.setSurname(newSurname);
+
+        userRepository.save(userDb);
+
+        Assert.assertSame(userDb.getSurname(),"BabaSeCeslja");
+
+    }
 }

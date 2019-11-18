@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
         if (userId != 0) {
 
-            return fetchUserById(userId);
+            return captureUserById(userId);
         }
         return null;
     }
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
         return saveUserInDb(user);
     }
 
-    public void updatePasswordHandler(String password, Integer userId){
+    public void updateUserPassword(String password, Integer userId){
 
          updatePassword(password, userId);
     }
@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUsersBySurname(userSurname);
     }
 
-    private User fetchUserById(Integer userId) {
+    private User captureUserById(Integer userId) {
 
         return userRepository.findUserByUserId(userId);
 

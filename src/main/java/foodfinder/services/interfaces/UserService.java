@@ -1,6 +1,5 @@
 package foodfinder.services.interfaces;
 import foodfinder.dto.User;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public interface UserService {
 
     void userDelete(final Integer useId);
 
-    void updatePasswordHandler(final String password, Integer userId);
+    void updateUserPassword(final String password, Integer userId);
 
     void updateUserEmail(final String mail, Integer userId);
 
