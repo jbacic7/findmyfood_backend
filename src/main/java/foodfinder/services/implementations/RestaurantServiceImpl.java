@@ -3,8 +3,12 @@ package foodfinder.services.implementations;
 import foodfinder.dto.Restaurant;
 import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,7 +20,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 
     @Override
-    public List<Restaurant> fetchRestaurantValues(String restaurantName, List<String> restaurantTypeList) {
+    public  List<Restaurant> fetchRestaurantValues(String restaurantName, List<String> restaurantTypeList) {
 
         if (restaurantTypeList == null && (restaurantName == null || restaurantName.isEmpty())) {
 
@@ -35,7 +39,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         return fetchAllRestaurant();
     }
-
 
     public Restaurant fetchRestaurantId(Integer restaurantId) {
 

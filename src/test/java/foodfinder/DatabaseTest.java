@@ -19,6 +19,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Ignore
 public class DatabaseTest {
 
     @Autowired
