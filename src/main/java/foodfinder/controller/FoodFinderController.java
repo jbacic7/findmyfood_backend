@@ -61,7 +61,7 @@ public class FoodFinderController {
     public User getUserById(
             @PathVariable(value = "id") final Integer userId) {
 
-        return userService.fetchUserId(userId);
+        return userService.fetchUserById(userId);
 
     }
 
@@ -70,7 +70,7 @@ public class FoodFinderController {
     public @ResponseBody
     User creatingUser(@RequestBody User userCreate) {
 
-        return userService.userHandlerCreate(userCreate);
+        return userService.userCreate(userCreate);
 
     }
 

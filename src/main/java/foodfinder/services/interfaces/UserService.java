@@ -9,9 +9,9 @@ public interface UserService {
 
     List<User> fetchUserInfo(final String userName, final String userSurname);
 
-    User fetchUserId(final Integer userId);
+    User fetchUserById(final Integer userId);
 
-    User userHandlerCreate(User userCreate);
+    User userCreate(User userCreate);
 
     void userDelete(final Integer useId);
 

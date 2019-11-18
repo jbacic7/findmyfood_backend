@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
         if (userName == null || userName.isEmpty() && (userSurname == null || userSurname.isEmpty())) {
 
-            return fetchUserNameAndSurname();
+            return fetchAllUsers();
         }
         if (userName != null && !userName.isEmpty()) {
 
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    public User fetchUserId(Integer userId) {
+    public User fetchUserById(Integer userId) {
 
         if (userId != 0) {
 
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         deleteUserInDb(userId);
     }
 
-    public User userHandlerCreate(User user) {
+    public User userCreate(User user) {
 
         return saveUserInDb(user);
     }
@@ -59,10 +59,12 @@ public class UserServiceImpl implements UserService {
 
          updatePassword(password, userId);
     }
+
     public void updateUserEmail(String mail, Integer userId){
 
         updateUserMail(mail, userId);
     }
+
     public void updateUserNameAndSurname( User user ,Integer userId ){
 
         User userDb  = userRepository.findUserByUserId(userId);
@@ -80,7 +82,7 @@ public class UserServiceImpl implements UserService {
         updateUserNameAndSurnameById(userDb);
     }
 
-    private List<User> fetchUserNameAndSurname() {
+    private List<User> fetchAllUsers() {
 
         return userRepository.findAll();
     }

@@ -39,7 +39,7 @@ public class UserServiceTest {
 
         Integer userId = 1;
 
-        User fetchUserId = userService.fetchUserId(userId);
+        User fetchUserId = userService.fetchUserById(userId);
 
         Assert.assertEquals(1, fetchUserId.getUserId().intValue());
 
@@ -55,7 +55,7 @@ public class UserServiceTest {
         user.setMail("nikola.pokrivac@t.ht.hr");
         user.setPassword("pokrivamOkolo");
 
-        User checkUserCreation = userService.userHandlerCreate(user);
+        User checkUserCreation = userService.userCreate(user);
 
         Assert.assertTrue(checkUserCreation.getName() == "Nikola");
 
@@ -71,7 +71,7 @@ public class UserServiceTest {
         user.setMail("Marko.Padavac@t.ht.hr");
         user.setPassword("pokrivamOkolo");
 
-        User checkUserCreation = userService.userHandlerCreate(user);
+        User checkUserCreation = userService.userCreate(user);
 
         Assert.assertTrue(checkUserCreation == user);
 
@@ -82,13 +82,13 @@ public class UserServiceTest {
 
         Integer id = 22;
 
-        if (userService.fetchUserId(id) == null) {
+        if (userService.fetchUserById(id) == null) {
 
             throw new NoSuchElementException();
         }
         userService.userDelete(id);
 
-        Assert.assertSame(null, userService.fetchUserId(id));
+        Assert.assertSame(null, userService.fetchUserById(id));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class UserServiceTest {
 
         String expectedPassword = "newPassword";
 
-        String userDbPassword = userService.fetchUserId(3).getPassword();
+        String userDbPassword = userService.fetchUserById(3).getPassword();
 
          userService.updateUserPassword(expectedPassword, 3 );
 
@@ -109,7 +109,7 @@ public class UserServiceTest {
 
         String newMail= "thisIsTestMail@hotmail.com";
 
-        String userTwoCurrentMail = userService.fetchUserId(2).getMail();
+        String userTwoCurrentMail = userService.fetchUserById(2).getMail();
 
         System.out.println(userTwoCurrentMail);
 
@@ -122,30 +122,30 @@ public class UserServiceTest {
     @Test
     public void userNameUpdateTest(){
 
-        String newUserName = "SeloGori";
+    User updateUserName = new User();
 
-        User userDb  = userRepository.findUserByUserId(2);
+    updateUserName.setName("Baba");
 
-        userDb.setName(newUserName);
+    userService.updateUserNameAndSurname(updateUserName, 2);
 
-        userRepository.save(userDb);
+    User findUserName = userRepository.findUserByUserId(2);
 
-        Assert.assertSame(userDb.getName(),"SeloGori");
+    Assert.assertEquals(findUserName.getName(), "Baba");
 
     }
 
     @Test
     public void userSurnameUpdateTest(){
 
-        String newSurname = "BabaSeCeslja";
+        User updateUSerSurname = new User();
 
-        User userDb  = userRepository.findUserByUserId(2);
+        updateUSerSurname.setSurname("Manda");
 
-        userDb.setSurname(newSurname);
+        userService.updateUserNameAndSurname(updateUSerSurname, 2);
 
-        userRepository.save(userDb);
+        User findUserSurname  = userRepository.findUserByUserId(2);
 
-        Assert.assertSame(userDb.getSurname(),"BabaSeCeslja");
+        Assert.assertEquals(findUserSurname.getSurname(),"Manda");
 
     }
 }
