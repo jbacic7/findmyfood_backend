@@ -24,13 +24,13 @@ public class UserServiceImpl implements UserService {
         if (userName != null && !userName.isEmpty()) {
 
 
-            return fetchUserByName(userName);
+            return fetchUsersByName(userName);
         }
 
         if (userSurname != null && !userSurname.isEmpty()) {
 
 
-            return fetchUserBySurname(userSurname);
+            return fetchUsersBySurname(userSurname);
         }
 
         return null;
@@ -87,12 +87,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    private List<User> fetchUserByName(String userName) {
+    private List<User> fetchUsersByName(String userName) {
 
         return userRepository.findUsersByName(userName);
     }
 
-    private List<User> fetchUserBySurname(String userSurname) {
+    private List<User> fetchUsersBySurname(String userSurname) {
 
         return userRepository.findUsersBySurname(userSurname);
     }
