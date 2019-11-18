@@ -90,16 +90,10 @@ public class FoodFinderController {
         userService.updateUserEmail(user.getMail(),userId );
     }
     @CrossOrigin
-    @RequestMapping(value = "/users/{id}/name/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
-    public @ResponseBody void updateUserName (@PathVariable (value = "id") Integer userId, @RequestBody User user) {
+    @RequestMapping(value = "/users/{id}" , method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
+    public @ResponseBody void updateUserSurnameOrName (@PathVariable (value = "id") Integer userId, @RequestBody User user) {
 
-        userService.updateUserName(user.getName(),userId );
-    }
-    @CrossOrigin
-    @RequestMapping(value = "/users/{id}/surname/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes ="application/json;" )
-    public @ResponseBody void updateUserSurname (@PathVariable (value = "id") Integer userId, @RequestBody User user) {
-
-        userService.updateUserSurname( user.getSurname(),userId);
+        userService.updateUserNameAndSurname(user ,userId);
     }
 
     }

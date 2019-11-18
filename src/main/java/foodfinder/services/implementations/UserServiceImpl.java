@@ -4,7 +4,6 @@ import foodfinder.dto.User;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,23 +63,22 @@ public class UserServiceImpl implements UserService {
 
         updateUserMail(mail, userId);
     }
-    public void updateUserName( String name,Integer userId ){
+    public void updateUserNameAndSurname( User user ,Integer userId ){
 
-        if (!name.isEmpty() && userId != null ){
+        User userDb  = userRepository.findUserByUserId(userId);
 
-            updateUserByName(userId, name);
+        if (user.getName() != null ){
+
+            userDb.setName(user.getName());
+
         }
-    }
-    public  void  updateUserSurname(String surname,Integer userId){
+        if (user.getSurname() != null){
 
-        if (!surname.isEmpty() && userId != null){
+            userDb.setSurname(user.getSurname());
 
-            updateUserBySurname(userId, surname);
         }
-
-
+        updateUserNameAndSurnameById(userDb);
     }
-
 
     private List<User> fetchUserNameAndSurname() {
 
@@ -123,14 +121,9 @@ public class UserServiceImpl implements UserService {
         userRepository.updateUserMail(userId,mail);
 
     }
+    private void updateUserNameAndSurnameById(User user){
 
-    private void updateUserByName( Integer userId, String name){
+        userRepository.save(user);
 
-        userRepository.updateUserName(userId , name);
     }
-    private void updateUserBySurname(Integer UserId, String surname ){
-
-        userRepository.updateUserSurname(UserId,surname);
-    }
-
 }
