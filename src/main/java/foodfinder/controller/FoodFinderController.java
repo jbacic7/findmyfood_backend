@@ -7,7 +7,6 @@ import foodfinder.services.interfaces.RestaurantService;
 import foodfinder.services.interfaces.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,6 @@ import java.util.List;
 @RestController
 @Slf4j
 @Validated
-@Component
 public class FoodFinderController {
 
     @Autowired
@@ -37,7 +35,7 @@ public class FoodFinderController {
 
     }
 
-    @CrossOrigin
+
     @RequestMapping(value = "/restaurants/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 
     public Restaurant getRestaurantsId(
@@ -47,7 +45,7 @@ public class FoodFinderController {
 
     }
 
-    @CrossOrigin // I miss this in last commit
+
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<User> getUsers(@RequestParam(required = false, name = "userName") String userName, @RequestParam(required = false, name = "userSurname") String userSurname) {
 
@@ -55,7 +53,7 @@ public class FoodFinderController {
 
     }
 
-    @CrossOrigin
+
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 
     public User getUserById(
@@ -65,7 +63,7 @@ public class FoodFinderController {
 
     }
 
-    @CrossOrigin
+
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     User creatingUser(@RequestBody User userCreate) {
@@ -74,7 +72,7 @@ public class FoodFinderController {
 
     }
 
-    @CrossOrigin
+
     @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     void deletingUser(@PathVariable(value = "id") Integer userId) {
@@ -82,7 +80,7 @@ public class FoodFinderController {
         userService.userDelete(userId);
     }
 
-    @CrossOrigin
+
     @RequestMapping(value = "/users/{id}/password/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     void updateUserPassword(@PathVariable(value = "id") Integer userId, @RequestBody User user) {
@@ -90,7 +88,7 @@ public class FoodFinderController {
         userService.updateUserPassword(user.getPassword(), userId);
     }
 
-    @CrossOrigin
+
     @RequestMapping(value = "/users/{id}/mail/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     void updateUserMail(@PathVariable(value = "id") Integer userId, @RequestBody User user) {
@@ -98,7 +96,7 @@ public class FoodFinderController {
         userService.updateUserEmail(user.getMail(), userId);
     }
 
-    @CrossOrigin
+
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     void updateUserSurnameOrName(@PathVariable(value = "id") Integer userId, @RequestBody User user) {
