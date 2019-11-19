@@ -17,6 +17,7 @@ import java.util.NoSuchElementException;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@Ignore
 public class UserServiceTest {
 
     @Autowired

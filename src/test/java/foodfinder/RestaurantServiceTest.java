@@ -2,7 +2,6 @@ package foodfinder;
 
 
 import foodfinder.dto.Restaurant;
-import foodfinder.dto.User;
 import foodfinder.services.interfaces.RestaurantService;
 import org.junit.Assert;
 import org.junit.Ignore;
