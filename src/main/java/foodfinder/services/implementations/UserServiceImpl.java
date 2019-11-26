@@ -1,9 +1,11 @@
 package foodfinder.services.implementations;
 
+import foodfinder.config.PasswordEncoderConfig;
 import foodfinder.dto.User;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +15,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> fetchUserInfo(String userName, String userSurname) {
@@ -52,12 +57,15 @@ public class UserServiceImpl implements UserService {
 
     public User userCreate(User user) {
 
+        user.setPassword(passHashed(user.getPassword()));
+
         return saveUserInDb(user);
     }
 
     public void updateUserPassword(String password, Integer userId){
 
-         updatePassword(password, userId);
+
+         updatePassword(passHashed(password), userId);
     }
 
     public void updateUserEmail(String mail, Integer userId){
@@ -81,6 +89,15 @@ public class UserServiceImpl implements UserService {
         }
         updateUserNameAndSurnameById(userDb);
     }
+
+
+
+    private String passHashed(String password){
+
+
+        return passwordEncoder.encode(password);
+    }
+
 
     private List<User> fetchAllUsers() {
 
