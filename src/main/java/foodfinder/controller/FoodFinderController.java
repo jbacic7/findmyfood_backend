@@ -35,7 +35,6 @@ public class FoodFinderController {
 
     }
 
-
     @RequestMapping(value = "/restaurants/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 
     public Restaurant getRestaurantsId(
@@ -45,14 +44,12 @@ public class FoodFinderController {
 
     }
 
-
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<User> getUsers(@RequestParam(required = false, name = "userName") String userName, @RequestParam(required = false, name = "userSurname") String userSurname) {
 
         return userService.fetchUserInfo(userName, userSurname);
 
     }
-
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 
@@ -63,15 +60,13 @@ public class FoodFinderController {
 
     }
 
-
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
-    User creatingUser(@RequestBody User userCreate) {
+    User creatingUser(@RequestBody User userCreate ) {
 
         return userService.userCreate(userCreate);
 
     }
-
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
@@ -79,7 +74,6 @@ public class FoodFinderController {
 
         userService.userDelete(userId);
     }
-
 
     @RequestMapping(value = "/users/{id}/password/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
