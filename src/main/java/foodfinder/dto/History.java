@@ -30,4 +30,5 @@ public class History {
     private Integer restaurantId;
     private Timestamp date;
 
+
 }
