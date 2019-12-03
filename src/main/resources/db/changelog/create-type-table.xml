@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-    <changeSet id="01" author="jbacic7">
-        <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_type"/>
-        <createTable tableName="type"
-                     remarks="A table to contain all restaurant types">
-            <column name="type_Id" type="int" defaultValueSequenceNext="seq_type">
-                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_type"/>
-            </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="description" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
-        </createTable>
-    </changeSet>
+<changeSet id="01" author="jbacic7">
+    <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_type"/>
+    <createTable tableName="type"
+                 remarks="A table to contain all restaurant types">
+        <column name="type_Id" type="int" defaultValueSequenceNext="seq_type">
+            <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_type"/>
+        </column>
+        <column name="name" type="varchar(255)">
+            <constraints nullable="false" unique="true"/>
+        </column>
+        <column name="description" type="varchar(255)">
+            <constraints nullable="true"/>
+        </column>
+    </createTable>
+</changeSet>
 </databaseChangeLog>

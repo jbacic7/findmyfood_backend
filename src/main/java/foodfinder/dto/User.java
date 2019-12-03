@@ -12,10 +12,11 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Data
 @AllArgsConstructor
-@NotNull
 @NoArgsConstructor
+@NotNull
 @Table(name = "users")
 public class User {
+
 
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
