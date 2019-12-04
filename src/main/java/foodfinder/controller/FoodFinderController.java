@@ -27,7 +27,6 @@ public class FoodFinderController {
     @Autowired
     RestaurantService restaurantService;
 
-
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<Restaurant> getRestaurants(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
 
