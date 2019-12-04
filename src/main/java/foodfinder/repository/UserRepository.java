@@ -16,7 +16,6 @@ public interface UserRepository extends JpaRepository<User, Integer > {
    List <User> findUsersByName(String name);
    List <User> findUsersBySurname(String surname);
 
-
    @Modifying(clearAutomatically = true)
    @Transactional
    @Query("UPDATE User u set u.password = :password WHERE u.userId = :customerId")
@@ -26,7 +25,5 @@ public interface UserRepository extends JpaRepository<User, Integer > {
    @Transactional
    @Query("UPDATE User u set u.mail = :mail WHERE u.userId = :customerId")
    int updateUserMail(@Param("customerId") Integer customerId, @Param("mail") String mail);
-
-
 
 }

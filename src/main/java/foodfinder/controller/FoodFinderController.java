@@ -1,9 +1,11 @@
 package foodfinder.controller;
 
 import foodfinder.dto.Restaurant;
+import foodfinder.dto.Type;
 import foodfinder.dto.User;
 import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
+import foodfinder.services.interfaces.TypeService;
 import foodfinder.services.interfaces.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,10 @@ public class FoodFinderController {
     @Autowired
     RestaurantService restaurantService;
 
+    @Autowired
+    TypeService typeService;
+
+
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<Restaurant> getRestaurants(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
 
@@ -47,6 +53,13 @@ public class FoodFinderController {
     public List<User> getUsers(@RequestParam(required = false, name = "userName") String userName, @RequestParam(required = false, name = "userSurname") String userSurname) {
 
         return userService.fetchUserInfo(userName, userSurname);
+
+    }
+
+    @RequestMapping(value = "/type", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public List<Type> getAllTypes()  {
+
+        return typeService.fetchTypeList();
 
     }
 
@@ -96,7 +109,6 @@ public class FoodFinderController {
 
         userService.updateUserNameAndSurname(user, userId);
     }
-
 }
 
 

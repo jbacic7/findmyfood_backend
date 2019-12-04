@@ -1,6 +1,5 @@
 package foodfinder.services.implementations;
 
-import foodfinder.config.PasswordEncoderConfig;
 import foodfinder.dto.User;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
@@ -18,6 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
 
     @Override
     public List<User> fetchUserInfo(String userName, String userSurname) {
@@ -91,7 +91,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     private String passHashed(String password){
 
 
@@ -102,7 +101,10 @@ public class UserServiceImpl implements UserService {
     private List<User> fetchAllUsers() {
 
         return userRepository.findAll();
+
     }
+
+
 
     private List<User> fetchUsersByName(String userName) {
 
@@ -145,4 +147,5 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
     }
+
 }
