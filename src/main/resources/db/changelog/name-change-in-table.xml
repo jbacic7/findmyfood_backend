@@ -7,17 +7,27 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 
-    <changeSet author="jbacic7" id="change name in restaurants table">
-        <renameColumn
-                newColumnName="longitude"
-                oldColumnName="geo_l"
-                tableName="restaurants"/>
-
-        <renameColumn
-                newColumnName="latitude"
-                oldColumnName="geo_h"
-                tableName="restaurants"/>
-
+    <changeSet author="liquibase-docs"
+               id="loadData-example"
+               objectQuotingStrategy="LEGACY">
+        <loadData
+                  encoding="UTF-8"
+                  file="db/changelog/update-name-in-type-table.csv"
+                  quotchar="'"
+                  schemaName="public"
+                  separator=","
+                  tableName="type">
+            <column name="name" type="varchar(255)"/>
+        </loadData>
+        <loadData
+                  encoding="UTF-8"
+                  file="db/changelog/update-description-in-type-table.csv"
+                  quotchar="'"
+                  schemaName="public"
+                  separator=","
+                  tableName="type">
+            <column name="description" type="varchar(255)"/>
+        </loadData>
     </changeSet>
 
 </databaseChangeLog>
