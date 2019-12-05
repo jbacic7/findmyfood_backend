@@ -14,8 +14,9 @@
                 dbms="PostgreSQL"
                 schemaName="public"
                 tableName="type">
-            <column name="name" type="varchar(255)" value="changelog/update-name-in-type-table.csv"/>
+            <column name="name" type="varchar(255)" value="jure"/>
         </insert>
+
     </changeSet>
 
 </databaseChangeLog>
