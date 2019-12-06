@@ -7,16 +7,11 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 
-    <changeSet author="jbacic7"
-               id="Filled value into type table"
-               objectQuotingStrategy="LEGACY">
-        <insert
-                dbms="PostgreSQL"
-                schemaName="public"
-                tableName="type">
-            <column name="name" type="varchar(255)" value="jure"/>
-        </insert>
-
+    <changeSet author="jbacic7" id="update_description">
+        <update tableName="type">
+            <column name="description" value="Bar gdje se poslužuju burgeri" />
+            <where>name = 'burger bar'</where>
+        </update>
     </changeSet>
 
 </databaseChangeLog>
