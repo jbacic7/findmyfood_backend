@@ -101,7 +101,7 @@ public class FoodFinderController {
 
         userService.updateUserEmail(user.getMail(), userId);
     }
-
+    
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     void updateUserSurnameOrName(@PathVariable(value = "id") Integer userId, @RequestBody User user) {

@@ -24,7 +24,7 @@ public class Type {
 
     @Id
     @NotNull
-    @Column(name = "type_Id")
+    @Column(name = "type_id")
     private Integer typeId;
     @NotNull
     private String name;
