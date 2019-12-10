@@ -108,6 +108,14 @@ public class FoodFinderController {
 
         userService.updateUserNameAndSurname(user, userId);
     }
+    /*
+    @RequestMapping(value = /grade, method = RequestMethod.GET, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    public  getGrades(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
+
+        return restaurantService.fetchRestaurantValues(restaurantName, restaurantTypeList);
+
+    }
+*/
 }
 
 
