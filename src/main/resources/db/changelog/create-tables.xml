@@ -47,10 +47,10 @@
             <column name="type" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="geo_h" type="real">
+            <column name="longitude" type="real">
                 <constraints nullable="false"/>
             </column>
-            <column name="geo_l" type="real">
+            <column name="latitude" type="real">
                 <constraints nullable="false"/>
             </column>
         </createTable>
