@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,10 +17,13 @@ import javax.persistence.Table;
 public class RestaurantGrade {
 
     @Id
-    private Integer id_grade;
+    @Column(name = "id_grade")
+    private Integer idGrade;
     private Integer grade;
-    private Integer id_restaurants;
-    private Integer id_user;
+    @Column(name = "id_restaurants")
+    private Integer idRestaurants;
+    @Column(name = "id_user")
+    private Integer idUser;
 
 }
 
