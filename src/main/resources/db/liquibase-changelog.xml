@@ -18,6 +18,6 @@
     <include file="changelog/fill-restaurant-table-with-big-list.xml" relativeToChangelogFile="true"/>
     <include file="changelog/name-change-in-type-id-column.xml" relativeToChangelogFile="true"/>
     <include file="changelog/update-description-in-type-table.xml" relativeToChangelogFile="true"/>
-
+    <include file="changelog/create-table-for-grade.xml" relativeToChangelogFile="true"/>
 
  </databaseChangeLog>

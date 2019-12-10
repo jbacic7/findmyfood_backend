@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="01" author="jbacic7">
+
+        <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_grade"/>
+
+        <createTable tableName="restaurants_grade"
+                     remarks="A table who contain all grade for restaurants">
+
+            <column name="id_grade" type="int" defaultValueSequenceNext="seq_grade">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_grade"/>
+            </column>
+            <column name="grade" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_restaurants" type="int">
+                <constraints nullable="false" foreignKeyName="fk_restaurants" references="restaurants(restaurant_id)"/>
+            </column>
+            <column name="id_user" type="int">
+                <constraints nullable="false" foreignKeyName="fk_users" references="users(user_id)"/>
+            </column>
+
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
