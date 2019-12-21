@@ -1,9 +1,11 @@
 package foodfinder.controller;
 
 import foodfinder.dto.Restaurant;
+import foodfinder.dto.RestaurantGrade;
 import foodfinder.dto.Type;
 import foodfinder.dto.User;
 import foodfinder.repository.RestaurantRepository;
+import foodfinder.services.interfaces.GradesServices;
 import foodfinder.services.interfaces.RestaurantService;
 import foodfinder.services.interfaces.TypeService;
 import foodfinder.services.interfaces.UserService;
@@ -31,6 +33,9 @@ public class FoodFinderController {
 
     @Autowired
     TypeService typeService;
+
+    @Autowired
+    GradesServices gradesServices;
 
 
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -94,7 +99,6 @@ public class FoodFinderController {
         userService.updateUserPassword(user.getPassword(), userId);
     }
 
-
     @RequestMapping(value = "/users/{id}/mail/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     void updateUserMail(@PathVariable(value = "id") Integer userId, @RequestBody User user) {
@@ -108,14 +112,25 @@ public class FoodFinderController {
 
         userService.updateUserNameAndSurname(user, userId);
     }
-    /*
-    @RequestMapping(value = /grade, method = RequestMethod.GET, produces = "application/json;charset=UTF-8", consumes = "application/json;")
-    public  getGrades(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
 
-        return restaurantService.fetchRestaurantValues(restaurantName, restaurantTypeList);
+    @RequestMapping(value = "/grade", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    public @ResponseBody
+    void updateUserMail(Integer idRestaurants, @RequestBody RestaurantGrade restaurantGrade) {
+
+        gradesServices.createRestaurantsGrade(restaurantGrade);
+    //    System.out.println(restaurantGrade.getGrade());
+    //    System.out.println(idRestaurants);
+    }
+
+    @RequestMapping(value = "/grades/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+
+    public Restaurant getRestaurantsGrade(
+            @PathVariable(value = "id") final Integer restaurantId) {
+
+        return restaurantService.fetchRestaurantId(restaurantId);
 
     }
-*/
+
 }
 
 
