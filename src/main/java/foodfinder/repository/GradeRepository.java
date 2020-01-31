@@ -17,4 +17,5 @@ public interface GradeRepository extends JpaRepository<RestaurantGrade, Integer>
     @Query(value = "SELECT AVG(rg.grade) FROM restaurants_grade rg WHERE rg.id_restaurants = :restaurantId", nativeQuery = true)
     Double countRestaurantGrade(@Param("restaurantId") Integer restaurantId);
 
+
 }
