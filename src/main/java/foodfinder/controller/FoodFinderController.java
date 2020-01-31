@@ -131,6 +131,12 @@ public class FoodFinderController {
 
     }
 
+    @RequestMapping(value = "/averageGrade/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8 ")
+    public Double getRestaurantGrade(@PathVariable(value = "restaurant_id") final Integer restaurantId ){
+
+      return  gradesServices.averageRestaurantsGrade(restaurantId);
+
+    }
 }
 
 
