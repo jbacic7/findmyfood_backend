@@ -28,7 +28,8 @@ public class GradesServicesImpl implements GradesServices {
 
     public Double averageRestaurantsGrade(Integer restaurantId) {
 
-        return entityManager.createQuery("SELECT AVG(grade) FROM RestaurantGrade rg WHERE idRestaurants = ?1", Double.class).setParameter(1, restaurantId).getSingleResult();
+        return gradeRepository.countRestaurantGrade(restaurantId);
+
     }
 
 

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 
 @RestController
@@ -62,7 +61,7 @@ public class FoodFinderController {
     }
 
     @RequestMapping(value = "/type", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public List<Type> getAllTypes()  {
+    public List<Type> getAllTypes() {
 
         return typeService.fetchTypeList();
 
@@ -79,7 +78,7 @@ public class FoodFinderController {
 
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
-    User creatingUser(@RequestBody User userCreate ) {
+    User creatingUser(@RequestBody User userCreate) {
 
         return userService.userCreate(userCreate);
 
@@ -105,7 +104,7 @@ public class FoodFinderController {
 
         userService.updateUserEmail(user.getMail(), userId);
     }
-    
+
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     void updateUserSurnameOrName(@PathVariable(value = "id") Integer userId, @RequestBody User user) {
@@ -118,8 +117,7 @@ public class FoodFinderController {
     void updateUserMail(Integer idRestaurants, @RequestBody RestaurantGrade restaurantGrade) {
 
         gradesServices.createRestaurantsGrade(restaurantGrade);
-    //    System.out.println(restaurantGrade.getGrade());
-    //    System.out.println(idRestaurants);
+
     }
 
     @RequestMapping(value = "/grades/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -132,9 +130,9 @@ public class FoodFinderController {
     }
 
     @RequestMapping(value = "/averageGrade/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8 ")
-    public Double getRestaurantGrade(@PathVariable(value = "restaurant_id") final Integer restaurantId ){
+    public Double getAverageRestaurantGrade(@PathVariable(value = "restaurant_id") final Integer restaurantId) {
 
-      return  gradesServices.averageRestaurantsGrade(restaurantId);
+        return gradesServices.averageRestaurantsGrade(restaurantId);
 
     }
 }
