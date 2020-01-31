@@ -133,6 +133,7 @@ public class FoodFinderController {
     public Double getAverageRestaurantGrade(@PathVariable(value = "restaurant_id") final Integer restaurantId) {
 
         return gradesServices.averageRestaurantsGrade(restaurantId);
+
     }
 }
 
