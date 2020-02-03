@@ -1,8 +1,10 @@
 package foodfinder.services.implementations;
 
 import foodfinder.dto.User;
+
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
+import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
 
+
+
     @Override
     public List<User> fetchUserInfo(String userName, String userSurname) {
 
@@ -32,7 +36,7 @@ public class UserServiceImpl implements UserService {
             return fetchUsersByName(userName);
         }
 
-        if (userSurname != null && !userSurname.isEmpty()) {
+        if (StringUtils.isNotEmpty(userName)) {
 
 
             return fetchUsersBySurname(userSurname);

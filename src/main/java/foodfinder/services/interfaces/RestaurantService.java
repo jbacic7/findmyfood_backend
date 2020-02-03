@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface RestaurantService {
 
     List<Restaurant> fetchRestaurantValues(final String restaurantName , final List<String> restaurantTypeList);

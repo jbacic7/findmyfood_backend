@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -28,5 +30,12 @@ public class User {
     private String surname;
     private String mail;
     private String password;
+
+
+
+
+
+
+
 }
 

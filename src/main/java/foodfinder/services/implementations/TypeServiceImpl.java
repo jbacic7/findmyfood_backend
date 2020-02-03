@@ -23,9 +23,9 @@ public class TypeServiceImpl implements TypeService {
 
     private List<Type> fetchAllTypeList(){
 
-        List<Type> lala = typeRepository.findAll();
+        List<Type> allTypeListFetched = typeRepository.findAll();
 
-        return lala;
+        return allTypeListFetched;
     }
 
 }
