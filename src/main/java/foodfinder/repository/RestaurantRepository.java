@@ -17,4 +17,5 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     Restaurant findRestaurantByLongitude(Float longitude);
     List<Restaurant> findRestaurantsByTypeIn(List<String> typeList);
 
+
 }
