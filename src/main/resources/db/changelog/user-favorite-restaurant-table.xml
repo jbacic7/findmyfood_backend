@@ -8,24 +8,20 @@
 
     <changeSet id="01" author="jbacic7">
 
-        <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_grade"/>
+        <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_favorite"/>
 
-        <createTable tableName="restaurants_grade"
-                     remarks="A table who contain all grade for restaurants">
+        <createTable tableName="user_favorite_restaurant_table"
+                     remarks="A table where we save user favorite restaurant">
 
-            <column name="id_grade" type="int" defaultValueSequenceNext="seq_grade">
-                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_grade"/>
+            <column name="id_favorite" type="int" defaultValueSequenceNext="seq_grade">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_favorite"/>
             </column>
-            <column name="grade" type="int">
-                <constraints nullable="false"/>
+            <column name="user_id" type="int" >
+                <constraints nullable="false" foreignKeyName="fk_user_id" references="users(user_id)"/>
             </column>
             <column name="id_restaurants" type="int">
                 <constraints nullable="false" foreignKeyName="fk_restaurants" references="restaurants(restaurant_id)"/>
             </column>
-            <column name="id_user" type="int">
-                <constraints nullable="false" foreignKeyName="fk_users" references="users(user_id)"/>
-            </column>
-
 
         </createTable>
     </changeSet>
