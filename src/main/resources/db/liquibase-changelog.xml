@@ -19,5 +19,5 @@
     <include file="changelog/name-change-in-type-id-column.xml" relativeToChangelogFile="true"/>
     <include file="changelog/update-description-in-type-table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/create-table-for-grade.xml" relativeToChangelogFile="true"/>
-
+    <include file="changelog/user-favorite-restaurant-table.xml" relativeToChangelogFile="true"/>
  </databaseChangeLog>
