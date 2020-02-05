@@ -73,7 +73,7 @@ public class GradeTest {
 
         Integer newGrade = restaurantGrade.getGrade().intValue();
 
-        Assert.assertSame(newGrade,savingRestaurantGrade.getGrade().intValue());
+        Assert.assertSame(newGrade.intValue(),savingRestaurantGrade.getGrade().intValue());
 
     }
 
