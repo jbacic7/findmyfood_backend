@@ -125,13 +125,13 @@ public class UserServiceTest {
 
     User updateUserName = new User();
 
-    updateUserName.setName("Baba");
+    updateUserName.setName("Ignacio");
 
     userService.updateUserNameAndSurname(updateUserName, 2);
 
     User findUserName = userRepository.findUserByUserId(2);
 
-    Assert.assertEquals(findUserName.getName(), "Baba");
+    Assert.assertEquals(findUserName.getName(), "Ignacio");
 
     }
 
@@ -140,13 +140,13 @@ public class UserServiceTest {
 
         User updateUSerSurname = new User();
 
-        updateUSerSurname.setSurname("Manda");
+        updateUSerSurname.setSurname("Legend");
 
         userService.updateUserNameAndSurname(updateUSerSurname, 2);
 
         User findUserSurname  = userRepository.findUserByUserId(2);
 
-        Assert.assertEquals(findUserSurname.getSurname(),"Manda");
+        Assert.assertEquals(findUserSurname.getSurname(),"Legend");
 
     }
 }

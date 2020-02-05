@@ -90,6 +90,7 @@ public class RestaurantServiceTest {
         Assert.assertEquals(null, restaurantNull);
 
     }
+
 }
 
 
