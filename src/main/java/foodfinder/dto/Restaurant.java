@@ -28,4 +28,5 @@ public class Restaurant {
     private Float latitude;
     private Float longitude;
 
+
 }
