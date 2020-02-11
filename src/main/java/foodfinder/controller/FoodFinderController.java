@@ -1,19 +1,14 @@
 package foodfinder.controller;
 
-import foodfinder.dto.Restaurant;
-import foodfinder.dto.RestaurantGrade;
-import foodfinder.dto.Type;
-import foodfinder.dto.User;
+import foodfinder.dto.*;
 import foodfinder.repository.RestaurantRepository;
-import foodfinder.services.interfaces.GradesServices;
-import foodfinder.services.interfaces.RestaurantService;
-import foodfinder.services.interfaces.TypeService;
-import foodfinder.services.interfaces.UserService;
+import foodfinder.services.interfaces.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
@@ -35,6 +30,11 @@ public class FoodFinderController {
 
     @Autowired
     GradesServices gradesServices;
+
+    @Autowired
+    FavoriteRestaurantServices favoriteRestaurantServices;
+
+
 
 
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -133,6 +133,14 @@ public class FoodFinderController {
     public Double getAverageRestaurantGrade(@PathVariable(value = "restaurant_id") final Integer restaurantId) {
 
         return gradesServices.averageRestaurantsGrade(restaurantId);
+
+    }
+    @RequestMapping(value = "/favoriteRestaurant", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    public @ResponseBody
+
+        FavoriteRestaurant saveFavoriteRestaurantToSpecificUser(@RequestBody FavoriteRestaurant favoriteRestaurant) {
+
+       return  favoriteRestaurantServices.saveFavoriteRestaurant(favoriteRestaurant);
 
     }
 
