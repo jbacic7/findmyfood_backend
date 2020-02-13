@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
@@ -33,8 +32,6 @@ public class FoodFinderController {
 
     @Autowired
     FavoriteRestaurantServices favoriteRestaurantServices;
-
-
 
 
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -114,7 +111,7 @@ public class FoodFinderController {
 
     @RequestMapping(value = "/grade", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
-    void updateUserMail(Integer idRestaurants, @RequestBody RestaurantGrade restaurantGrade) {
+    void updateUserMail(@RequestBody RestaurantGrade restaurantGrade) {
 
         gradesServices.createRestaurantsGrade(restaurantGrade);
 
@@ -135,12 +132,20 @@ public class FoodFinderController {
         return gradesServices.averageRestaurantsGrade(restaurantId);
 
     }
+
     @RequestMapping(value = "/favoriteRestaurant", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
+    FavoriteRestaurant saveFavoriteRestaurantToSpecificUser(@RequestBody FavoriteRestaurant favoriteRestaurant) {
 
-        FavoriteRestaurant saveFavoriteRestaurantToSpecificUser(@RequestBody FavoriteRestaurant favoriteRestaurant) {
+        return favoriteRestaurantServices.saveFavoriteRestaurant(favoriteRestaurant);
 
-       return  favoriteRestaurantServices.saveFavoriteRestaurant(favoriteRestaurant);
+    }
+    @RequestMapping(value = "/favoriteRestaurant/{user_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+
+    public List<Integer> getUserFavoriteRestaurant(
+            @PathVariable(value = "user_id") final Integer user_id ) {
+
+        return favoriteRestaurantServices.fetchFavoriteRestaurant(user_id);
 
     }
 

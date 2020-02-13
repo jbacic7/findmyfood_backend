@@ -26,5 +26,4 @@ public class FavoriteRestaurant {
     @Column(name = "id_restaurants")
     private Integer restaurantsId;
 
-
 }
