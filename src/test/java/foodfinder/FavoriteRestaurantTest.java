@@ -14,7 +14,7 @@ import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-//@Ignore
+@Ignore
 public class FavoriteRestaurantTest {
 
     @Autowired
@@ -28,6 +28,7 @@ public class FavoriteRestaurantTest {
     public void saveFavoriteRestaurantForSpecificUserTest() {
 
         favoriteRestaurant.setUserId(4);
+
         favoriteRestaurant.setRestaurantsId(27);
 
         FavoriteRestaurant savingFavoriteRestaurantValue = favoriteRestaurantRepository.save(favoriteRestaurant);
@@ -37,6 +38,7 @@ public class FavoriteRestaurantTest {
         Assert.assertSame(savingFavoriteRestaurantValue.getUserId(), checkSpecificUserId);
 
     }
+
     @Test
     public void getFavoriteRestaurantForSpecificUserTest(){
 
