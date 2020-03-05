@@ -33,6 +33,9 @@ public class FoodFinderController {
     @Autowired
     FavoriteRestaurantServices favoriteRestaurantServices;
 
+    @Autowired
+    UserCommentsService userCommentsService;
+
 
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<Restaurant> getRestaurants(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
@@ -140,12 +143,28 @@ public class FoodFinderController {
         return favoriteRestaurantServices.saveFavoriteRestaurant(favoriteRestaurant);
 
     }
+
     @RequestMapping(value = "/favoriteRestaurant/{user_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 
     public List<Integer> getUserFavoriteRestaurant(
-            @PathVariable(value = "user_id") final Integer user_id ) {
+            @PathVariable(value = "user_id") final Integer user_id) {
 
         return favoriteRestaurantServices.fetchFavoriteRestaurant(user_id);
+
+    }
+
+    @RequestMapping(value = "/user_comment", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    UserComment saveUserCommentaryForSpecificRestaurant(@RequestBody UserComment userComment) {
+
+        return userCommentsService.saveUserComments(userComment);
+    }
+
+    @RequestMapping(value = "/fetchUserCommentForSpecificRestaurant/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public List<UserComment> getRestaurantCommentByRestaurantId(
+            @PathVariable(value = "restaurant_id") final Integer restaurantId) {
+
+        return userCommentsService.fetchUserCommentsForRestaurant(restaurantId);
 
     }
 

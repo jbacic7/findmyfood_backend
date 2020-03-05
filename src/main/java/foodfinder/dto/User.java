@@ -8,13 +8,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
+
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @NotNull
 @Table(name = "users")
+@Entity
 public class User {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
@@ -27,5 +28,7 @@ public class User {
     private String mail;
     private String password;
 
-}
 
+
+
+}

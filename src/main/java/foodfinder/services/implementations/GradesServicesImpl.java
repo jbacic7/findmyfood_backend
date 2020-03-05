@@ -32,6 +32,15 @@ public class GradesServicesImpl implements GradesServices {
 
     }
 
+    public Double avgRestaurantGradeCount(Integer grade, Integer idRestaurants){
+
+    if(gradeRepository.countRestaurantGrade(grade.intValue()) == null){
+
+
+    }
+
+        return null;
+    }
 
     private void saveRestaurantGradeInDb(RestaurantGrade restaurantGrade) {
 
