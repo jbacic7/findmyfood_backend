@@ -53,7 +53,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantRepository.findAll();
     }
 
-    private List<Restaurant> fetchRestaurantByName(String restaurantName) {
+    private List<Restaurant> fetchRestaurantByName(String restaurantName ) {
 
         return restaurantRepository.findRestaurantsByName(restaurantName);
     }

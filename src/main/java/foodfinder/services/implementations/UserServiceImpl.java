@@ -21,8 +21,6 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
 
-
-
     @Override
     public List<User> fetchUserInfo(String userName, String userSurname) {
 
@@ -69,7 +67,7 @@ public class UserServiceImpl implements UserService {
     public void updateUserPassword(String password, Integer userId){
 
 
-         updatePassword(passHashed(password), userId);
+        updatePassword(passHashed(password), userId);
     }
 
     public void updateUserEmail(String mail, Integer userId){

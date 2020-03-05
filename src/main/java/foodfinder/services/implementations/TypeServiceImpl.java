@@ -15,13 +15,13 @@ public class TypeServiceImpl implements TypeService {
     TypeRepository typeRepository;
 
     @Override
-    public List<Type> fetchTypeList(){
+    public List<Type> fetchTypeList() {
 
-            return fetchAllTypeList();
-        }
+        return fetchAllTypeList();
+    }
 
 
-    private List<Type> fetchAllTypeList(){
+    private List<Type> fetchAllTypeList() {
 
         List<Type> allTypeListFetched = typeRepository.findAll();
 
