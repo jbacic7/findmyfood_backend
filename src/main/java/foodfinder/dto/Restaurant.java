@@ -1,7 +1,6 @@
 package foodfinder.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Builder
 @Data
 @AllArgsConstructor
 @NotNull

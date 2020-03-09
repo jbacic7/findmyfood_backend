@@ -18,6 +18,6 @@ public interface FavoriteRestaurantRepository extends JpaRepository<FavoriteRest
     List<FavoriteRestaurant> findFavoriteRestaurantByRestaurantsId(Integer restaurantsId);
 
     @Transactional
-    @Query(value = "SELECT (fr.id_favorite) FROM  user_favorite_restaurant_table fr WHERE fr.user_id = :userId", nativeQuery = true)
+    @Query(value = "SELECT (fr.id_favorite) FROM  user_favorite_restaurant fr WHERE fr.user_id = :userId", nativeQuery = true)
     List<Integer> findFavoriteRestaurantByUserId(@Param("userId") Integer userId);
 }

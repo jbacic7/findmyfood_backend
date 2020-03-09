@@ -1,10 +1,9 @@
 package foodfinder;
 
 
-import foodfinder.dto.Restaurant;
 import foodfinder.dto.RestaurantGrade;
 import foodfinder.repository.GradeRepository;
-import foodfinder.services.implementations.GradesServicesImpl;
+import foodfinder.services.impl.GradesServicesImpl;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
 import java.util.Random;
 
 @SpringBootTest
@@ -33,7 +31,7 @@ public class GradeTest {
     GradeRepository gradeRepository;
 
     @Test
-    public void testIsThisAverageGrade() {
+    public void averageRestaurantsGradeTest() {
 
         Integer restaurantId = 11;
 
@@ -61,7 +59,7 @@ public class GradeTest {
     }
 
     @Test
-    public void isRestaurantGradeSavedTest() {
+    public void restaurantGradeSaveTest() {
 
         restaurantGrade.setIdRestaurants(10);
 
@@ -73,8 +71,9 @@ public class GradeTest {
 
         Integer newGrade = restaurantGrade.getGrade().intValue();
 
-        Assert.assertSame(newGrade.intValue(),savingRestaurantGrade.getGrade().intValue());
+        Assert.assertSame(newGrade.intValue(), savingRestaurantGrade.getGrade().intValue());
 
     }
+
 
 }

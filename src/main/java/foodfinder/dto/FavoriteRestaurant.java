@@ -2,7 +2,6 @@ package foodfinder.dto;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,9 +9,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_favorite_restaurant_table")
+@Table(name = "user_favorite_restaurant")
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Service

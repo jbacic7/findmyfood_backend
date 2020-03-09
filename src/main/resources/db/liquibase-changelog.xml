@@ -22,4 +22,5 @@
     <include file="changelog/user-favorite-restaurant-table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/create-user-comment-table.xml" relativeToChangelogFile="true"/>
 
+
  </databaseChangeLog>

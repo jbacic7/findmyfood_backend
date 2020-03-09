@@ -11,7 +11,7 @@ public interface UserService {
 
     User fetchUserById(final Integer userId);
 
-    User userCreate(User userCreate);
+    User createUser(User createUser);
 
     void userDelete(final Integer useId);
 
@@ -20,7 +20,5 @@ public interface UserService {
     void updateUserEmail(final String mail, Integer userId);
 
     void updateUserNameAndSurname(final User user,final Integer userId);
-
-
 
 }

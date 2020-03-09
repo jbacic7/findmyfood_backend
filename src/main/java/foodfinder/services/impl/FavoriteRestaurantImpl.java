@@ -1,4 +1,4 @@
-package foodfinder.services.implementations;
+package foodfinder.services.impl;
 
 import foodfinder.dto.FavoriteRestaurant;
 import foodfinder.repository.FavoriteRestaurantRepository;
@@ -16,8 +16,6 @@ public class FavoriteRestaurantImpl implements FavoriteRestaurantServices {
     FavoriteRestaurantRepository favoriteRestaurantRepository;
 
 
-    FavoriteRestaurant favoriteRestaurant;
-
     @Override
     public FavoriteRestaurant saveFavoriteRestaurant(FavoriteRestaurant favoriteRestaurant) {
 
@@ -32,7 +30,8 @@ public class FavoriteRestaurantImpl implements FavoriteRestaurantServices {
         }
         return null;
     }
-@Override
+
+    @Override
     public List<Integer> fetchFavoriteRestaurant(Integer user_id) {
 
         if (user_id >= 1) {

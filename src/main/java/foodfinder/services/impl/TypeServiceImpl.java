@@ -1,4 +1,4 @@
-package foodfinder.services.implementations;
+package foodfinder.services.impl;
 
 import foodfinder.dto.Type;
 import foodfinder.repository.TypeRepository;
@@ -17,15 +17,7 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public List<Type> fetchTypeList() {
 
-        return fetchAllTypeList();
-    }
-
-
-    private List<Type> fetchAllTypeList() {
-
-        List<Type> allTypeListFetched = typeRepository.findAll();
-
-        return allTypeListFetched;
+        return typeRepository.findAll();
     }
 
 }

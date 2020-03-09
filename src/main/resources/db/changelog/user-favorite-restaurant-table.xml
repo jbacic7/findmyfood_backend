@@ -10,7 +10,7 @@
 
         <createSequence schemaName="public" startValue="1" incrementBy="1" sequenceName="seq_favorite"/>
 
-        <createTable tableName="user_favorite_restaurant_table"
+        <createTable tableName="user_favorite_restaurant"
                      remarks="A table where we save user favorite restaurant">
 
             <column name="id_favorite" type="int" defaultValueSequenceNext="seq_grade">

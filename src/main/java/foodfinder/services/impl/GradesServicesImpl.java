@@ -1,4 +1,4 @@
-package foodfinder.services.implementations;
+package foodfinder.services.impl;
 
 import foodfinder.dto.RestaurantGrade;
 import foodfinder.repository.GradeRepository;
@@ -14,6 +14,7 @@ public class GradesServicesImpl implements GradesServices {
 
     @Autowired
     GradeRepository gradeRepository;
+
     @Autowired
     EntityManager entityManager;
 
@@ -22,7 +23,7 @@ public class GradesServicesImpl implements GradesServices {
 
         restaurantGrade.setGrade((restaurantGrade.getGrade()));
 
-        saveRestaurantGradeInDb(restaurantGrade);
+        gradeRepository.save(restaurantGrade);
 
     }
 
@@ -31,22 +32,4 @@ public class GradesServicesImpl implements GradesServices {
         return gradeRepository.countRestaurantGrade(restaurantId);
 
     }
-
-    public Double avgRestaurantGradeCount(Integer grade, Integer idRestaurants){
-
-    if(gradeRepository.countRestaurantGrade(grade.intValue()) == null){
-
-
-    }
-
-        return null;
-    }
-
-    private void saveRestaurantGradeInDb(RestaurantGrade restaurantGrade) {
-
-        gradeRepository.save(restaurantGrade);
-
-    }
-
-
 }

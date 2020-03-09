@@ -74,7 +74,7 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void fetchRestaurantId_ById() {
+    public void fetchRestaurantIdTest() {
 
         Restaurant restaurant = restaurantService.fetchRestaurantId(1);
 
@@ -83,13 +83,15 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void fetchRestaurantId_NullValueTest() {
+    public void fetchRestaurantIdNullValueTest() {
 
         Restaurant restaurantNull = restaurantService.fetchRestaurantId(0);
 
         Assert.assertEquals(null, restaurantNull);
 
     }
+
+
 
 }
 

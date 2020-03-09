@@ -27,7 +27,7 @@ public class UserServiceTest {
     UserRepository userRepository;
 
     @Test
-    public void fetchAllUserValues() {
+    public void fetchUserInfoTest() {
 
         List<User> fetchUserNameAndSurnameValues = userService.fetchUserInfo(null, null);
 
@@ -36,7 +36,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void fetchUserById() {
+    public void fetchUserByIdTest() {
 
         Integer userId = 1;
 
@@ -56,14 +56,14 @@ public class UserServiceTest {
         user.setMail("nikola.pokrivac@t.ht.hr");
         user.setPassword("pokrivamOkolo");
 
-        User checkUserCreation = userService.userCreate(user);
+        User checkUserCreation = userService.createUser(user);
 
         Assert.assertTrue(checkUserCreation.getName() == "Nikola");
 
     }
 
     @Test
-    public void createNewUserTest() {
+    public void createUserTest() {
 
         User user = new User();
 
@@ -72,14 +72,14 @@ public class UserServiceTest {
         user.setMail("Marko.Padavac@t.ht.hr");
         user.setPassword("pokrivamOkolo");
 
-        User checkUserCreation = userService.userCreate(user);
+        User checkUserCreation = userService.createUser(user);
 
         Assert.assertTrue(checkUserCreation == user);
 
     }
 
     @Test
-    public void removeUserWithSelectedIdTest() {
+    public void userDeleteTest() {
 
         Integer id = 22;
 
@@ -93,7 +93,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void userUpdatePasswordTest(){
+    public void updateUserPasswordTest(){
 
         String expectedPassword = "newPassword";
 
@@ -106,7 +106,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void userMailUpdateTest(){
+    public void updateUserEmailTest(){
 
         String newMail= "thisIsTestMail@hotmail.com";
 
@@ -121,7 +121,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void userNameUpdateTest(){
+    public void updateUserNameTest(){
 
     User updateUserName = new User();
 
@@ -136,7 +136,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void userSurnameUpdateTest(){
+    public void updateUserSurnameTest(){
 
         User updateUSerSurname = new User();
 
@@ -149,4 +149,5 @@ public class UserServiceTest {
         Assert.assertEquals(findUserSurname.getSurname(),"Legend");
 
     }
+
 }

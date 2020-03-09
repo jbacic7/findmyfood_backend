@@ -25,7 +25,7 @@ public class FavoriteRestaurantTest {
 
 
     @Test
-    public void saveFavoriteRestaurantForSpecificUserTest() {
+    public void saveFavoriteRestaurantTest() {
 
         favoriteRestaurant.setUserId(4);
 
@@ -40,7 +40,7 @@ public class FavoriteRestaurantTest {
     }
 
     @Test
-    public void getFavoriteRestaurantForSpecificUserTest(){
+    public void fetchFavoriteRestaurantTest(){
 
         List<Integer> userFavoriteRestaurantList =  favoriteRestaurantRepository.findFavoriteRestaurantByUserId(3);
 

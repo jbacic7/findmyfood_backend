@@ -1,4 +1,4 @@
-package foodfinder.services.implementations;
+package foodfinder.services.impl;
 
 import foodfinder.dto.UserComment;
 import foodfinder.repository.UserCommentsRepository;
@@ -23,16 +23,15 @@ public class UserCommentsImpl implements UserCommentsService {
     }
 
     @Override
-    public List<UserComment> fetchUserCommentsForRestaurant(Integer restaurantId){
+    public List<UserComment> fetchUserCommentsForRestaurant(Integer restaurantId) {
 
-      return userCommentsRepository.findUserCommentsByRestaurantId(restaurantId);
-
-
-        }
-
+        return userCommentsRepository.findUserCommentsByRestaurantId(restaurantId);
 
 
     }
+
+
+}
 
 
 

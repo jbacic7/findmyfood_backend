@@ -40,7 +40,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void checkingIsHistoryFilled() {
+    public void checkingIsHistoryEmpty() {
 
         List<History> history = historyRepository.findAll();
 
