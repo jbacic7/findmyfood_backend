@@ -17,8 +17,6 @@ public class GradesServicesImpl implements GradesServices {
     @Override
     public void createRestaurantsGrade(RestaurantGrade restaurantGrade) {
 
-        restaurantGrade.setGrade((restaurantGrade.getGrade()));
-
         gradeRepository.save(restaurantGrade);
 
     }

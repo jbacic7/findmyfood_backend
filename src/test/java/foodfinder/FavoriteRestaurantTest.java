@@ -20,9 +20,7 @@ public class FavoriteRestaurantTest {
     @Autowired
     FavoriteRestaurantRepository favoriteRestaurantRepository;
 
-    @Autowired
-    FavoriteRestaurant favoriteRestaurant;
-
+    FavoriteRestaurant favoriteRestaurant = new FavoriteRestaurant();
 
     @Test
     public void saveFavoriteRestaurantTest() {
