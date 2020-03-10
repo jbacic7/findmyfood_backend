@@ -40,9 +40,9 @@ public class FavoriteRestaurantTest {
     }
 
     @Test
-    public void fetchFavoriteRestaurantTest(){
+    public void fetchFavoriteRestaurantTest() {
 
-        List<Integer> userFavoriteRestaurantList =  favoriteRestaurantRepository.findFavoriteRestaurantByUserId(3);
+        List<Integer> userFavoriteRestaurantList = favoriteRestaurantRepository.findFavoriteRestaurantByUserId(3);
 
         Assert.assertNotNull(userFavoriteRestaurantList);
 

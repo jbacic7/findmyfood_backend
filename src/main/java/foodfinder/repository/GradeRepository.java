@@ -19,5 +19,4 @@ public interface GradeRepository extends JpaRepository<RestaurantGrade, Integer>
     Double countRestaurantGrade(@Param("restaurantId") Integer restaurantId);
 
 
-
 }

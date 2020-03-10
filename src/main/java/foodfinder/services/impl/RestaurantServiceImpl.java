@@ -3,12 +3,10 @@ package foodfinder.services.impl;
 import foodfinder.dto.Restaurant;
 import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
-import liquibase.util.CollectionUtil;
 import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
 
 import java.util.List;
 
@@ -21,9 +19,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 
     @Override
-    public  List<Restaurant> fetchRestaurantValues(String restaurantName, List<String> restaurantTypeList) {
+    public List<Restaurant> fetchRestaurantByNameAndType(String restaurantName, List<String> restaurantTypeList) {
 
-        if (restaurantTypeList == null && (restaurantName == null || restaurantName.isEmpty())) {
+        if (!CollectionUtils.isEmpty(restaurantTypeList) && StringUtils.isNotEmpty(restaurantName)) {
 
             return restaurantRepository.findAll();
         }
@@ -33,9 +31,9 @@ public class RestaurantServiceImpl implements RestaurantService {
             return restaurantRepository.findRestaurantsByName(restaurantName);
         }
 
-               if (CollectionUtils.isEmpty(restaurantTypeList)) {
+        if (CollectionUtils.isEmpty(restaurantTypeList)) {
 
-                   return restaurantRepository.findRestaurantsByTypeIn(restaurantTypeList);
+            return restaurantRepository.findRestaurantsByTypeIn(restaurantTypeList);
         }
 
         return restaurantRepository.findAll();
@@ -50,7 +48,6 @@ public class RestaurantServiceImpl implements RestaurantService {
         }
         return null;
     }
-
 
 
 }

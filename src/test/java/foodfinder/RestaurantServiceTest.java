@@ -2,6 +2,7 @@ package foodfinder;
 
 
 import foodfinder.dto.Restaurant;
+import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -23,11 +24,13 @@ public class RestaurantServiceTest {
     @Autowired
     RestaurantService restaurantService;
 
+    @Autowired
+    RestaurantRepository restaurantRepository;
 
     @Test
     public void fetchAllRestaurantValuesTest() {
 
-        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantValues(null, null);
+        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantByNameAndType(null, null);
 
         Assert.assertTrue(restaurantNameGetter.size() > 1);
 
@@ -38,7 +41,7 @@ public class RestaurantServiceTest {
 
         String restaurantName = "Sofra";
 
-        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantValues(restaurantName, null);
+        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantByNameAndType(restaurantName, null);
 
         for (Restaurant restaurant : restaurantNameGetter) {
 
@@ -53,7 +56,7 @@ public class RestaurantServiceTest {
         List<String> typeList = new ArrayList<>();
         typeList.add("grill");
         typeList.add("market");
-        List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeList);
+        List<Restaurant> restaurantList = restaurantService.fetchRestaurantByNameAndType(null, typeList);
 
         Assert.assertTrue(restaurantList.size() == 2);
     }
@@ -64,7 +67,7 @@ public class RestaurantServiceTest {
         List<String> typeList = new ArrayList<>();
         typeList.add("grill");
 
-        List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeList);
+        List<Restaurant> restaurantList = restaurantService.fetchRestaurantByNameAndType(null, typeList);
 
         for (Restaurant restaurant : restaurantList) {
 
@@ -91,8 +94,27 @@ public class RestaurantServiceTest {
 
     }
 
+    @Test
+    public void checkingIsRestaurantFilled() {
 
+        List<Restaurant> restaurant = restaurantRepository.findAll();
 
+        Assert.assertNotNull(restaurant);
+    }
+
+    @Test
+    public void checkRestaurantName() {
+
+        String targetName = "Sofra";
+
+        List<Restaurant> restaurantName = restaurantRepository.findRestaurantsByName("Sofra");
+
+        for (Restaurant restaurant : restaurantName) {
+
+            Assert.assertEquals(restaurant.getName(), targetName);
+        }
+
+    }
 }
 
 

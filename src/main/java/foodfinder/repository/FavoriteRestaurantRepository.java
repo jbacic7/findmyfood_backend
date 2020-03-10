@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -15,6 +14,7 @@ public interface FavoriteRestaurantRepository extends JpaRepository<FavoriteRest
 
 
     FavoriteRestaurant findFavoriteRestaurantByFavoriteId(Integer favoriteId);
+
     List<FavoriteRestaurant> findFavoriteRestaurantByRestaurantsId(Integer restaurantsId);
 
     @Transactional

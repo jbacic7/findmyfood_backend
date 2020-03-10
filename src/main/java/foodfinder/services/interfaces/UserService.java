@@ -1,6 +1,8 @@
 package foodfinder.services.interfaces;
+
 import foodfinder.dto.User;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
@@ -19,6 +21,6 @@ public interface UserService {
 
     void updateUserEmail(final String mail, Integer userId);
 
-    void updateUserNameAndSurname(final User user,final Integer userId);
+    void updateUserNameAndSurname(final User user, final Integer userId);
 
 }

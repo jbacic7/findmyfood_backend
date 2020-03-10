@@ -2,9 +2,7 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
-    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="01" author="jbacic7">
 
@@ -16,7 +14,7 @@
             <column name="id_favorite" type="int" defaultValueSequenceNext="seq_grade">
                 <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_favorite"/>
             </column>
-            <column name="user_id" type="int" >
+            <column name="user_id" type="int">
                 <constraints nullable="false" foreignKeyName="fk_user_id" references="users(user_id)"/>
             </column>
             <column name="id_restaurants" type="int">

@@ -6,8 +6,6 @@ import foodfinder.services.interfaces.GradesServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-
 
 @Service
 public class GradesServicesImpl implements GradesServices {
@@ -15,8 +13,6 @@ public class GradesServicesImpl implements GradesServices {
     @Autowired
     GradeRepository gradeRepository;
 
-    @Autowired
-    EntityManager entityManager;
 
     @Override
     public void createRestaurantsGrade(RestaurantGrade restaurantGrade) {

@@ -21,8 +21,6 @@ public class FavoriteRestaurantImpl implements FavoriteRestaurantServices {
 
         if (favoriteRestaurant.getUserId() > 0) {
 
-            favoriteRestaurant.setUserId(favoriteRestaurant.getUserId());
-
             FavoriteRestaurant favoriteRestaurantForSpecificUser = favoriteRestaurantRepository.save(favoriteRestaurant);
 
             return favoriteRestaurantForSpecificUser;
@@ -32,11 +30,11 @@ public class FavoriteRestaurantImpl implements FavoriteRestaurantServices {
     }
 
     @Override
-    public List<Integer> fetchFavoriteRestaurant(Integer user_id) {
+    public List<Integer> fetchFavoriteRestaurant(Integer userId) {
 
-        if (user_id >= 1) {
+        if (userId >= 1) {
 
-            List<Integer> listOfFavoriteRestaurantsFromUser = favoriteRestaurantRepository.findFavoriteRestaurantByUserId(user_id);
+            List<Integer> listOfFavoriteRestaurantsFromUser = favoriteRestaurantRepository.findFavoriteRestaurantByUserId(userId);
 
 
             return listOfFavoriteRestaurantsFromUser;

@@ -45,7 +45,7 @@ public class RestaurantController {
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<Restaurant> getRestaurants(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
 
-        return restaurantService.fetchRestaurantValues(restaurantName, restaurantTypeList);
+        return restaurantService.fetchRestaurantByNameAndType(restaurantName, restaurantTypeList);
 
     }
 
@@ -69,15 +69,15 @@ public class RestaurantController {
     @RequestMapping(value = "/favoriteRestaurant/{user_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 
     public List<Integer> getUserFavoriteRestaurant(
-            @PathVariable(value = "user_id") final Integer user_id) {
+            @PathVariable(value = "user_id") final Integer userId) {
 
-        return favoriteRestaurantServices.fetchFavoriteRestaurant(user_id);
+        return favoriteRestaurantServices.fetchFavoriteRestaurant(userId);
 
     }
 
     @RequestMapping(value = "/grade", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
-    void updateUserMail(@RequestBody RestaurantGrade restaurantGrade) {
+    void createRestaurantGrade(@RequestBody RestaurantGrade restaurantGrade) {
 
         gradesServices.createRestaurantsGrade(restaurantGrade);
 
