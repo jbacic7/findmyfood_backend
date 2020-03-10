@@ -12,7 +12,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "restaurants_grade")
-@Service
 public class RestaurantGrade {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "grade_seq")

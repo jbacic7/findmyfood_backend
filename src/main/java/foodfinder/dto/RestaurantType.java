@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "type")
-public class Type {
+public class RestaurantType {
 
     @Id
     @NotNull

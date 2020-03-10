@@ -4,7 +4,6 @@ package foodfinder.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 
@@ -13,7 +12,6 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Service
 public class FavoriteRestaurant {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_favorite")

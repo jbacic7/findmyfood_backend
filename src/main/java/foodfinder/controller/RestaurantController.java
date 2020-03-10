@@ -33,12 +33,12 @@ public class RestaurantController {
 
 
     @Autowired
-    TypeService typeService;
+    RestaurantTypeService restaurantTypeService;
 
     @RequestMapping(value = "/type", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public List<Type> getAllTypes() {
+    public List<RestaurantType> getAllTypes() {
 
-        return typeService.fetchTypeList();
+        return restaurantTypeService.fetchTypeList();
 
     }
 
@@ -75,7 +75,7 @@ public class RestaurantController {
 
     }
 
-    @RequestMapping(value = "/grade", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    @RequestMapping(value = "/grade", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     void updateUserMail(@RequestBody RestaurantGrade restaurantGrade) {
 
