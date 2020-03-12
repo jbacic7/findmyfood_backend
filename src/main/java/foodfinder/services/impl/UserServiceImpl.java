@@ -6,7 +6,10 @@ import foodfinder.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import liquibase.util.StringUtils;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -21,8 +24,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> fetchUserInfo(String userName, String userSurname) {
 
+        if (StringUtils.isEmpty(userName)  && StringUtils.isEmpty(userSurname)) {
+
+            return userRepository.findAll();
+
+        }
+        if (StringUtils.isNotEmpty(userName)) {
+
+
+            return userRepository.findUsersByName(userName);
+        }
+
+        if (StringUtils.isNotEmpty(userSurname)) {
+
+
+            return userRepository.findUsersBySurname(userSurname);
+        }
+
         return null;
     }
+
 
     public User fetchUserById(Integer userId) {
 
@@ -70,7 +91,7 @@ public class UserServiceImpl implements UserService {
             userDb.setSurname(user.getSurname());
 
         }
-        userRepository.save(user);
+        userRepository.save(userDb);
     }
 
     private String passHashed(String password) {

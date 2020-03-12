@@ -34,7 +34,7 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    @RequestMapping(value = "/create-user", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     User creatingUser(@RequestBody User userPassword) {
 
@@ -63,7 +63,7 @@ public class UserController {
         userService.updateUserEmail(user.getMail(), userId);
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    @RequestMapping(value = "/update-user/{id}", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     void updateUserSurnameOrName(@PathVariable(value = "id") Integer userId, @RequestBody User user) {
 

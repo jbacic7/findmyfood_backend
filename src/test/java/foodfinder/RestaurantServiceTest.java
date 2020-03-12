@@ -2,7 +2,6 @@ package foodfinder;
 
 
 import foodfinder.dto.Restaurant;
-import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -24,8 +23,6 @@ public class RestaurantServiceTest {
     @Autowired
     RestaurantService restaurantService;
 
-    @Autowired
-    RestaurantRepository restaurantRepository;
 
     @Test
     public void fetchAllRestaurantValuesTest() {
@@ -94,27 +91,7 @@ public class RestaurantServiceTest {
 
     }
 
-    @Test
-    public void checkingIsRestaurantFilled() {
 
-        List<Restaurant> restaurant = restaurantRepository.findAll();
-
-        Assert.assertNotNull(restaurant);
-    }
-
-    @Test
-    public void checkRestaurantName() {
-
-        String targetName = "Sofra";
-
-        List<Restaurant> restaurantName = restaurantRepository.findRestaurantsByName("Sofra");
-
-        for (Restaurant restaurant : restaurantName) {
-
-            Assert.assertEquals(restaurant.getName(), targetName);
-        }
-
-    }
 }
 
 

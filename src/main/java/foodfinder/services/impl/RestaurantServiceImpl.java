@@ -21,7 +21,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<Restaurant> fetchRestaurantByNameAndType(String restaurantName, List<String> restaurantTypeList) {
 
-        if (!CollectionUtils.isEmpty(restaurantTypeList) && StringUtils.isNotEmpty(restaurantName)) {
+        if (CollectionUtils.isEmpty(restaurantTypeList) && StringUtils.isEmpty(restaurantName)) {
 
             return restaurantRepository.findAll();
         }
@@ -31,7 +31,7 @@ public class RestaurantServiceImpl implements RestaurantService {
             return restaurantRepository.findRestaurantsByName(restaurantName);
         }
 
-        if (CollectionUtils.isEmpty(restaurantTypeList)) {
+        if (!CollectionUtils.isEmpty(restaurantTypeList)) {
 
             return restaurantRepository.findRestaurantsByTypeIn(restaurantTypeList);
         }
@@ -48,6 +48,19 @@ public class RestaurantServiceImpl implements RestaurantService {
         }
         return null;
     }
+    @Override
+    public List<Restaurant> fetchFavoriteRestaurantByUserId(Integer userId) {
 
+        if (userId >= 1) {
+
+            List<Restaurant> listOfFavoriteRestaurantsFromUser = restaurantRepository.findFavoriteRestaurantByUserId(userId);
+
+
+            return listOfFavoriteRestaurantsFromUser;
+        }
+
+        return null;
+
+    }
 
 }

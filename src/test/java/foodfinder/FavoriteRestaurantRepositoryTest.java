@@ -1,7 +1,9 @@
 package foodfinder;
 
 import foodfinder.dto.FavoriteRestaurant;
+import foodfinder.dto.Restaurant;
 import foodfinder.repository.FavoriteRestaurantRepository;
+import foodfinder.repository.RestaurantRepository;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,15 +17,15 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Ignore
-public class FavoriteRestaurantTest {
+public class FavoriteRestaurantRepositoryTest {
 
     @Autowired
     FavoriteRestaurantRepository favoriteRestaurantRepository;
 
-    FavoriteRestaurant favoriteRestaurant = new FavoriteRestaurant();
-
     @Test
     public void saveFavoriteRestaurantTest() {
+
+        FavoriteRestaurant favoriteRestaurant = new FavoriteRestaurant();
 
         favoriteRestaurant.setUserId(4);
 
@@ -37,13 +39,5 @@ public class FavoriteRestaurantTest {
 
     }
 
-    @Test
-    public void fetchFavoriteRestaurantTest() {
-
-        List<Integer> userFavoriteRestaurantList = favoriteRestaurantRepository.findFavoriteRestaurantByUserId(3);
-
-        Assert.assertNotNull(userFavoriteRestaurantList);
-
-    }
 
 }

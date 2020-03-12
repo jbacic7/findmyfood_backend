@@ -10,5 +10,5 @@ public interface FavoriteRestaurantServices {
 
     FavoriteRestaurant saveFavoriteRestaurant(FavoriteRestaurant favoriteRestaurant);
 
-    List<Integer> fetchFavoriteRestaurant(Integer userId);
+
 }

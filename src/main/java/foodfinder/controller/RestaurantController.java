@@ -31,7 +31,6 @@ public class RestaurantController {
     @Autowired
     UserCommentsService userCommentsService;
 
-
     @Autowired
     RestaurantTypeService restaurantTypeService;
 
@@ -58,7 +57,7 @@ public class RestaurantController {
 
     }
 
-    @RequestMapping(value = "/favoriteRestaurant", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    @RequestMapping(value = "/favorite-restaurant", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
     FavoriteRestaurant saveFavoriteRestaurantToSpecificUser(@RequestBody FavoriteRestaurant favoriteRestaurant) {
 
@@ -66,12 +65,12 @@ public class RestaurantController {
 
     }
 
-    @RequestMapping(value = "/favoriteRestaurant/{user_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/favorite-restaurant/{user_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 
-    public List<Integer> getUserFavoriteRestaurant(
+    public List<Restaurant> getUserFavoriteRestaurant(
             @PathVariable(value = "user_id") final Integer userId) {
 
-        return favoriteRestaurantServices.fetchFavoriteRestaurant(userId);
+        return restaurantService.fetchFavoriteRestaurantByUserId(userId);
 
     }
 
@@ -83,12 +82,11 @@ public class RestaurantController {
 
     }
 
-    @RequestMapping(value = "/grades/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-
-    public Restaurant getRestaurantsGrade(
+    @RequestMapping(value = "/restaurant-grades/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public List<Integer> getRestaurantsGradeByRestaurantId(
             @PathVariable(value = "id") final Integer restaurantId) {
 
-        return restaurantService.fetchRestaurantId(restaurantId);
+        return gradesServices.findListOfGradesForRestaurantByRestaurantId(restaurantId);
 
     }
 
@@ -99,7 +97,7 @@ public class RestaurantController {
 
     }
 
-    @RequestMapping(value = "/user_comment", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/user-comment", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public @ResponseBody
     UserComment saveUserCommentaryForSpecificRestaurant(@RequestBody UserComment userComment) {
 
@@ -113,6 +111,5 @@ public class RestaurantController {
         return userCommentsService.fetchUserCommentsForRestaurant(restaurantId);
 
     }
-
 
 }

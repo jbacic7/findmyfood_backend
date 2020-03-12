@@ -3,7 +3,6 @@ package foodfinder;
 
 import foodfinder.dto.RestaurantGrade;
 import foodfinder.repository.GradeRepository;
-import foodfinder.services.impl.GradesServicesImpl;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,34 +16,17 @@ import java.util.Random;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Ignore
-public class GradeTest {
+public class GradeRepositoryTest {
 
     Random random = new Random();
-
-    @Autowired
-    GradesServicesImpl gradesServicesImpl;
-
-    @Autowired
-    RestaurantGrade restaurantGrade;
 
     @Autowired
     GradeRepository gradeRepository;
 
     @Test
-    public void averageRestaurantsGradeTest() {
-
-        Integer restaurantId = 11;
-
-        Double trueResult = 2.75;
-
-        Double restaurantGrade = gradesServicesImpl.averageRestaurantsGrade(restaurantId);
-
-        Assert.assertEquals(trueResult, restaurantGrade);
-
-    }
-
-    @Test
     public void createRestaurantsGradeTest() {
+
+        RestaurantGrade restaurantGrade = new RestaurantGrade();
 
         restaurantGrade.setIdRestaurants(random.nextInt(30));
 
@@ -60,6 +42,8 @@ public class GradeTest {
 
     @Test
     public void restaurantGradeSaveTest() {
+
+        RestaurantGrade restaurantGrade = new RestaurantGrade();
 
         restaurantGrade.setIdRestaurants(10);
 

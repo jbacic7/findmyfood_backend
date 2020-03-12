@@ -1,7 +1,6 @@
 package foodfinder;
 
-import foodfinder.dto.History;
-import foodfinder.repository.HistoryRepository;
+import foodfinder.services.interfaces.GradesServices;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -10,23 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Ignore
-public class HistoryTest {
+public class GradeServiceTest {
 
     @Autowired
-    private HistoryRepository historyRepository;
+    GradesServices gradesServices;
 
     @Test
-    public void checkingIsHistoryEmpty() {
+    public void averageRestaurantsGradeTest() {
 
-        List<History> history = historyRepository.findAll();
+        Integer restaurantId = 11;
 
-        Assert.assertEquals(true, history.isEmpty());
+        Double trueResult = 2.75;
+
+        Double restaurantGrade = gradesServices.averageRestaurantsGrade(restaurantId);
+
+        Assert.assertEquals(trueResult, restaurantGrade);
 
     }
-
 }
