@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class UserCommentsImpl implements UserCommentsService {
 
@@ -27,9 +26,7 @@ public class UserCommentsImpl implements UserCommentsService {
 
         return userCommentsRepository.findUserCommentsByRestaurantId(restaurantId);
 
-
     }
-
 
 }
 

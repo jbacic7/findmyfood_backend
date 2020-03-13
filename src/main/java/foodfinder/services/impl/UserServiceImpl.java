@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> fetchUserInfo(String userName, String userSurname) {
 
-        if (StringUtils.isEmpty(userName)  && StringUtils.isEmpty(userSurname)) {
+        if (StringUtils.isEmpty(userName)  || StringUtils.isEmpty(userSurname)) {
 
             return userRepository.findAll();
 
@@ -66,10 +66,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public void updateUserPassword(String password, Integer userId) {
+    public void updateUserPassword(String password, Integer userId){
 
-
-        userRepository.updateUserPassword(userId, password);
+        userRepository.updateUserPassword(passHashed(password),userId);
     }
 
     public void updateUserEmail(String mail, Integer userId) {

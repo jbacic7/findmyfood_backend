@@ -17,7 +17,7 @@ public interface UserService {
 
     void userDelete(final Integer useId);
 
-    void updateUserPassword(final String password, Integer userId);
+    void updateUserPassword(String password, Integer userId);
 
     void updateUserEmail(final String mail, Integer userId);
 

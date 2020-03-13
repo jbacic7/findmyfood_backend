@@ -48,15 +48,13 @@ public class RestaurantServiceImpl implements RestaurantService {
         }
         return null;
     }
+
     @Override
     public List<Restaurant> fetchFavoriteRestaurantByUserId(Integer userId) {
 
         if (userId >= 1) {
 
-            List<Restaurant> listOfFavoriteRestaurantsFromUser = restaurantRepository.findFavoriteRestaurantByUserId(userId);
-
-
-            return listOfFavoriteRestaurantsFromUser;
+            return restaurantRepository.findFavoriteRestaurantByUserId(userId);
         }
 
         return null;

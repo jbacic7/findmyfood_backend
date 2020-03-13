@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying(clearAutomatically = true)
     @Transactional
     @Query("UPDATE User u set u.password = :password WHERE u.userId = :customerId")
-    int updateUserPassword(@Param("customerId") Integer customerId, @Param("password") String password);
+    int updateUserPassword(@Param("password")String password , @Param("customerId") Integer customerId);
 
     @Modifying(clearAutomatically = true)
     @Transactional

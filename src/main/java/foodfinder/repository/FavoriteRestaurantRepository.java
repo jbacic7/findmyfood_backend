@@ -14,5 +14,4 @@ public interface FavoriteRestaurantRepository extends JpaRepository<FavoriteRest
 
     List<FavoriteRestaurant> findFavoriteRestaurantByRestaurantsId(Integer restaurantsId);
 
-
 }
