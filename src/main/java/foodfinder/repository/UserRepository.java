@@ -27,4 +27,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("UPDATE User u set u.mail = :mail WHERE u.userId = :customerId")
     int updateUserMail(@Param("customerId") Integer customerId, @Param("mail") String mail);
 
+
 }
