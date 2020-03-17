@@ -2,26 +2,27 @@ package foodfinder;
 
 
 import foodfinder.dto.Restaurant;
+import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Ignore
 public class RestaurantServiceTest {
 
     @Autowired
     RestaurantService restaurantService;
+
+    @Autowired
+    RestaurantRepository restaurantRepository;
 
 
     @Test
@@ -45,32 +46,6 @@ public class RestaurantServiceTest {
             Assert.assertEquals(restaurant.getName(), restaurantName);
 
         }
-    }
-
-    @Test
-    public void fetchRestaurantValuesByTwoTypeTest() {
-
-        List<String> typeList = new ArrayList<>();
-        typeList.add("grill");
-        typeList.add("market");
-        List<Restaurant> restaurantList = restaurantService.fetchRestaurantByNameAndType(null, typeList);
-
-        Assert.assertTrue(restaurantList.size() == 2);
-    }
-
-    @Test
-    public void fetchRestaurantValuesByOneTypeTest() {
-
-        List<String> typeList = new ArrayList<>();
-        typeList.add("grill");
-
-        List<Restaurant> restaurantList = restaurantService.fetchRestaurantByNameAndType(null, typeList);
-
-        for (Restaurant restaurant : restaurantList) {
-
-            Assert.assertTrue(restaurant.getType().equals("grill"));
-        }
-
     }
 
     @Test

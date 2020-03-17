@@ -1,6 +1,7 @@
 package foodfinder.services.interfaces;
 
 import foodfinder.dto.User;
+import org.aspectj.lang.annotation.After;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface UserService {
 
     void userDelete(final Integer useId);
 
-    void updateUserPassword(String password, Integer userId);
+    void updateAndHashUserPassword(String password, Integer userId);
 
     void updateUserEmail(final String mail, Integer userId);
 

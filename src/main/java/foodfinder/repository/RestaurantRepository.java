@@ -17,7 +17,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 
     List<Restaurant> findRestaurantsByAddress(String address);
 
-    List<Restaurant> findRestaurantsByType(String type);
+    List<Restaurant> findRestaurantsByType(String type );
 
     Restaurant findRestaurantByLatitude(Float latitude);
 

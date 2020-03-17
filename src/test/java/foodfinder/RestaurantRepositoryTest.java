@@ -3,7 +3,6 @@ package foodfinder;
 import foodfinder.dto.Restaurant;
 import foodfinder.repository.RestaurantRepository;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Ignore
 public class RestaurantRepositoryTest {
 
 
@@ -42,6 +40,7 @@ public class RestaurantRepositoryTest {
         }
 
     }
+
     @Test
     public void fetchFavoriteRestaurantTest() {
 
@@ -50,4 +49,18 @@ public class RestaurantRepositoryTest {
         Assert.assertNotNull(userFavoriteRestaurantList);
 
     }
+
+    @Test
+    public void fetchRestaurantByTypeTest() {
+
+        String targetTypeOfRestaurant = "kineska kuhinja";
+
+        List<Restaurant> restaurantTargetType = restaurantRepository.findRestaurantsByType(targetTypeOfRestaurant);
+
+        List<Restaurant> mrChenRestaurant = restaurantRepository.findRestaurantsByName("Mr. Chen");
+
+        Assert.assertEquals(mrChenRestaurant, restaurantTargetType);
+
+    }
+
 }

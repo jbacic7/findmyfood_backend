@@ -3,24 +3,28 @@ package foodfinder;
 
 import foodfinder.dto.User;
 import foodfinder.services.interfaces.UserService;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.aspectj.weaver.patterns.HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import sun.security.krb5.internal.crypto.dk.Des3DkCrypto;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@Ignore
+
 public class UserServiceTest {
 
     @Autowired
     UserService userService;
+
+
+
+
 
     @Test
     public void fetchUserInfoTest() {
@@ -28,6 +32,7 @@ public class UserServiceTest {
         List<User> fetchUserNameAndSurnameValues = userService.fetchUserInfo(null, null);
 
         Assert.assertTrue(fetchUserNameAndSurnameValues.size() > 1);
+
 
     }
 
@@ -74,30 +79,17 @@ public class UserServiceTest {
 
     }
 
-    @Test
-    public void userDeleteTest() {
-
-        Integer id = 22;
-
-        if (userService.fetchUserById(id) == null) {
-
-            throw new NoSuchElementException();
-        }
-        userService.userDelete(id);
-
-        Assert.assertSame(null, userService.fetchUserById(id));
-    }
 
     @Test
-    public void updateUserPasswordTest() {
+    public void updateAndHashUserPasswordTest() {
 
-        String expectedPassword = "newPassword";
+        String oldPassword = userService.fetchUserById(3).getPassword();
 
-        String userDbPassword = userService.fetchUserById(3).getPassword();
+        userService.updateAndHashUserPassword(oldPassword, 3);
 
-        userService.updateUserPassword(expectedPassword, 3);
+        String newPassword = userService.fetchUserById(3).getPassword();
 
-        Assert.assertEquals(expectedPassword, userDbPassword);
+        Assert.assertNotEquals(oldPassword, newPassword);
 
     }
 

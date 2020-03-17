@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public void updateUserPassword(String password, Integer userId){
+    public void updateAndHashUserPassword(String password, Integer userId){
 
         userRepository.updateUserPassword(passHashed(password),userId);
     }

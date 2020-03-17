@@ -4,7 +4,6 @@ import foodfinder.dto.User;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Ignore
 public class UserRepositoryTest {
 
     @Autowired
@@ -23,6 +21,9 @@ public class UserRepositoryTest {
 
     @Autowired
     UserService userService;
+
+
+
 
     @Test
     public void updateUserNameTest() {
@@ -105,9 +106,28 @@ public class UserRepositoryTest {
 
         List<User> user = userRepository.findAll();
 
-        Assert.assertEquals(true, user.isEmpty());
+        Assert.assertEquals(true, !user.isEmpty());
 
     }
 
+    @Test
+    public void userDeleteTest() {
+
+        Integer userId = 20;
+
+        if (userRepository.findUserByUserId(userId) != null) {
+
+            userRepository.deleteById(userId);
+
+            User findingUser = userRepository.findUserByUserId(userId);
+
+            Assert.assertEquals(null, findingUser);
+
+        } else {
+
+            System.out.println("Sry there is no longer user with that ID");
+
+        }
+    }
 
 }

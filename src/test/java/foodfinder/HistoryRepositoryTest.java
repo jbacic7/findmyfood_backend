@@ -14,7 +14,6 @@ import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@Ignore
 public class HistoryRepositoryTest {
 
     @Autowired

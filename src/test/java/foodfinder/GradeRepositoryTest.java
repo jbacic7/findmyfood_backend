@@ -15,7 +15,6 @@ import java.util.Random;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@Ignore
 public class GradeRepositoryTest {
 
     Random random = new Random();
@@ -32,7 +31,7 @@ public class GradeRepositoryTest {
 
         restaurantGrade.setGrade(random.nextInt(5));
 
-        restaurantGrade.setIdUser(random.nextInt(10));
+        restaurantGrade.setIdUser(4);
 
         RestaurantGrade savingRestaurantGrade = gradeRepository.save(restaurantGrade);
 

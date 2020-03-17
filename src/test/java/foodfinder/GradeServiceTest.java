@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@Ignore
 public class GradeServiceTest {
 
     @Autowired
@@ -20,9 +19,9 @@ public class GradeServiceTest {
     @Test
     public void averageRestaurantsGradeTest() {
 
-        Integer restaurantId = 11;
+        Integer restaurantId = 12;
 
-        Double trueResult = 2.75;
+        Double trueResult = 3.0;
 
         Double restaurantGrade = gradesServices.averageRestaurantsGrade(restaurantId);
 

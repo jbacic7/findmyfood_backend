@@ -51,9 +51,9 @@ public class UserController {
 
     @RequestMapping(value = "/users/{id}/password/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
-    void updateUserPassword(@PathVariable(value = "id") Integer userId, @RequestBody User user) {
+    void updateAndHashUserPassword(@PathVariable(value = "id") Integer userId, @RequestBody User user) {
 
-        userService.updateUserPassword(user.getPassword(), userId);
+        userService.updateAndHashUserPassword(user.getPassword(), userId);
     }
 
     @RequestMapping(value = "/users/{id}/mail/update", method = RequestMethod.PUT, produces = "application/json;charset=UTF-8", consumes = "application/json;")
