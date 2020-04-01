@@ -1,20 +1,19 @@
 package foodfinder;
 
+import foodfinder.dto.Restaurant;
 import foodfinder.dto.RestaurantGrade;
 import foodfinder.dto.User;
 import foodfinder.repository.GradeRepository;
+import foodfinder.repository.RestaurantRepository;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.impl.GradesServicesImpl;
 import foodfinder.services.impl.UserServiceImpl;
-import foodfinder.services.interfaces.GradesServices;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.engine.script.Script;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -33,36 +32,43 @@ public class GradeServiceIntegrationTest {
     @Autowired
     private UserServiceImpl userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
     private RestaurantGrade restaurantGrade;
 
     private User user;
 
+    private Restaurant restaurant;
+
     @Before
     public void setUp(){
         user =  userService.createUser(testUser("newUserTest","password","surname","mail@gmail.com"));
+        restaurant = restaurantRepository.save(testRestaurant());
+        restaurantGrade = testRestaurantGrade(5,user.getUserId(),restaurant.getRestaurantId());
 
-        restaurantGrade = restaurantGradeTest(5,user.getUserId(),10);
-        System.out.println(user.getUserId());
     }
 
     @After
-    @Sql(scripts = "db/sql-test-scheme/test-delete-user-schema.sql")
     public void after(){
-        userService.userDelete(user.getUserId());
-        gradeRepository.deleteById(restaurantGrade.getIdGrade());
+        gradeRepository.delete(restaurantGrade);
+        restaurantRepository.delete(restaurant);
+        userRepository.delete(user);
     }
 
     @Test
-
     public void testAverageRestaurantsGrade(){
         gradeRepository.save(restaurantGrade);
         gradeRepository.save(restaurantGrade);
 
-        assertThat(gradesServices.averageRestaurantsGrade(10),is(4.5));
+        assertThat(gradesServices.averageRestaurantsGrade(restaurant.getRestaurantId()),is(5.0));
 
     }
 
-    private RestaurantGrade restaurantGradeTest(Integer grade, Integer userId, Integer restaurantId){
+    private RestaurantGrade testRestaurantGrade(Integer grade, Integer userId, Integer restaurantId){
         RestaurantGrade restaurantGrade = new RestaurantGrade();
         restaurantGrade.setGrade(grade);
         restaurantGrade.setIdUser(userId);
@@ -77,8 +83,18 @@ public class GradeServiceIntegrationTest {
         user.setPassword(password);
         user.setSurname(surname);
         user.setMail(mail);
-        //user.setUserId(userId);
+
 
         return user;
+    }
+    private Restaurant testRestaurant(){
+        Restaurant testRestaurant = new Restaurant();
+        testRestaurant.setRestaurantId(99999);
+        testRestaurant.setType("market");
+        testRestaurant.setLongitude(1f);
+        testRestaurant.setLatitude(1f);
+        testRestaurant.setName("name");
+        testRestaurant.setAddress("address");
+        return testRestaurant;
     }
 }

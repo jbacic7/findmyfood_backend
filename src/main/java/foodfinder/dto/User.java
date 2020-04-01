@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 @NotNull
 @Table(name = "users")
 @Entity
-@OnDelete(action = OnDeleteAction.CASCADE)
 public class User {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
