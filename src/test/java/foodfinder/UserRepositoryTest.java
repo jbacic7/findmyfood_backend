@@ -8,8 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.xml.validation.Schema;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -21,8 +24,6 @@ public class UserRepositoryTest {
 
     @Autowired
     UserService userService;
-
-
 
 
     @Test
@@ -111,6 +112,7 @@ public class UserRepositoryTest {
     }
 
     @Test
+    @Sql(scripts = "db/sql-test-scheme/test-schema.sql")
     public void userDeleteTest() {
 
         Integer userId = 20;

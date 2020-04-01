@@ -8,6 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,18 +23,19 @@ public class GradeRepositoryTest {
     @Autowired
     GradeRepository gradeRepository;
 
+    private RestaurantGrade restaurantGradeTest(Integer grade, Integer userId, Integer restaurantId){
+        RestaurantGrade restaurantGrade = new RestaurantGrade();
+        restaurantGrade.setGrade(grade);
+        restaurantGrade.setIdUser(userId);
+        restaurantGrade.setIdRestaurants(restaurantId);
+
+        return restaurantGrade;
+    }
+
     @Test
     public void createRestaurantsGradeTest() {
 
-        RestaurantGrade restaurantGrade = new RestaurantGrade();
-
-        restaurantGrade.setIdRestaurants(random.nextInt(30));
-
-        restaurantGrade.setGrade(random.nextInt(5));
-
-        restaurantGrade.setIdUser(4);
-
-        RestaurantGrade savingRestaurantGrade = gradeRepository.save(restaurantGrade);
+        RestaurantGrade savingRestaurantGrade = gradeRepository.save(restaurantGradeTest(random.nextInt(5),4,random.nextInt(30)));
 
         Assert.assertNotNull(savingRestaurantGrade);
 
@@ -42,19 +44,17 @@ public class GradeRepositoryTest {
     @Test
     public void restaurantGradeSaveTest() {
 
-        RestaurantGrade restaurantGrade = new RestaurantGrade();
+        RestaurantGrade savingRestaurantGrade = gradeRepository.save(restaurantGradeTest(5,1,10));
 
-        restaurantGrade.setIdRestaurants(10);
+        Integer newGrade = savingRestaurantGrade.getGrade();
 
-        restaurantGrade.setGrade(5);
+        Assert.assertSame(newGrade, savingRestaurantGrade.getGrade());
 
-        restaurantGrade.setIdUser(1);
+    }
+    @Test
+    public void integrationTestOfAverageRestaurantsGrade(){
 
-        RestaurantGrade savingRestaurantGrade = gradeRepository.save(restaurantGrade);
 
-        Integer newGrade = restaurantGrade.getGrade().intValue();
-
-        Assert.assertSame(newGrade.intValue(), savingRestaurantGrade.getGrade().intValue());
 
     }
 

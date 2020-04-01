@@ -1,11 +1,11 @@
 package foodfinder.services.impl;
 
+import foodfinder.dto.User;
 import foodfinder.dto.UserComment;
 import foodfinder.repository.UserCommentsRepository;
 import foodfinder.services.interfaces.UserCommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

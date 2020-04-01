@@ -1,13 +1,12 @@
 package foodfinder.services.interfaces;
 
 import foodfinder.dto.User;
-import org.aspectj.lang.annotation.After;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
 
-@Service
+
 public interface UserService {
 
     List<User> fetchUserInfo(final String userName, final String userSurname);

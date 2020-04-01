@@ -1,5 +1,7 @@
 package foodfinder.dto;
 
+import jdk.nashorn.internal.objects.annotations.Constructor;
+import jdk.nashorn.internal.objects.annotations.Property;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "restaurants_grade")
+
 public class RestaurantGrade {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "grade_seq")
@@ -23,6 +26,7 @@ public class RestaurantGrade {
     private Integer idRestaurants;
     @Column(name = "id_user")
     private Integer idUser;
+
 
 }
 

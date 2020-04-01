@@ -2,6 +2,7 @@ package foodfinder.services.impl;
 
 import foodfinder.dto.Restaurant;
 import foodfinder.dto.RestaurantGrade;
+import foodfinder.dto.RestaurantType;
 import foodfinder.repository.GradeRepository;
 import foodfinder.services.interfaces.GradesServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class GradesServicesImpl implements GradesServices {
 
     public Double averageRestaurantsGrade(Integer restaurantId) {
 
-        return gradeRepository.countRestaurantGrade(restaurantId);
+        return gradeRepository.countRestaurantAvgGrade(restaurantId);
 
     }
 

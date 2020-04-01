@@ -39,6 +39,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantRepository.findAll();
     }
 
+    @Override
     public Restaurant fetchRestaurantId(Integer restaurantId) {
 
         if (restaurantId != 0) {

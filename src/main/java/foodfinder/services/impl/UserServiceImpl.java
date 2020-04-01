@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import liquibase.util.StringUtils;
-import org.springframework.util.CollectionUtils;
 
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -69,6 +67,7 @@ public class UserServiceImpl implements UserService {
     public void updateAndHashUserPassword(String password, Integer userId){
 
         userRepository.updateUserPassword(passHashed(password),userId);
+
     }
 
     public void updateUserEmail(String mail, Integer userId) {

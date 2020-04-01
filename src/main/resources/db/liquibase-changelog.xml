@@ -14,7 +14,7 @@
     <include file="changelog/fill-user-table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/fill-new-restaurant-type.xml" relativeToChangelogFile="true"/>
     <include file="changelog/fill-restaurant-table-with-big-list.xml" relativeToChangelogFile="true"/>
-     <include file="changelog/name-change-in-type-id-column.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/name-change-in-type-id-column.xml" relativeToChangelogFile="true"/>
     <include file="changelog/update-description-in-type-table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/create-table-for-grade.xml" relativeToChangelogFile="true"/>
     <include file="changelog/user-favorite-restaurant-table.xml" relativeToChangelogFile="true"/>
