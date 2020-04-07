@@ -3,16 +3,15 @@ package foodfinder;
 import foodfinder.dto.User;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.xml.validation.Schema;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -25,32 +24,54 @@ public class UserRepositoryTest {
     @Autowired
     UserService userService;
 
+    @Autowired
+    TestData testData;
+
+    User userOne;
+
+    User userTwo;
+
+    User userDeleteTest;
+
+    @Before
+    public void setUp() {
+        userOne = userRepository.save(testData.userTestData("Jurica", "pass", "Bacic", "emailNew@mail.com", 99));
+        userTwo = userRepository.save(testData.userTestData("JuricaNew", "newPass", "NewSuraname", "newEmail", 98));
+        userDeleteTest = userRepository.save(testData.userTestData("userForDelete", "deletePass", "deleteSurname", "deleteMail", 97));
+    }
+
+    @After
+    public void after() {
+
+        userRepository.delete(userOne);
+        userRepository.delete(userTwo);
+        userRepository.delete(userDeleteTest);
+    }
 
     @Test
     public void updateUserNameTest() {
 
         User updateUserName = new User();
 
-        updateUserName.setName("Ignacio");
+        updateUserName.setName("NewJurica");
 
-        userService.updateUserNameAndSurname(updateUserName, 2);
+        userService.updateUserNameAndSurname(updateUserName, userOne.getUserId());
 
-        User findUserName = userRepository.findUserByUserId(2);
+        User findUserSurname = userRepository.findUserByUserId(userOne.getUserId());
 
-        Assert.assertEquals(findUserName.getName(), "Ignacio");
-
+        Assert.assertEquals(findUserSurname.getName(), "NewJurica");
     }
 
     @Test
     public void updateUserSurnameTest() {
 
-        User updateUSerSurname = new User();
+        User updateUserSurname = new User();
 
-        updateUSerSurname.setSurname("Legend");
+        updateUserSurname.setSurname("Legend");
 
-        userService.updateUserNameAndSurname(updateUSerSurname, 2);
+        userService.updateUserNameAndSurname(updateUserSurname, userOne.getUserId());
 
-        User findUserSurname = userRepository.findUserByUserId(2);
+        User findUserSurname = userRepository.findUserByUserId(userOne.getUserId());
 
         Assert.assertEquals(findUserSurname.getSurname(), "Legend");
 
@@ -67,21 +88,19 @@ public class UserRepositoryTest {
     @Test
     public void fetchUserByNameTest() {
 
-        String targetNameOfUser = "Kristijan";
+        String userTargetName = userOne.getName();
 
-        List<User> userTargetName = userRepository.findUsersByName(targetNameOfUser);
+        String targetNameOfUser = "Jurica";
 
-        for (User user : userTargetName) {
+        Assert.assertEquals(userTargetName, targetNameOfUser);
 
-            Assert.assertEquals(user.getName(), targetNameOfUser);
-
-        }
     }
+
 
     @Test
     public void checkUserByIdTest() {
 
-        Integer targetId = 3;
+        Integer targetId = userOne.getUserId();
 
         User filterUserById = userRepository.findUserByUserId(targetId);
 
@@ -92,13 +111,9 @@ public class UserRepositoryTest {
     @Test
     public void checkSpecificUserById() {
 
-        String name = "Jurica";
+        User filterUserNameById = userRepository.findUserByUserId(userOne.getUserId());
 
-        Integer userId = 1;
-
-        User filterUserNameById = userRepository.findUserByUserId(userId);
-
-        Assert.assertEquals(name, filterUserNameById.getName());
+        Assert.assertEquals(userOne.getName(), filterUserNameById.getName());
 
     }
 
@@ -112,22 +127,15 @@ public class UserRepositoryTest {
     }
 
     @Test
-    @Sql(scripts = "db/sql-test-scheme/test-schema.sql")
     public void userDeleteTest() {
 
-        Integer userId = 20;
+        if (userRepository.findUserByUserId(userDeleteTest.getUserId()) != null) {
 
-        if (userRepository.findUserByUserId(userId) != null) {
+            userRepository.deleteById(userDeleteTest.getUserId());
 
-            userRepository.deleteById(userId);
-
-            User findingUser = userRepository.findUserByUserId(userId);
+            User findingUser = userRepository.findUserByUserId(userDeleteTest.getUserId());
 
             Assert.assertEquals(null, findingUser);
-
-        } else {
-
-            System.out.println("Sry there is no longer user with that ID");
 
         }
     }

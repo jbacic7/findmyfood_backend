@@ -1,18 +1,15 @@
 package foodfinder;
 
 import foodfinder.dto.FavoriteRestaurant;
-import foodfinder.dto.Restaurant;
 import foodfinder.repository.FavoriteRestaurantRepository;
-import foodfinder.repository.RestaurantRepository;
-import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -21,22 +18,31 @@ public class FavoriteRestaurantRepositoryTest {
     @Autowired
     FavoriteRestaurantRepository favoriteRestaurantRepository;
 
-    @Test
-    public void saveFavoriteRestaurantTest() {
 
-        FavoriteRestaurant favoriteRestaurant = new FavoriteRestaurant();
+    FavoriteRestaurant favoriteRestaurant;
 
-        favoriteRestaurant.setUserId(4);
+    @Autowired
+    TestData testData;
 
-        favoriteRestaurant.setRestaurantsId(27);
 
-        FavoriteRestaurant savingFavoriteRestaurantValue = favoriteRestaurantRepository.save(favoriteRestaurant);
+    @Before
+    public void setUp() {
 
-        Integer checkSpecificUserId = 4;
-
-        Assert.assertSame(savingFavoriteRestaurantValue.getUserId(), checkSpecificUserId);
+        favoriteRestaurant = favoriteRestaurantRepository.save(testData.favoriteRestaurantTestData(3, 1, 26));
 
     }
 
+    @After
+    public void after() {
+
+        favoriteRestaurantRepository.delete(favoriteRestaurant);
+    }
+
+    @Test
+    public void saveFavoriteRestaurantTest() {
+
+        Assert.assertSame(favoriteRestaurant.getUserId(), 1);
+
+    }
 
 }

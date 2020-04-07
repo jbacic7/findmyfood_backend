@@ -2,11 +2,13 @@ package foodfinder;
 
 
 import foodfinder.dto.User;
+import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -15,30 +17,52 @@ import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-
 public class UserServiceTest {
 
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    TestData testData;
+
+    User userOne;
+    User userTwo;
+
+
+    @Before
+    public void setUp() {
+        userOne = userRepository.save(testData.userTestData("Jurica", "pass", "Bacic", "emailNew@mail.com", 99));
+        userTwo = userRepository.save(testData.userTestData("Marko", "password", "Ivanic", "ivanic@gmail.com", 98));
+
+    }
+
+    @After
+    public void after() {
+
+        userRepository.delete(userOne);
+        userRepository.delete(userTwo);
+
+    }
+
     @Test
     public void fetchUserInfoTest() {
 
-        List<User> fetchUserNameAndSurnameValues = userService.fetchUserInfo(null, null);
+        List<User> fetchUserNameAndSurnameValues = userService.fetchUserInfo(userOne.getName(), userOne.getSurname());
 
         Assert.assertTrue(fetchUserNameAndSurnameValues.size() > 1);
-
 
     }
 
     @Test
     public void fetchUserByIdTest() {
 
-        Integer userId = 1;
+        Integer userOneId = userOne.getUserId();
 
-        User fetchUserId = userService.fetchUserById(userId);
+        Assert.assertNotNull(userOneId);
 
-        Assert.assertEquals(1, fetchUserId.getUserId().intValue());
 
     }
 
@@ -46,16 +70,9 @@ public class UserServiceTest {
 
     public void checkNameFromCreateNewUserTest() {
 
-        User user = new User();
+        User checkUserCreation = userService.createUser(userOne);
 
-        user.setName("Nikola");
-        user.setSurname("Pokrivac");
-        user.setMail("nikola.pokrivac@t.ht.hr");
-        user.setPassword("pokrivamOkolo");
-
-        User checkUserCreation = userService.createUser(user);
-
-        Assert.assertTrue(checkUserCreation.getName() == "Nikola");
+        Assert.assertTrue(checkUserCreation.getName() == "Jurica");
 
 
     }
@@ -63,16 +80,11 @@ public class UserServiceTest {
     @Test
     public void createUserTest() {
 
-        User user = new User();
-
-        user.setName("Marko");
-        user.setSurname("Padavac");
-        user.setMail("Marko.Padavac@t.ht.hr");
-        user.setPassword("pokrivamOkolo");
+        User user = userTwo;
 
         User checkUserCreation = userService.createUser(user);
 
-        Assert.assertTrue(checkUserCreation == user);
+        Assert.assertNotNull(checkUserCreation);
 
     }
 
@@ -80,11 +92,11 @@ public class UserServiceTest {
     @Test
     public void updateAndHashUserPasswordTest() {
 
-        String oldPassword = userService.fetchUserById(3).getPassword();
+        String oldPassword = userService.fetchUserById(userOne.getUserId()).getPassword();
 
-        userService.updateAndHashUserPassword(oldPassword, 3);
+        userService.updateAndHashUserPassword(oldPassword, userOne.getUserId());
 
-        String newPassword = userService.fetchUserById(3).getPassword();
+        String newPassword = userService.fetchUserById(userOne.getUserId()).getPassword();
 
         Assert.assertNotEquals(oldPassword, newPassword);
 
@@ -95,13 +107,11 @@ public class UserServiceTest {
 
         String newMail = "thisIsTestMail@hotmail.com";
 
-        String userTwoCurrentMail = userService.fetchUserById(2).getMail();
+        String userTwoCurrentMail = userService.fetchUserById(userOne.getUserId()).getMail();
 
-        System.out.println(userTwoCurrentMail);
+        userService.updateUserEmail(newMail, userOne.getUserId());
 
-        userService.updateUserEmail(newMail, 2);
-
-        Assert.assertEquals(newMail, userTwoCurrentMail);
+        Assert.assertNotEquals(newMail, userTwoCurrentMail);
 
     }
 

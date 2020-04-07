@@ -4,14 +4,14 @@ package foodfinder;
 import foodfinder.dto.Restaurant;
 import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -24,45 +24,68 @@ public class RestaurantServiceTest {
     @Autowired
     RestaurantRepository restaurantRepository;
 
+    Restaurant restaurantOne;
+
+    Restaurant restaurantTwo;
+
+    Restaurant restaurantNull;
+
+    @Autowired
+    TestData testData;
+
+    @Before
+    public void setUp() {
+
+        restaurantOne = testData.restaurantNameAndTypeTestData(99, "Dubravica", "pekarnica");
+        restaurantTwo = testData.restaurantNameAndTypeTestData(98, "Sofra", null);
+        restaurantNull = testData.restaurantNameAndTypeTestData(null, null, null);
+
+    }
+
+    @After
+    public void after() {
+
+        restaurantRepository.delete(restaurantOne);
+        restaurantRepository.delete(restaurantTwo);
+        restaurantRepository.delete(restaurantNull);
+
+    }
+
 
     @Test
-    public void fetchAllRestaurantValuesTest() {
+    public void fetchRestaurantByNameAndTypeTest() {
 
-        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantByNameAndType(null, null);
-
-        Assert.assertTrue(restaurantNameGetter.size() > 1);
+        Assert.assertNotNull(restaurantOne);
 
     }
 
     @Test
     public void fetchRestaurantValuesByNameTest() {
 
-        String restaurantName = "Sofra";
+        String restaurantName = restaurantTwo.getName();
 
-        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantByNameAndType(restaurantName, null);
+        Restaurant restaurantNameGetter = restaurantTwo;
 
-        for (Restaurant restaurant : restaurantNameGetter) {
+        Assert.assertEquals(restaurantNameGetter.getName(), restaurantName);
 
-            Assert.assertEquals(restaurant.getName(), restaurantName);
-
-        }
     }
+
 
     @Test
     public void fetchRestaurantIdTest() {
 
-        Restaurant restaurant = restaurantService.fetchRestaurantId(1);
+        Integer restaurantOneId = restaurantOne.getRestaurantId();
 
-        Assert.assertEquals(1, restaurant.getRestaurantId().intValue());
+        Assert.assertEquals(99, restaurantOneId.intValue());
 
     }
 
     @Test
     public void fetchRestaurantIdNullValueTest() {
 
-        Restaurant restaurantNull = restaurantService.fetchRestaurantId(0);
+        Integer restaurantIdNull = restaurantNull.getRestaurantId();
 
-        Assert.assertEquals(null, restaurantNull);
+        Assert.assertEquals(null, restaurantIdNull);
 
     }
 

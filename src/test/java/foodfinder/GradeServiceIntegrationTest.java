@@ -38,63 +38,40 @@ public class GradeServiceIntegrationTest {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
+    @Autowired
+    private TestData testData;
+
     private RestaurantGrade restaurantGrade;
+
 
     private User user;
 
     private Restaurant restaurant;
 
     @Before
-    public void setUp(){
-        user =  userService.createUser(testUser("newUserTest","password","surname","mail@gmail.com"));
-        restaurant = restaurantRepository.save(testRestaurant());
-        restaurantGrade = testRestaurantGrade(5,user.getUserId(),restaurant.getRestaurantId());
+    public void setUp() {
+
+        user = userService.createUser(testData.userTestData("ThisIsUserName", "password", "surname", "mailmailic@gmail.com", null));
+        restaurant = restaurantRepository.save(testData.restaurantTestData(99, "bosanska kuhinja", 4f, 57f, "imeRestorana", "Radnička cesta 21, 10000, Zagreb"));
+        restaurantGrade = testData.restaurantGradeTestData(3, user.getUserId(), restaurant.getRestaurantId());
 
     }
 
     @After
-    public void after(){
+    public void after() {
+
         gradeRepository.delete(restaurantGrade);
         restaurantRepository.delete(restaurant);
         userRepository.delete(user);
     }
 
     @Test
-    public void testAverageRestaurantsGrade(){
+    public void testAverageRestaurantsGrade() {
+
         gradeRepository.save(restaurantGrade);
-        gradeRepository.save(restaurantGrade);
 
-        assertThat(gradesServices.averageRestaurantsGrade(restaurant.getRestaurantId()),is(5.0));
+        assertThat(gradesServices.averageRestaurantsGrade(restaurant.getRestaurantId()), is(3.0));
 
     }
 
-    private RestaurantGrade testRestaurantGrade(Integer grade, Integer userId, Integer restaurantId){
-        RestaurantGrade restaurantGrade = new RestaurantGrade();
-        restaurantGrade.setGrade(grade);
-        restaurantGrade.setIdUser(userId);
-        restaurantGrade.setIdRestaurants(restaurantId);
-
-        return restaurantGrade;
-    }
-
-    private User testUser(String name, String password, String surname, String mail){
-        User user = new User();
-        user.setName(name);
-        user.setPassword(password);
-        user.setSurname(surname);
-        user.setMail(mail);
-
-
-        return user;
-    }
-    private Restaurant testRestaurant(){
-        Restaurant testRestaurant = new Restaurant();
-        testRestaurant.setRestaurantId(99999);
-        testRestaurant.setType("market");
-        testRestaurant.setLongitude(1f);
-        testRestaurant.setLatitude(1f);
-        testRestaurant.setName("name");
-        testRestaurant.setAddress("address");
-        return testRestaurant;
-    }
 }

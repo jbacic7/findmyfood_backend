@@ -10,14 +10,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.VerificationCollector;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
@@ -43,12 +41,13 @@ public class GradeServiceTest {
 
     @Test
     public void testAverageRestaurantsGrade() {
+
         when(gradeRepository.countRestaurantAvgGrade(restaurantId)).thenReturn(avgResult);
 
         assertThat(gradesServices.averageRestaurantsGrade(restaurantId), is(avgResult));
     }
 
-     @Test
+    @Test
     public void testAverageRestaurantsGradeWhenString() {
 
         thrown.expect(NumberFormatException.class);

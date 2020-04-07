@@ -3,18 +3,22 @@ package foodfinder.services.impl;
 import foodfinder.dto.User;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
+import liquibase.util.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import liquibase.util.StringUtils;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -22,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> fetchUserInfo(String userName, String userSurname) {
 
-        if (StringUtils.isEmpty(userName)  || StringUtils.isEmpty(userSurname)) {
+        if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(userSurname)) {
 
             return userRepository.findAll();
 
@@ -45,11 +49,13 @@ public class UserServiceImpl implements UserService {
 
     public User fetchUserById(Integer userId) {
 
-        if (userId != 0) {
+            if (userId != null) {
 
-            return userRepository.findUserByUserId(userId);
-        }
-        return null;
+                return userRepository.findUserByUserId(userId);
+            }else{
+
+                throw new  UsernameNotFoundException("User with " + userId + " not found!");
+            }
     }
 
     public void userDelete(Integer userId) {
@@ -64,9 +70,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public void updateAndHashUserPassword(String password, Integer userId){
+    public void updateAndHashUserPassword(String password, Integer userId) {
 
-        userRepository.updateUserPassword(passHashed(password),userId);
+        userRepository.updateUserPassword(passHashed(password), userId);
 
     }
 
