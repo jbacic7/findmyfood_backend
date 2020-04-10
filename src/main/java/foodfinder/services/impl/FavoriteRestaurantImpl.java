@@ -1,7 +1,9 @@
-package foodfinder.services.implementations;
+package foodfinder.services.impl;
 
 import foodfinder.dto.FavoriteRestaurant;
+import foodfinder.dto.Restaurant;
 import foodfinder.repository.FavoriteRestaurantRepository;
+import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.FavoriteRestaurantServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +17,14 @@ public class FavoriteRestaurantImpl implements FavoriteRestaurantServices {
     @Autowired
     FavoriteRestaurantRepository favoriteRestaurantRepository;
 
+    @Autowired
+    RestaurantRepository restaurantRepository;
 
-    FavoriteRestaurant favoriteRestaurant;
 
     @Override
     public FavoriteRestaurant saveFavoriteRestaurant(FavoriteRestaurant favoriteRestaurant) {
 
         if (favoriteRestaurant.getUserId() > 0) {
-
-            favoriteRestaurant.setUserId(favoriteRestaurant.getUserId());
 
             FavoriteRestaurant favoriteRestaurantForSpecificUser = favoriteRestaurantRepository.save(favoriteRestaurant);
 
@@ -32,19 +33,7 @@ public class FavoriteRestaurantImpl implements FavoriteRestaurantServices {
         }
         return null;
     }
-@Override
-    public List<Integer> fetchFavoriteRestaurant(Integer user_id) {
-
-        if (user_id >= 1) {
-
-            List<Integer> listOfFavoriteRestaurantsFromUser = favoriteRestaurantRepository.findFavoriteRestaurantByUserId(user_id);
 
 
-            return listOfFavoriteRestaurantsFromUser;
-        }
-
-        return null;
-
-    }
 }
 

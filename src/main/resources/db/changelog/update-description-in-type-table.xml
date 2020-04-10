@@ -2,37 +2,37 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet author="jbacic7" id="update_description_on_market">
         <update tableName="type">
-            <column name="description" value="Trgovina u kojoj se mogu kupiti gotova jela, topla jela, sendviči i sl." />
+            <column name="description" value="Trgovina u kojoj se mogu kupiti gotova jela, topla jela, sendviči i sl."/>
             <where>name = 'market'</where>
         </update>
     </changeSet>
     <changeSet author="jbacic7" id="update_description_on_b_kitchen">
         <update tableName="type">
-            <column name="description" value="Restoran u kojem se poslužuje mahom jela s čiji recepti potijeću s područja Bosne i Hercegovine" />
+            <column name="description"
+                    value="Restoran u kojem se poslužuje mahom jela s čiji recepti potijeću s područja Bosne i Hercegovine"/>
             <where>name = 'bosanska kuhinja'</where>
         </update>
     </changeSet>
     <changeSet author="jbacic7" id="update_description_on_burger_bar">
         <update tableName="type">
-            <column name="description" value="Bar gdje se poslužuju burgeri" />
+            <column name="description" value="Bar gdje se poslužuju burgeri"/>
             <where>name = 'burger bar'</where>
         </update>
     </changeSet>
     <changeSet author="jbacic7" id="update_description_on_grill">
         <update tableName="type">
-            <column name="description" value="Restoran ili bar gdje se poslužuju mahom jela sa žara" />
+            <column name="description" value="Restoran ili bar gdje se poslužuju mahom jela sa žara"/>
             <where>name = 'grill'</where>
         </update>
     </changeSet>
     <changeSet author="jbacic7" id="update_description_on_healthy_food">
         <update tableName="type">
-            <column name="description" value="Restoran ili bar u kojem se poslužuju jela bogate nutritivne vrijednosti" />
+            <column name="description"
+                    value="Restoran ili bar u kojem se poslužuju jela bogate nutritivne vrijednosti"/>
             <where>name = 'zdrava prehrana'</where>
         </update>
     </changeSet>

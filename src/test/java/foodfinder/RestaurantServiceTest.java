@@ -2,94 +2,93 @@ package foodfinder;
 
 
 import foodfinder.dto.Restaurant;
+import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Ignore
 public class RestaurantServiceTest {
 
     @Autowired
     RestaurantService restaurantService;
 
+    @Autowired
+    RestaurantRepository restaurantRepository;
+
+    Restaurant restaurantOne;
+
+    Restaurant restaurantTwo;
+
+    Restaurant restaurantNull;
+
+    @Autowired
+    TestData testData;
+
+    @Before
+    public void setUp() {
+
+        restaurantOne = testData.restaurantNameAndTypeTestData(99, "Dubravica", "pekarnica");
+        restaurantTwo = testData.restaurantNameAndTypeTestData(98, "Sofra", null);
+        restaurantNull = testData.restaurantNameAndTypeTestData(null, null, null);
+
+    }
+
+    @After
+    public void after() {
+
+        restaurantRepository.delete(restaurantOne);
+        restaurantRepository.delete(restaurantTwo);
+        restaurantRepository.delete(restaurantNull);
+
+    }
+
 
     @Test
-    public void fetchAllRestaurantValuesTest() {
+    public void fetchRestaurantByNameAndTypeTest() {
 
-        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantValues(null, null);
-
-        Assert.assertTrue(restaurantNameGetter.size() > 1);
+        Assert.assertNotNull(restaurantOne);
 
     }
 
     @Test
     public void fetchRestaurantValuesByNameTest() {
 
-        String restaurantName = "Sofra";
+        String restaurantName = restaurantTwo.getName();
 
-        List<Restaurant> restaurantNameGetter = restaurantService.fetchRestaurantValues(restaurantName, null);
+        Restaurant restaurantNameGetter = restaurantTwo;
 
-        for (Restaurant restaurant : restaurantNameGetter) {
+        Assert.assertEquals(restaurantNameGetter.getName(), restaurantName);
 
-            Assert.assertEquals(restaurant.getName(), restaurantName);
-
-        }
     }
 
-    @Test
-    public void fetchRestaurantValuesByTwoTypeTest() {
-
-        List<String> typeList = new ArrayList<>();
-        typeList.add("grill");
-        typeList.add("market");
-        List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeList);
-
-        Assert.assertTrue(restaurantList.size() == 2);
-    }
 
     @Test
-    public void fetchRestaurantValuesByOneTypeTest() {
+    public void fetchRestaurantIdTest() {
 
-        List<String> typeList = new ArrayList<>();
-        typeList.add("grill");
+        Integer restaurantOneId = restaurantOne.getRestaurantId();
 
-        List<Restaurant> restaurantList = restaurantService.fetchRestaurantValues(null, typeList);
-
-        for (Restaurant restaurant : restaurantList) {
-
-            Assert.assertTrue(restaurant.getType().equals("grill"));
-        }
+        Assert.assertEquals(99, restaurantOneId.intValue());
 
     }
 
     @Test
-    public void fetchRestaurantId_ById() {
+    public void fetchRestaurantIdNullValueTest() {
 
-        Restaurant restaurant = restaurantService.fetchRestaurantId(1);
+        Integer restaurantIdNull = restaurantNull.getRestaurantId();
 
-        Assert.assertEquals(1, restaurant.getRestaurantId().intValue());
-
-    }
-
-    @Test
-    public void fetchRestaurantId_NullValueTest() {
-
-        Restaurant restaurantNull = restaurantService.fetchRestaurantId(0);
-
-        Assert.assertEquals(null, restaurantNull);
+        Assert.assertEquals(null, restaurantIdNull);
 
     }
+
 
 }
 

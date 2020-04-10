@@ -1,15 +1,14 @@
 package foodfinder.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,8 +26,4 @@ public class User {
     private String surname;
     private String mail;
     private String password;
-
-
-
-
 }

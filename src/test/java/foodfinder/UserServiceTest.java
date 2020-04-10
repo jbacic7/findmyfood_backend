@@ -4,8 +4,9 @@ package foodfinder;
 import foodfinder.dto.User;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@Ignore
 public class UserServiceTest {
 
     @Autowired
@@ -26,127 +25,95 @@ public class UserServiceTest {
     @Autowired
     UserRepository userRepository;
 
-    @Test
-    public void fetchAllUserValues() {
+    @Autowired
+    TestData testData;
 
-        List<User> fetchUserNameAndSurnameValues = userService.fetchUserInfo(null, null);
+    User userOne;
+    User userTwo;
+
+
+    @Before
+    public void setUp() {
+        userOne = userRepository.save(testData.userTestData("Jurica", "pass", "Bacic", "emailNew@mail.com", 99));
+        userTwo = userRepository.save(testData.userTestData("Marko", "password", "Ivanic", "ivanic@gmail.com", 98));
+
+    }
+
+    @After
+    public void after() {
+
+        userRepository.delete(userOne);
+        userRepository.delete(userTwo);
+
+    }
+
+    @Test
+    public void fetchUserInfoTest() {
+
+        List<User> fetchUserNameAndSurnameValues = userService.fetchUserInfo(userOne.getName(), userOne.getSurname());
 
         Assert.assertTrue(fetchUserNameAndSurnameValues.size() > 1);
 
     }
 
     @Test
-    public void fetchUserById() {
+    public void fetchUserByIdTest() {
 
-        Integer userId = 1;
+        Integer userOneId = userOne.getUserId();
 
-        User fetchUserId = userService.fetchUserById(userId);
+        Assert.assertNotNull(userOneId);
 
-        Assert.assertEquals(1, fetchUserId.getUserId().intValue());
 
     }
 
     @Test
+
     public void checkNameFromCreateNewUserTest() {
 
-        User user = new User();
+        User checkUserCreation = userService.createUser(userOne);
 
-        user.setName("Nikola");
-        user.setSurname("Pokrivac");
-        user.setMail("nikola.pokrivac@t.ht.hr");
-        user.setPassword("pokrivamOkolo");
+        Assert.assertTrue(checkUserCreation.getName() == "Jurica");
 
-        User checkUserCreation = userService.userCreate(user);
-
-        Assert.assertTrue(checkUserCreation.getName() == "Nikola");
 
     }
 
     @Test
-    public void createNewUserTest() {
+    public void createUserTest() {
 
-        User user = new User();
+        User user = userTwo;
 
-        user.setName("Marko");
-        user.setSurname("Padavac");
-        user.setMail("Marko.Padavac@t.ht.hr");
-        user.setPassword("pokrivamOkolo");
+        User checkUserCreation = userService.createUser(user);
 
-        User checkUserCreation = userService.userCreate(user);
+        Assert.assertNotNull(checkUserCreation);
 
-        Assert.assertTrue(checkUserCreation == user);
+    }
+
+
+    @Test
+    public void updateAndHashUserPasswordTest() {
+
+        String oldPassword = userService.fetchUserById(userOne.getUserId()).getPassword();
+
+        userService.updateAndHashUserPassword(oldPassword, userOne.getUserId());
+
+        String newPassword = userService.fetchUserById(userOne.getUserId()).getPassword();
+
+        Assert.assertNotEquals(oldPassword, newPassword);
 
     }
 
     @Test
-    public void removeUserWithSelectedIdTest() {
+    public void updateUserEmailTest() {
 
-        Integer id = 22;
+        String newMail = "thisIsTestMail@hotmail.com";
 
-        if (userService.fetchUserById(id) == null) {
+        String userTwoCurrentMail = userService.fetchUserById(userOne.getUserId()).getMail();
 
-            throw new NoSuchElementException();
-        }
-        userService.userDelete(id);
+        userService.updateUserEmail(newMail, userOne.getUserId());
 
-        Assert.assertSame(null, userService.fetchUserById(id));
-    }
-
-    @Test
-    public void userUpdatePasswordTest(){
-
-        String expectedPassword = "newPassword";
-
-        String userDbPassword = userService.fetchUserById(3).getPassword();
-
-         userService.updateUserPassword(expectedPassword, 3 );
-
-         Assert.assertEquals(expectedPassword, userDbPassword);
+        Assert.assertNotEquals(newMail, userTwoCurrentMail);
 
     }
 
-    @Test
-    public void userMailUpdateTest(){
 
-        String newMail= "thisIsTestMail@hotmail.com";
-
-        String userTwoCurrentMail = userService.fetchUserById(2).getMail();
-
-        System.out.println(userTwoCurrentMail);
-
-        userService.updateUserEmail(newMail, 2);
-
-        Assert.assertEquals(newMail, userTwoCurrentMail);
-
-    }
-
-    @Test
-    public void userNameUpdateTest(){
-
-    User updateUserName = new User();
-
-    updateUserName.setName("Ignacio");
-
-    userService.updateUserNameAndSurname(updateUserName, 2);
-
-    User findUserName = userRepository.findUserByUserId(2);
-
-    Assert.assertEquals(findUserName.getName(), "Ignacio");
-
-    }
-
-    @Test
-    public void userSurnameUpdateTest(){
-
-        User updateUSerSurname = new User();
-
-        updateUSerSurname.setSurname("Legend");
-
-        userService.updateUserNameAndSurname(updateUSerSurname, 2);
-
-        User findUserSurname  = userRepository.findUserByUserId(2);
-
-        Assert.assertEquals(findUserSurname.getSurname(),"Legend");
-
-    }
 }

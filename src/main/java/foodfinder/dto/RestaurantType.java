@@ -2,7 +2,6 @@ package foodfinder.dto;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
@@ -14,12 +13,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "type")
-public class Type {
+public class RestaurantType {
 
     @Id
     @NotNull
