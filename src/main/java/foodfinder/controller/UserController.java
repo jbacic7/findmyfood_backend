@@ -26,8 +26,7 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public User getUserById(
             @PathVariable(value = "id") final Integer userId) {
 
