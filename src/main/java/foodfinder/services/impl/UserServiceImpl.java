@@ -1,6 +1,7 @@
 package foodfinder.services.impl;
 
 import foodfinder.dto.User;
+import foodfinder.exception.RecordNotFoundException;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import liquibase.util.StringUtils;
@@ -49,14 +50,15 @@ public class UserServiceImpl implements UserService {
 
     public User fetchUserById(Integer userId) {
 
-            if (userId != null) {
+        User user = userRepository.findUserByUserId(userId);
 
-                return userRepository.findUserByUserId(userId);
-            }else{
+        if (user == null ) {
 
-                throw new  UsernameNotFoundException("User with " + userId + " not found!");
-            }
+            throw new RecordNotFoundException("User with " + userId + " not found!");
+        }
+        return user;
     }
+
 
     public void userDelete(Integer userId) {
 
