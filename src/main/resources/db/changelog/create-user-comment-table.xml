@@ -20,7 +20,7 @@
                 <constraints nullable="true" foreignKeyName="user_id" references="users(user_id)"/>
             </column>
             <column name="restaurant_id" type="int">
-                <constraints nullable="false" unique="true" foreignKeyName="restaurant_id"
+                <constraints nullable="false" foreignKeyName="restaurant_id"
                              references="restaurants(restaurant_id)"/>
             </column>
         </createTable>

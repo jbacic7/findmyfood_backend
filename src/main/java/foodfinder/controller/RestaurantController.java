@@ -101,14 +101,14 @@ public class RestaurantController {
     public @ResponseBody
     UserComment saveUserCommentaryForSpecificRestaurant(@RequestBody UserComment userComment) {
 
-        return userCommentsService.saveUserComments(userComment);
+        return userCommentsService.createUserComments(userComment);
     }
 
     @RequestMapping(value = "/fetchUserCommentForSpecificRestaurant/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<UserComment> getRestaurantCommentByRestaurantId(
             @PathVariable(value = "restaurant_id") final Integer restaurantId) {
 
-        return userCommentsService.fetchUserCommentsForRestaurant(restaurantId);
+        return userCommentsService.fetchUserCommentsByRestaurantId(restaurantId);
 
     }
 

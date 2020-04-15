@@ -8,9 +8,8 @@ import java.util.List;
 
 public interface UserCommentsService {
 
-    UserComment saveUserComments(UserComment userComment);
+    UserComment createUserComments(UserComment userComment);
 
-    List<UserComment> fetchUserCommentsForRestaurant(Integer restaurantId);
-
+    List<UserComment> fetchUserCommentsByRestaurantId(Integer restaurantId);
 
 }

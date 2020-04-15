@@ -1,7 +1,9 @@
 package foodfinder.services.impl;
 
 import foodfinder.dto.User;
+import foodfinder.dto.UserComment;
 import foodfinder.exception.RecordNotFoundException;
+import foodfinder.repository.UserCommentsRepository;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import liquibase.util.StringUtils;
@@ -20,6 +22,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserCommentsRepository userCommentsRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -100,10 +104,12 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userDb);
     }
 
+
     private String passHashed(String password) {
 
 
         return passwordEncoder.encode(password);
     }
+
 
 }

@@ -1,6 +1,8 @@
 package foodfinder.controller;
 
 import foodfinder.dto.User;
+import foodfinder.dto.UserComment;
+import foodfinder.services.interfaces.UserCommentsService;
 import foodfinder.services.interfaces.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserCommentsService userCommentsService;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<User> getUsers(@RequestParam(required = false, name = "userName") String userName, @RequestParam(required = false, name = "userSurname") String userSurname) {
@@ -69,5 +73,14 @@ public class UserController {
 
         userService.updateUserNameAndSurname(user, userId);
     }
+
+    @RequestMapping(value = "/user/comment/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public List<UserComment> getUserCommentByUserId(
+            @PathVariable(value = "id") final Integer restaurantId) {
+
+        return userCommentsService.fetchUserCommentsByRestaurantId(restaurantId);
+
+    }
+
 
 }

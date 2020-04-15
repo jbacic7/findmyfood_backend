@@ -15,20 +15,25 @@ public class UserCommentsImpl implements UserCommentsService {
     UserCommentsRepository userCommentsRepository;
 
 
-
-
     @Override
-    public UserComment saveUserComments(UserComment userComment) {
+    public UserComment createUserComments(UserComment userComment) {
 
         return userCommentsRepository.save(userComment);
 
     }
 
     @Override
-    public List<UserComment> fetchUserCommentsForRestaurant(Integer restaurantId) {
+    public List<UserComment> fetchUserCommentsByRestaurantId(Integer restaurantId ) {
 
-        return userCommentsRepository.findUserCommentsByRestaurantId(restaurantId);
+        if(restaurantId != 0 ){
 
+            List<UserComment> listOfComments = userCommentsRepository.findUserCommentByRestaurantId(restaurantId);
+
+            return listOfComments;
+
+        } else
+
+            return null;
     }
 
 }

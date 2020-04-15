@@ -9,6 +9,8 @@ import java.util.List;
 public interface UserCommentsRepository extends JpaRepository<UserComment, Integer> {
 
 
-    List<UserComment> findUserCommentsByRestaurantId(Integer restaurantId);
+    List<UserComment> findUserCommentByRestaurantId(Integer restaurantId);
+
+
 
 }
