@@ -12,9 +12,13 @@
                 separator=","
                 tableName="users">
             <column name="name" type="String"/>
+            <column name="user_name" type="String"/>
             <column name="surname" type="String"/>
             <column name="mail" type="String"/>
+            <column name="active" type="BOOLEAN"/>
+            <column name="role" type="String"/>
             <column name="password" type="String"/>
+
         </loadData>
     </changeSet>
 

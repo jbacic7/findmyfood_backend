@@ -1,6 +1,6 @@
-"name","surname","mail",password
-"Jurica","Bacic","juricabacic7@gmail.com","sifra1"
-"Kristijan","Fristek","hollywood.zvijezda@porno.com","penetracijaUOneApp"
-"Ana","Vidacek","ana.vidacek@rba.hr","plavaKosa"
-"Sime","Lola-Ribar","lola.ribar@hotmail.com","bijelo"
-"Vinko","Varazdin","samodase@spijem@vkleti.vz","crno"
+"name","surname","user_name","mail",active,role,password
+"Jurica","Bacic","jukka","juricabacic7@gmail.com","true","admin","sifra1"
+"Kristijan","Fristek","kiki432","hollywood.zvijezda@porno.com","true","user","penetracijaUOneApp"
+"Ana","Vidacek","anika","ana.vidacek@rba.hr","true","user","plavaKosa"
+"Sime","Lola-Ribar","meši","lola.ribar@hotmail.com","true","user","bijelo"
+"Vinko","Varazdin","vino","samodase@spijem@vkleti.vz","false","user","crno"

@@ -16,10 +16,19 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="user_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="surname" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="mail" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="true"/>
+            </column>
+            <column name="role" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="password" type="varchar(255)">

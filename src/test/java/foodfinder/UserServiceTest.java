@@ -114,6 +114,4 @@ public class UserServiceTest {
         Assert.assertNotEquals(newMail, userTwoCurrentMail);
 
     }
-
-
 }

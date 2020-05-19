@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
@@ -17,6 +18,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findUsersByName(String name);
 
     List<User> findUsersBySurname(String surname);
+
+    Optional<User> findByUserName(String userName);
 
     @Modifying(clearAutomatically = true)
     @Transactional

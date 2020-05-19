@@ -3,6 +3,7 @@ package foodfinder.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Value;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -23,7 +24,11 @@ public class User {
     @Id
     private Integer userId;
     private String name;
+    @Column(name = "user_name")
+    private String userName;
     private String surname;
     private String mail;
     private String password;
+    private boolean active;
+    private String role;
 }

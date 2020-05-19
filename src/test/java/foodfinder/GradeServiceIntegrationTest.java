@@ -43,7 +43,6 @@ public class GradeServiceIntegrationTest {
 
     private RestaurantGrade restaurantGrade;
 
-
     private User user;
 
     private Restaurant restaurant;
