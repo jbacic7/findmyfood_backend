@@ -90,7 +90,7 @@ public class RestaurantController {
 
     }
 
-    @RequestMapping(value = "/averageGrade/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8 ")
+    @RequestMapping(value = "/average-grade/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8 ")
     public Double getAverageRestaurantGrade(@PathVariable(value = "restaurant_id") final Integer restaurantId) {
 
         return gradesServices.averageRestaurantsGrade(restaurantId);
@@ -104,7 +104,7 @@ public class RestaurantController {
         return userCommentsService.saveUserComments(userComment);
     }
 
-    @RequestMapping(value = "/fetchUserCommentForSpecificRestaurant/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/fetch-user-comment-for-specific-restaurant/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<UserComment> getRestaurantCommentByRestaurantId(
             @PathVariable(value = "restaurant_id") final Integer restaurantId) {
 
