@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FavoriteRestaurant {
+public class FavoriteRestaurantDTO {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_favorite")
     @SequenceGenerator(name = "seq_favorite", sequenceName = "seq_favorite", initialValue = 1, allocationSize = 1)

@@ -3,9 +3,6 @@ package foodfinder.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @NotNull
 @Table(name = "users")
 @Entity
-public class User {
+public class UserDTO {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @SequenceGenerator(name = "user_seq", sequenceName = "seq_user", initialValue = 1, allocationSize = 1)

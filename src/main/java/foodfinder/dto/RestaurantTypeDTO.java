@@ -1,8 +1,10 @@
 package foodfinder.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,18 +15,17 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Data
 @AllArgsConstructor
-@NotNull
 @NoArgsConstructor
-@Table(name = "restaurants")
-public class Restaurant {
+@Table(name = "type")
+public class RestaurantTypeDTO {
 
     @Id
-    @Column(name = "restaurant_id")
-    private Integer restaurantId;
+    @NotNull
+    @Column(name = "type_id")
+    private Integer typeId;
+    @NotNull
     private String name;
-    private String address;
-    private String type;
-    private Float latitude;
-    private Float longitude;
+    @Nullable
+    private String description;
 
 }

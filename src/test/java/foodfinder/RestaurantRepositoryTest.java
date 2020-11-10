@@ -1,6 +1,6 @@
 package foodfinder;
 
-import foodfinder.dto.Restaurant;
+import foodfinder.dto.RestaurantDTO;
 import foodfinder.repository.RestaurantRepository;
 import org.junit.After;
 import org.junit.Assert;
@@ -23,9 +23,9 @@ public class RestaurantRepositoryTest {
     @Autowired
     RestaurantRepository restaurantRepository;
 
-    Restaurant restaurantOne;
+    RestaurantDTO restaurantOne;
 
-    Restaurant restaurantsTwo;
+    RestaurantDTO restaurantsTwo;
 
     @Before
     public void setUp() {
@@ -44,7 +44,7 @@ public class RestaurantRepositoryTest {
     @Test
     public void checkingIsRestaurantFilled() {
 
-        List<Restaurant> restaurant = restaurantRepository.findAll();
+        List<RestaurantDTO> restaurant = restaurantRepository.findAll();
 
         Assert.assertNotNull(restaurant);
     }
@@ -52,9 +52,9 @@ public class RestaurantRepositoryTest {
     @Test
     public void checkRestaurantName() {
 
-        List<Restaurant> restaurantName = restaurantRepository.findRestaurantsByName("Name");
+        List<RestaurantDTO> restaurantName = restaurantRepository.findRestaurantsByName("Name");
 
-        for (Restaurant restaurants : restaurantName) {
+        for (RestaurantDTO restaurants : restaurantName) {
 
             Assert.assertEquals(restaurants.getName(), restaurantOne.getName());
         }
@@ -64,7 +64,7 @@ public class RestaurantRepositoryTest {
     @Test
     public void fetchFavoriteRestaurantTest() {
 
-        List<Restaurant> userFavoriteRestaurantList = restaurantRepository.findFavoriteRestaurantByUserId(3);
+        List<RestaurantDTO> userFavoriteRestaurantList = restaurantRepository.findFavoriteRestaurantByUserId(3);
 
         Assert.assertNotNull(userFavoriteRestaurantList);
 
@@ -73,7 +73,7 @@ public class RestaurantRepositoryTest {
     @Test
     public void fetchRestaurantByTypeTest() {
 
-        List<Restaurant> restaurantTargetType = restaurantRepository.findRestaurantsByType("kineska kuhinja");
+        List<RestaurantDTO> restaurantTargetType = restaurantRepository.findRestaurantsByType("kineska kuhinja");
 
         Assert.assertEquals(restaurantsTwo.getType(), restaurantTargetType.get(0).getType());
 

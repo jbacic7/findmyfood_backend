@@ -1,6 +1,6 @@
 package foodfinder;
 
-import foodfinder.dto.History;
+import foodfinder.dto.HistoryDTO;
 import foodfinder.repository.HistoryRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class HistoryRepositoryTest {
     @Test
     public void checkingIsHistoryEmpty() {
 
-        List<History> history = historyRepository.findAll();
+        List<HistoryDTO> history = historyRepository.findAll();
 
         Assert.assertEquals(true, history.isEmpty());
 

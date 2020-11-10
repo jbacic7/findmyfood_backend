@@ -1,6 +1,6 @@
 package foodfinder.services.interfaces;
 
-import foodfinder.dto.RestaurantType;
+import foodfinder.dto.RestaurantTypeDTO;
 
 import java.util.List;
 
@@ -8,6 +8,6 @@ import java.util.List;
 public interface RestaurantTypeService {
 
 
-    List<RestaurantType> fetchTypeList();
+    List<RestaurantTypeDTO> fetchTypeList();
 
 }

@@ -1,9 +1,9 @@
 package foodfinder.repository;
 
-import foodfinder.dto.RestaurantType;
+import foodfinder.dto.RestaurantTypeDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RestaurantTypeRepository extends JpaRepository<RestaurantType, Integer> {
+public interface RestaurantTypeRepository extends JpaRepository<RestaurantTypeDTO, Integer> {
 
 
 }

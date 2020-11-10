@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 public class TestData {
 
 
-    public RestaurantGrade restaurantGradeTestData(Integer grade, Integer userId, Integer restaurantId) {
+    public RestaurantGradeDTO restaurantGradeTestData(Integer grade, Integer userId, Integer restaurantId) {
 
-        RestaurantGrade restaurantGrade = new RestaurantGrade();
+        RestaurantGradeDTO restaurantGrade = new RestaurantGradeDTO();
         restaurantGrade.setGrade(grade);
         restaurantGrade.setIdUser(userId);
         restaurantGrade.setIdRestaurants(restaurantId);
@@ -18,9 +18,9 @@ public class TestData {
     }
 
 
-    public User userTestData(String name, String password, String surname, String mail, Integer userId) {
+    public UserDTO userTestData(String name, String password, String surname, String mail, Integer userId) {
 
-        User user = new User();
+        UserDTO user = new UserDTO();
         user.setUserId(userId);
         user.setName(name);
         user.setPassword(password);
@@ -31,9 +31,9 @@ public class TestData {
     }
 
 
-    public Restaurant restaurantTestData(Integer restaurantId, String type, Float longitude, Float latitude, String name, String address) {
+    public RestaurantDTO restaurantTestData(Integer restaurantId, String type, Float longitude, Float latitude, String name, String address) {
 
-        Restaurant testRestaurant = new Restaurant();
+        RestaurantDTO testRestaurant = new RestaurantDTO();
         testRestaurant.setRestaurantId(restaurantId);
         testRestaurant.setType(type);
         testRestaurant.setLongitude(longitude);
@@ -43,21 +43,21 @@ public class TestData {
         return testRestaurant;
     }
 
-    public FavoriteRestaurant favoriteRestaurantTestData(Integer favoriteId, Integer userId, Integer restaurantId) {
+    public FavoriteRestaurantDTO favoriteRestaurantTestData(Integer favoriteId, Integer userId, Integer restaurantId) {
 
-        FavoriteRestaurant testFavoriteRestaurant = new FavoriteRestaurant();
+        FavoriteRestaurantDTO testFavoriteRestaurantDTO = new FavoriteRestaurantDTO();
 
-        testFavoriteRestaurant.setFavoriteId(favoriteId);
-        testFavoriteRestaurant.setUserId(userId);
-        testFavoriteRestaurant.setRestaurantsId(restaurantId);
+        testFavoriteRestaurantDTO.setFavoriteId(favoriteId);
+        testFavoriteRestaurantDTO.setUserId(userId);
+        testFavoriteRestaurantDTO.setRestaurantsId(restaurantId);
 
-        return testFavoriteRestaurant;
+        return testFavoriteRestaurantDTO;
 
     }
 
-    public UserComment userCommentTestData(Integer commentId, String comment, Integer restaurantId, Integer userId) {
+    public UserCommentDTO userCommentTestData(Integer commentId, String comment, Integer restaurantId, Integer userId) {
 
-        UserComment userComment = new UserComment();
+        UserCommentDTO userComment = new UserCommentDTO();
 
         userComment.setCommentId(commentId);
         userComment.setComment(comment);
@@ -68,9 +68,9 @@ public class TestData {
 
     }
 
-    public RestaurantType restaurantTypeTestData(Integer typeId, String name, String description) {
+    public RestaurantTypeDTO restaurantTypeTestData(Integer typeId, String name, String description) {
 
-        RestaurantType restaurantType = new RestaurantType();
+        RestaurantTypeDTO restaurantType = new RestaurantTypeDTO();
 
         restaurantType.setTypeId(typeId);
         restaurantType.setName(name);
@@ -80,9 +80,9 @@ public class TestData {
 
     }
 
-    public Restaurant restaurantNameAndTypeTestData(Integer restaurantId, String name, String type) {
+    public RestaurantDTO restaurantNameAndTypeTestData(Integer restaurantId, String name, String type) {
 
-        Restaurant restaurant = new Restaurant();
+        RestaurantDTO restaurant = new RestaurantDTO();
 
         restaurant.setRestaurantId(restaurantId);
         restaurant.setName(name);

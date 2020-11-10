@@ -1,7 +1,7 @@
 package foodfinder;
 
 
-import foodfinder.dto.User;
+import foodfinder.dto.UserDTO;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import org.junit.After;
@@ -28,8 +28,8 @@ public class UserServiceTest {
     @Autowired
     TestData testData;
 
-    User userOne;
-    User userTwo;
+    UserDTO userOne;
+    UserDTO userTwo;
 
 
     @Before
@@ -50,7 +50,7 @@ public class UserServiceTest {
     @Test
     public void fetchUserInfoTest() {
 
-        List<User> fetchUserNameAndSurnameValues = userService.fetchUserInfo(userOne.getName(), userOne.getSurname());
+        List<UserDTO> fetchUserNameAndSurnameValues = userService.fetchUserInfo(userOne.getName(), userOne.getSurname());
 
         Assert.assertTrue(fetchUserNameAndSurnameValues.size() > 1);
 
@@ -70,7 +70,7 @@ public class UserServiceTest {
 
     public void checkNameFromCreateNewUserTest() {
 
-        User checkUserCreation = userService.createUser(userOne);
+        UserDTO checkUserCreation = userService.createUser(userOne);
 
         Assert.assertTrue(checkUserCreation.getName() == "Jurica");
 
@@ -80,9 +80,9 @@ public class UserServiceTest {
     @Test
     public void createUserTest() {
 
-        User user = userTwo;
+        UserDTO user = userTwo;
 
-        User checkUserCreation = userService.createUser(user);
+        UserDTO checkUserCreation = userService.createUser(user);
 
         Assert.assertNotNull(checkUserCreation);
 

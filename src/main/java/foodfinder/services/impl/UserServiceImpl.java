@@ -1,16 +1,16 @@
 package foodfinder.services.impl;
 
-import foodfinder.dto.User;
+import foodfinder.dto.UserDTO;
 import foodfinder.exception.RecordNotFoundException;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import liquibase.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public List<User> fetchUserInfo(String userName, String userSurname) {
+    public List<UserDTO> fetchUserInfo(String userName, String userSurname) {
 
         if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(userSurname)) {
 
@@ -44,17 +44,17 @@ public class UserServiceImpl implements UserService {
             return userRepository.findUsersBySurname(userSurname);
         }
 
-        return null;
+        return Collections.<UserDTO>emptyList();
     }
 
 
-    public User fetchUserById(Integer userId) {
+    public UserDTO fetchUserById(Integer userId) {
 
-        User user = userRepository.findUserByUserId(userId);
+        UserDTO user = userRepository.findUserByUserId(userId);
 
         if (user == null ) {
 
-            throw new RecordNotFoundException("User with " + userId + " not found!");
+            throw new RecordNotFoundException("UserDTO with " + userId + " not found!");
         }
         return user;
     }
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(userId);
     }
 
-    public User createUser(User user) {
+    public UserDTO createUser(UserDTO user) {
 
         user.setPassword(passHashed(user.getPassword()));
 
@@ -83,9 +83,9 @@ public class UserServiceImpl implements UserService {
         userRepository.updateUserMail(userId, mail);
     }
 
-    public void updateUserNameAndSurname(User user, Integer userId) {
+    public void updateUserNameAndSurname(UserDTO user, Integer userId) {
 
-        User userDb = userRepository.findUserByUserId(userId);
+        UserDTO userDb = userRepository.findUserByUserId(userId);
 
         if (user.getName() != null) {
 

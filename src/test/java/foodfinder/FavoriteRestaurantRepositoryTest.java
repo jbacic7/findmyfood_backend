@@ -1,6 +1,6 @@
 package foodfinder;
 
-import foodfinder.dto.FavoriteRestaurant;
+import foodfinder.dto.FavoriteRestaurantDTO;
 import foodfinder.repository.FavoriteRestaurantRepository;
 import org.junit.After;
 import org.junit.Assert;
@@ -19,7 +19,7 @@ public class FavoriteRestaurantRepositoryTest {
     FavoriteRestaurantRepository favoriteRestaurantRepository;
 
 
-    FavoriteRestaurant favoriteRestaurant;
+    FavoriteRestaurantDTO favoriteRestaurantDTO;
 
     @Autowired
     TestData testData;
@@ -28,20 +28,20 @@ public class FavoriteRestaurantRepositoryTest {
     @Before
     public void setUp() {
 
-        favoriteRestaurant = favoriteRestaurantRepository.save(testData.favoriteRestaurantTestData(3, 1, 26));
+        favoriteRestaurantDTO = favoriteRestaurantRepository.save(testData.favoriteRestaurantTestData(3, 1, 26));
 
     }
 
     @After
     public void after() {
 
-        favoriteRestaurantRepository.delete(favoriteRestaurant);
+        favoriteRestaurantRepository.delete(favoriteRestaurantDTO);
     }
 
     @Test
     public void saveFavoriteRestaurantTest() {
 
-        Assert.assertSame(favoriteRestaurant.getUserId(), 1);
+        Assert.assertSame(1,favoriteRestaurantDTO.getUserId() );
 
     }
 

@@ -1,6 +1,6 @@
 package foodfinder.services.impl;
 
-import foodfinder.dto.RestaurantType;
+import foodfinder.dto.RestaurantTypeDTO;
 import foodfinder.repository.RestaurantTypeRepository;
 import foodfinder.services.interfaces.RestaurantTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class RestaurantTypeServiceImpl implements RestaurantTypeService {
     RestaurantTypeRepository typeRepository;
 
     @Override
-    public List<RestaurantType> fetchTypeList() {
+    public List<RestaurantTypeDTO> fetchTypeList() {
 
         return typeRepository.findAll();
     }

@@ -9,23 +9,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NotNull
 @NoArgsConstructor
-@Data
-@Table(name = "history")
-public class History {
+@Table(name = "restaurants")
+public class RestaurantDTO {
 
     @Id
-    @Column(name = "history_id")
-    private Integer historyId;
-    @Column(name = "user_id")
-    private Integer userId;
-    @Column(name = "restaurants_id")
+    @Column(name = "restaurant_id")
     private Integer restaurantId;
-    private Timestamp date;
+    private String name;
+    private String address;
+    private String type;
+    private Float latitude;
+    private Float longitude;
 
 }

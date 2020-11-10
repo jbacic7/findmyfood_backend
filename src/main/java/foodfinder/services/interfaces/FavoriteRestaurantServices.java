@@ -1,14 +1,12 @@
 package foodfinder.services.interfaces;
 
-import foodfinder.dto.FavoriteRestaurant;
-
-import java.util.List;
+import foodfinder.dto.FavoriteRestaurantDTO;
 
 
 public interface FavoriteRestaurantServices {
 
 
-    FavoriteRestaurant saveFavoriteRestaurant(FavoriteRestaurant favoriteRestaurant);
+    FavoriteRestaurantDTO saveFavoriteRestaurant(FavoriteRestaurantDTO favoriteRestaurantDTO);
 
 
 }

@@ -1,7 +1,7 @@
 package foodfinder;
 
 
-import foodfinder.dto.Restaurant;
+import foodfinder.dto.RestaurantDTO;
 import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
 import org.junit.After;
@@ -24,11 +24,11 @@ public class RestaurantServiceTest {
     @Autowired
     RestaurantRepository restaurantRepository;
 
-    Restaurant restaurantOne;
+    RestaurantDTO restaurantOne;
 
-    Restaurant restaurantTwo;
+    RestaurantDTO restaurantTwo;
 
-    Restaurant restaurantNull;
+    RestaurantDTO restaurantNull;
 
     @Autowired
     TestData testData;
@@ -64,7 +64,7 @@ public class RestaurantServiceTest {
 
         String restaurantName = restaurantTwo.getName();
 
-        Restaurant restaurantNameGetter = restaurantTwo;
+        RestaurantDTO restaurantNameGetter = restaurantTwo;
 
         Assert.assertEquals(restaurantNameGetter.getName(), restaurantName);
 

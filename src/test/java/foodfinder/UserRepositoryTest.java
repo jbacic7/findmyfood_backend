@@ -1,6 +1,6 @@
 package foodfinder;
 
-import foodfinder.dto.User;
+import foodfinder.dto.UserDTO;
 import foodfinder.repository.UserRepository;
 import foodfinder.services.interfaces.UserService;
 import org.junit.After;
@@ -27,11 +27,11 @@ public class UserRepositoryTest {
     @Autowired
     TestData testData;
 
-    User userOne;
+    UserDTO userOne;
 
-    User userTwo;
+    UserDTO userTwo;
    
-    User userDeleteTest;
+    UserDTO userDeleteTest;
 
     @Before
     public void setUp() {
@@ -51,36 +51,36 @@ public class UserRepositoryTest {
     @Test
     public void updateUserNameTest() {
 
-        User updateUserName = new User();
+        UserDTO updateUserName = new UserDTO();
 
         updateUserName.setName("NewJurica");
 
         userService.updateUserNameAndSurname(updateUserName, userOne.getUserId());
 
-        User findUserSurname = userRepository.findUserByUserId(userOne.getUserId());
+        UserDTO findUserSurname = userRepository.findUserByUserId(userOne.getUserId());
 
-        Assert.assertEquals(findUserSurname.getName(), "NewJurica");
+        Assert.assertEquals("NewJurica", findUserSurname.getName() );
     }
 
     @Test
     public void updateUserSurnameTest() {
 
-        User updateUserSurname = new User();
+        UserDTO updateUserSurname = new UserDTO();
 
         updateUserSurname.setSurname("Legend");
 
         userService.updateUserNameAndSurname(updateUserSurname, userOne.getUserId());
 
-        User findUserSurname = userRepository.findUserByUserId(userOne.getUserId());
+        UserDTO findUserSurname = userRepository.findUserByUserId(userOne.getUserId());
 
-        Assert.assertEquals(findUserSurname.getSurname(), "Legend");
+        Assert.assertEquals("Legend", findUserSurname.getSurname());
 
     }
 
     @Test
     public void fetchAllUsersTest() {
 
-        List<User> allUsers = userRepository.findAll();
+        List<UserDTO> allUsers = userRepository.findAll();
 
         Assert.assertNotNull(allUsers);
     }
@@ -102,7 +102,7 @@ public class UserRepositoryTest {
 
         Integer targetId = userOne.getUserId();
 
-        User filterUserById = userRepository.findUserByUserId(targetId);
+        UserDTO filterUserById = userRepository.findUserByUserId(targetId);
 
         Assert.assertNotNull(filterUserById);
 
@@ -111,7 +111,7 @@ public class UserRepositoryTest {
     @Test
     public void checkSpecificUserById() {
 
-        User filterUserNameById = userRepository.findUserByUserId(userOne.getUserId());
+        UserDTO filterUserNameById = userRepository.findUserByUserId(userOne.getUserId());
 
         Assert.assertEquals(userOne.getName(), filterUserNameById.getName());
 
@@ -120,7 +120,7 @@ public class UserRepositoryTest {
     @Test
     public void checkingIsUserFilled() {
 
-        List<User> user = userRepository.findAll();
+        List<UserDTO> user = userRepository.findAll();
 
         Assert.assertEquals(true, !user.isEmpty());
 
@@ -133,7 +133,7 @@ public class UserRepositoryTest {
 
             userRepository.deleteById(userDeleteTest.getUserId());
 
-            User findingUser = userRepository.findUserByUserId(userDeleteTest.getUserId());
+            UserDTO findingUser = userRepository.findUserByUserId(userDeleteTest.getUserId());
 
             Assert.assertEquals(null, findingUser);
 

@@ -1,7 +1,8 @@
 package foodfinder.exception;
 
 public class RecordNotFoundException extends RuntimeException {
-    String message;
+
+     String message;
 
     public RecordNotFoundException() {
         super();

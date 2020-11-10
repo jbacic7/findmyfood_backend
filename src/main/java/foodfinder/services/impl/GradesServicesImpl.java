@@ -1,18 +1,13 @@
 package foodfinder.services.impl;
 
-import foodfinder.dto.Restaurant;
-import foodfinder.dto.RestaurantGrade;
-import foodfinder.dto.RestaurantType;
+import foodfinder.dto.RestaurantGradeDTO;
 import foodfinder.repository.GradeRepository;
 import foodfinder.services.interfaces.GradesServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -24,7 +19,7 @@ public class GradesServicesImpl implements GradesServices {
 
 
     @Override
-    public void createRestaurantsGrade(RestaurantGrade restaurantGrade) {
+    public void createRestaurantsGrade(RestaurantGradeDTO restaurantGrade) {
 
         gradeRepository.save(restaurantGrade);
 
@@ -41,11 +36,11 @@ public class GradesServicesImpl implements GradesServices {
 
         if(idRestaurants > 0){
 
-            List<RestaurantGrade> listOfGradesForRestaurant =  gradeRepository.findRestaurantGradesByIdRestaurants(idRestaurants);
+            List<RestaurantGradeDTO> listOfGradesForRestaurant =  gradeRepository.findRestaurantGradesByIdRestaurants(idRestaurants);
 
             List<Integer> listOfGrades = new ArrayList<>();
 
-            for (RestaurantGrade restaurantGrade : listOfGradesForRestaurant){
+            for (RestaurantGradeDTO restaurantGrade : listOfGradesForRestaurant){
 
                 listOfGrades.add(restaurantGrade.getGrade());
 
@@ -53,6 +48,6 @@ public class GradesServicesImpl implements GradesServices {
             return listOfGrades;
         }
 
-        return null;
+        return Collections.<Integer>emptyList();
     }
 }

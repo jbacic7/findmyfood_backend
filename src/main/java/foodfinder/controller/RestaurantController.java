@@ -34,55 +34,55 @@ public class RestaurantController {
     @Autowired
     RestaurantTypeService restaurantTypeService;
 
-    @RequestMapping(value = "/type", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public List<RestaurantType> getAllTypes() {
+    @GetMapping(value = "/type", produces = "application/json;charset=UTF-8")
+    public List<RestaurantTypeDTO> getAllTypes() {
 
         return restaurantTypeService.fetchTypeList();
 
     }
 
-    @RequestMapping(value = "/restaurants", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public List<Restaurant> getRestaurants(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
+    @GetMapping(value = "/restaurants", produces = "application/json;charset=UTF-8")
+    public List<RestaurantDTO> getRestaurants(@RequestParam(required = false, name = "name") String restaurantName, @RequestParam(required = false, name = "type") List<String> restaurantTypeList) {
 
         return restaurantService.fetchRestaurantByNameAndType(restaurantName, restaurantTypeList);
 
     }
 
-    @RequestMapping(value = "/restaurants/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/restaurants/{id}", produces = "application/json;charset=UTF-8")
 
-    public Restaurant getRestaurantsId(
+    public RestaurantDTO getRestaurantsId(
             @PathVariable(value = "id") final Integer restaurantId) {
 
         return restaurantService.fetchRestaurantId(restaurantId);
 
     }
 
-    @RequestMapping(value = "/favorite-restaurant", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    @PostMapping(value = "/favorite-restaurant", produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
-    FavoriteRestaurant saveFavoriteRestaurantToSpecificUser(@RequestBody FavoriteRestaurant favoriteRestaurant) {
+    FavoriteRestaurantDTO saveFavoriteRestaurantToSpecificUser(@RequestBody FavoriteRestaurantDTO favoriteRestaurantDTO) {
 
-        return favoriteRestaurantServices.saveFavoriteRestaurant(favoriteRestaurant);
+        return favoriteRestaurantServices.saveFavoriteRestaurant(favoriteRestaurantDTO);
 
     }
 
-    @RequestMapping(value = "/favorite-restaurant/{user_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/favorite-restaurant/{user_id}", produces = "application/json;charset=UTF-8")
 
-    public List<Restaurant> getUserFavoriteRestaurant(
+    public List<RestaurantDTO> getUserFavoriteRestaurant(
             @PathVariable(value = "user_id") final Integer userId) {
 
         return restaurantService.fetchFavoriteRestaurantByUserId(userId);
 
     }
 
-    @RequestMapping(value = "/grade", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    @PostMapping(value = "/grade", produces = "application/json;charset=UTF-8", consumes = "application/json;")
     public @ResponseBody
-    void createRestaurantGrade(@RequestBody RestaurantGrade restaurantGrade) {
+    void createRestaurantGrade(@RequestBody RestaurantGradeDTO restaurantGrade) {
 
         gradesServices.createRestaurantsGrade(restaurantGrade);
 
     }
 
-    @RequestMapping(value = "/restaurant-grades/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/restaurant-grades/{id}", produces = "application/json;charset=UTF-8")
     public List<Integer> getRestaurantsGradeByRestaurantId(
             @PathVariable(value = "id") final Integer restaurantId) {
 
@@ -90,22 +90,22 @@ public class RestaurantController {
 
     }
 
-    @RequestMapping(value = "/average-grade/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8 ")
+    @GetMapping(value = "/average-grade/{restaurant_id}", produces = "application/json;charset=UTF-8 ")
     public Double getAverageRestaurantGrade(@PathVariable(value = "restaurant_id") final Integer restaurantId) {
 
         return gradesServices.averageRestaurantsGrade(restaurantId);
 
     }
 
-    @RequestMapping(value = "/user-comment", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/user-comment", produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    UserComment saveUserCommentaryForSpecificRestaurant(@RequestBody UserComment userComment) {
+    UserCommentDTO saveUserCommentaryForSpecificRestaurant(@RequestBody UserCommentDTO userComment) {
 
         return userCommentsService.saveUserComments(userComment);
     }
 
-    @RequestMapping(value = "/fetch-user-comment-for-specific-restaurant/{restaurant_id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public List<UserComment> getRestaurantCommentByRestaurantId(
+    @GetMapping(value = "/fetch-user-comment-for-specific-restaurant/{restaurant_id}", produces = "application/json;charset=UTF-8")
+    public List<UserCommentDTO> getRestaurantCommentByRestaurantId(
             @PathVariable(value = "restaurant_id") final Integer restaurantId) {
 
         return userCommentsService.fetchUserCommentsForRestaurant(restaurantId);

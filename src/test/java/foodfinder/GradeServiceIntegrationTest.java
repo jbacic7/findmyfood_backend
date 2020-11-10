@@ -1,8 +1,8 @@
 package foodfinder;
 
-import foodfinder.dto.Restaurant;
-import foodfinder.dto.RestaurantGrade;
-import foodfinder.dto.User;
+import foodfinder.dto.RestaurantDTO;
+import foodfinder.dto.RestaurantGradeDTO;
+import foodfinder.dto.UserDTO;
 import foodfinder.repository.GradeRepository;
 import foodfinder.repository.RestaurantRepository;
 import foodfinder.repository.UserRepository;
@@ -41,12 +41,11 @@ public class GradeServiceIntegrationTest {
     @Autowired
     private TestData testData;
 
-    private RestaurantGrade restaurantGrade;
+    private RestaurantGradeDTO restaurantGrade;
 
+    private UserDTO user;
 
-    private User user;
-
-    private Restaurant restaurant;
+    private RestaurantDTO restaurant;
 
     @Before
     public void setUp() {

@@ -1,7 +1,6 @@
 package foodfinder.services.impl;
 
-import foodfinder.dto.User;
-import foodfinder.dto.UserComment;
+import foodfinder.dto.UserCommentDTO;
 import foodfinder.repository.UserCommentsRepository;
 import foodfinder.services.interfaces.UserCommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,14 @@ public class UserCommentsImpl implements UserCommentsService {
 
 
     @Override
-    public UserComment saveUserComments(UserComment userComment) {
+    public UserCommentDTO saveUserComments(UserCommentDTO userComment) {
 
         return userCommentsRepository.save(userComment);
 
     }
 
     @Override
-    public List<UserComment> fetchUserCommentsForRestaurant(Integer restaurantId) {
+    public List<UserCommentDTO> fetchUserCommentsForRestaurant(Integer restaurantId) {
 
         return userCommentsRepository.findUserCommentsByRestaurantId(restaurantId);
 

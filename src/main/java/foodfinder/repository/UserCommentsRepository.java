@@ -1,14 +1,14 @@
 package foodfinder.repository;
 
-import foodfinder.dto.UserComment;
+import foodfinder.dto.UserCommentDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 
-public interface UserCommentsRepository extends JpaRepository<UserComment, Integer> {
+public interface UserCommentsRepository extends JpaRepository<UserCommentDTO, Integer> {
 
 
-    List<UserComment> findUserCommentsByRestaurantId(Integer restaurantId);
+    List<UserCommentDTO> findUserCommentsByRestaurantId(Integer restaurantId);
 
 }

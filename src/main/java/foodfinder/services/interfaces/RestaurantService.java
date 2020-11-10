@@ -2,15 +2,15 @@ package foodfinder.services.interfaces;
 
 
 
-import foodfinder.dto.Restaurant;
+import foodfinder.dto.RestaurantDTO;
 
 import java.util.List;
 
 public interface RestaurantService {
 
-    List<Restaurant> fetchRestaurantByNameAndType(final String restaurantName, final List<String> restaurantTypeList);
+    List<RestaurantDTO> fetchRestaurantByNameAndType(final String restaurantName, final List<String> restaurantTypeList);
 
-    Restaurant fetchRestaurantId(Integer restaurantId);
+    RestaurantDTO fetchRestaurantId(Integer restaurantId);
 
-    List<Restaurant> fetchFavoriteRestaurantByUserId(Integer userId);
+    List<RestaurantDTO> fetchFavoriteRestaurantByUserId(Integer userId);
 }

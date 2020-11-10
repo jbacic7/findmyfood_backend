@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @NotNull
 @Table(name = "user_comment")
-public class UserComment {
+public class UserCommentDTO {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_comment")
     @SequenceGenerator(name = "seq_comment", sequenceName = "seq_comment", initialValue = 1, allocationSize = 1)

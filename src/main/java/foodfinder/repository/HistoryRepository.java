@@ -1,20 +1,20 @@
 package foodfinder.repository;
 
-import foodfinder.dto.History;
+import foodfinder.dto.HistoryDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.sql.Timestamp;
 import java.util.List;
 
 
-public interface HistoryRepository extends JpaRepository<History, Integer> {
+public interface HistoryRepository extends JpaRepository<HistoryDTO, Integer> {
 
-    History findHistoryByHistoryId(Integer historyId);
+    HistoryDTO findHistoryByHistoryId(Integer historyId);
 
-    List<History> findHistoriesByUserId(Integer userId);
+    List<HistoryDTO> findHistoriesByUserId(Integer userId);
 
-    List<History> findHistoriesByRestaurantId(Integer restaurantsId);
+    List<HistoryDTO> findHistoriesByRestaurantId(Integer restaurantsId);
 
-    List<History> findHistoriesByDate(Timestamp date);
+    List<HistoryDTO> findHistoriesByDate(Timestamp date);
 
 
 }

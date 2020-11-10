@@ -1,6 +1,6 @@
 package foodfinder.services.impl;
 
-import foodfinder.dto.Restaurant;
+import foodfinder.dto.RestaurantDTO;
 import foodfinder.repository.RestaurantRepository;
 import foodfinder.services.interfaces.RestaurantService;
 import liquibase.util.StringUtils;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,7 +20,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 
     @Override
-    public List<Restaurant> fetchRestaurantByNameAndType(String restaurantName, List<String> restaurantTypeList) {
+    public List<RestaurantDTO> fetchRestaurantByNameAndType(String restaurantName, List<String> restaurantTypeList) {
 
         if (CollectionUtils.isEmpty(restaurantTypeList) && StringUtils.isEmpty(restaurantName)) {
 
@@ -40,7 +41,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant fetchRestaurantId(Integer restaurantId) {
+    public RestaurantDTO fetchRestaurantId(Integer restaurantId) {
 
         if (restaurantId != 0) {
 
@@ -51,14 +52,14 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public List<Restaurant> fetchFavoriteRestaurantByUserId(Integer userId) {
+    public List<RestaurantDTO> fetchFavoriteRestaurantByUserId(Integer userId) {
 
         if (userId >= 1) {
 
             return restaurantRepository.findFavoriteRestaurantByUserId(userId);
         }
 
-        return null;
+        return Collections.<RestaurantDTO>emptyList();
 
     }
 

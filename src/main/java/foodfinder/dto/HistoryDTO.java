@@ -1,31 +1,31 @@
 package foodfinder.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 
 @Entity
-@Data
 @AllArgsConstructor
+@NotNull
 @NoArgsConstructor
-@Table(name = "type")
-public class RestaurantType {
+@Data
+@Table(name = "history")
+public class HistoryDTO {
 
     @Id
-    @NotNull
-    @Column(name = "type_id")
-    private Integer typeId;
-    @NotNull
-    private String name;
-    @Nullable
-    private String description;
+    @Column(name = "history_id")
+    private Integer historyId;
+    @Column(name = "user_id")
+    private Integer userId;
+    @Column(name = "restaurants_id")
+    private Integer restaurantId;
+    private Timestamp date;
 
 }

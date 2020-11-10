@@ -1,7 +1,7 @@
 package foodfinder;
 
 
-import foodfinder.dto.RestaurantGrade;
+import foodfinder.dto.RestaurantGradeDTO;
 import foodfinder.repository.GradeRepository;
 import org.junit.After;
 import org.junit.Assert;
@@ -26,9 +26,9 @@ public class GradeRepositoryTest {
     @Autowired
     TestData testData;
 
-    RestaurantGrade restaurantGrade;
+    RestaurantGradeDTO restaurantGrade;
 
-    RestaurantGrade savingRestaurantGrade;
+    RestaurantGradeDTO savingRestaurantGrade;
 
 
     @Before

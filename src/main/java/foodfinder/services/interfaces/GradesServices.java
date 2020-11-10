@@ -1,12 +1,12 @@
 package foodfinder.services.interfaces;
 
-import foodfinder.dto.RestaurantGrade;
+import foodfinder.dto.RestaurantGradeDTO;
 
 import java.util.List;
 
 public interface GradesServices {
 
-    void createRestaurantsGrade(final RestaurantGrade restaurantGrade);
+    void createRestaurantsGrade(final RestaurantGradeDTO restaurantGrade);
 
     Double averageRestaurantsGrade(Integer restaurantId);
 
