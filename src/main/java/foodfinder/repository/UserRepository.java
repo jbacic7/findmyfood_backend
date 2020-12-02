@@ -18,6 +18,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findUsersBySurname(String surname);
 
+    User findUserByMail(String mail);
+
+    User findUserByPassword(String password);
+
     @Modifying(clearAutomatically = true)
     @Transactional
     @Query("UPDATE User u set u.password = :password WHERE u.userId = :customerId")

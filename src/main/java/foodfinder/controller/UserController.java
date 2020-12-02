@@ -70,4 +70,18 @@ public class UserController {
         userService.updateUserNameAndSurname(user, userId);
     }
 
+    @RequestMapping(value = "/userSingUp", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;")
+    public @ResponseBody
+    void userSingUp(@RequestBody User user) {
+
+        userService.userSingUpUser(user);
+    }
+
+    @RequestMapping(value = "/userSingInCheck/{mail}/{password}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public Boolean userSingInCheck(@PathVariable("mail") String mail, @PathVariable("password") String password) {
+
+        return userService.userSingInCheck(mail,password);
+
+    }
+
 }

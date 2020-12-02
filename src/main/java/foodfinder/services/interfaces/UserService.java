@@ -15,6 +15,10 @@ public interface UserService {
 
     User createUser(User createUser);
 
+    User userSingUpUser(User user);
+
+    Boolean userSingInCheck(String mail,String password);
+
     void userDelete(final Integer useId);
 
     void updateAndHashUserPassword(String password, Integer userId);
@@ -22,5 +26,6 @@ public interface UserService {
     void updateUserEmail(final String mail, Integer userId);
 
     void updateUserNameAndSurname(final User user, final Integer userId);
+
 
 }

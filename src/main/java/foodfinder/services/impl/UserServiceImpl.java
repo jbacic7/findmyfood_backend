@@ -13,16 +13,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Slf4j
+
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
 
-
     @Autowired
     private PasswordEncoder passwordEncoder;
+
 
     @Override
     public List<User> fetchUserInfo(String userName, String userSurname) {
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userRepository.findUserByUserId(userId);
 
-        if (user == null ) {
+        if (user == null) {
 
             throw new RecordNotFoundException("User with " + userId + " not found!");
         }
@@ -100,10 +100,48 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userDb);
     }
 
+
+
+
+    public User userSingUpUser(User user) {
+
+        if (user.getName() != null || user.getSurname() != null) {
+
+            user.setName(user.getName());
+            user.setSurname(user.getSurname());
+        }
+
+        if (user.getMail() != null) {
+
+            user.setMail(user.getMail());
+        }
+        if (user.getPassword() != null) {
+
+            user.setPassword(user.getPassword());
+        }
+        return userRepository.save(user);
+    }
+
+
+    public Boolean userSingInCheck( String mail,String password){
+
+        User user = userRepository.findUserByMail(mail);
+
+        if(user.getMail().equals(mail) && user.getPassword().equals(password)){
+
+            return Boolean.TRUE;
+        }
+
+        return Boolean.FALSE;
+
+    }
+
     private String passHashed(String password) {
 
 
         return passwordEncoder.encode(password);
     }
+
+
 
 }
